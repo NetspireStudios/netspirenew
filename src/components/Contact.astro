@@ -1,0 +1,747 @@
+---
+// Enhanced Contact Section with Three.js Background
+---
+
+<section class="contact" id="contact">
+  <!-- Three.js Canvas Background -->
+  <canvas class="contact-canvas" id="contact-canvas"></canvas>
+  
+  <div class="contact-container">
+    <!-- Big Text Header -->
+    <div class="contact-hero">
+      <h1 class="contact-big-text">
+        <span class="big-text-line">LET'S</span>
+        <span class="big-text-line">CREATE</span>
+        <span class="big-text-line highlight">TOGETHER</span>
+      </h1>
+      <p class="contact-subtitle">
+        Ready to bring your vision to life? We're here to make it happen.
+      </p>
+    </div>
+
+    <!-- Enhanced Contact Layout -->
+    <div class="contact-content">
+      <!-- Contact Form -->
+      <div class="contact-form-section">
+        <form class="contact-form" id="contact-form">
+          <div class="form-grid">
+            <!-- Name Field -->
+            <div class="form-group full-width">
+              <label for="name" class="form-label">What's your name?</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                class="form-input" 
+                placeholder="John Doe"
+                required
+                data-cursor="text"
+              />
+              <div class="form-line"></div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+              <label for="email" class="form-label">Email address</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-input" 
+                placeholder="john@example.com"
+                required
+                data-cursor="text"
+              />
+              <div class="form-line"></div>
+            </div>
+
+            <!-- Phone Field -->
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone number</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                class="form-input" 
+                placeholder="+1 (555) 123-4567"
+                data-cursor="text"
+              />
+              <div class="form-line"></div>
+            </div>
+
+            <!-- Project Type -->
+            <div class="form-group">
+              <label for="project" class="form-label">Project type</label>
+              <select 
+                id="project" 
+                name="project" 
+                class="form-select" 
+                required
+                data-cursor="hover"
+              >
+                <option value="">Select project type</option>
+                <option value="web-development">Web Development</option>
+                <option value="design-system">Design System</option>
+                <option value="3d-experience">3D Experience</option>
+                <option value="digital-strategy">Digital Strategy</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="form-line"></div>
+            </div>
+
+            <!-- Budget -->
+            <div class="form-group">
+              <label for="budget" class="form-label">Budget range</label>
+              <select 
+                id="budget" 
+                name="budget" 
+                class="form-select" 
+                required
+                data-cursor="hover"
+              >
+                <option value="">Select budget range</option>
+                <option value="10k-25k">$10k - $25k</option>
+                <option value="25k-50k">$25k - $50k</option>
+                <option value="50k-100k">$50k - $100k</option>
+                <option value="100k+">$100k+</option>
+              </select>
+              <div class="form-line"></div>
+            </div>
+
+            <!-- Message Field -->
+            <div class="form-group full-width">
+              <label for="message" class="form-label">Tell us about your project</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                class="form-textarea" 
+                placeholder="Describe your vision, goals, and what you'd like to create..."
+                rows="4"
+                required
+                data-cursor="text"
+              ></textarea>
+              <div class="form-line"></div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-submit">
+            <button type="submit" class="submit-btn" data-cursor="hover">
+              <span class="btn-text">Send Message</span>
+              <div class="btn-glow"></div>
+              <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4.16667 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Contact Info Cards -->
+      <div class="contact-info-section">
+        <div class="contact-info-grid">
+          <div class="info-card" data-cursor="hover">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="1.5"/>
+                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="info-content">
+              <div class="info-label">Email Us</div>
+              <a href="mailto:hello@netspire.studio" class="info-value">hello@netspire.studio</a>
+            </div>
+          </div>
+
+          <div class="info-card" data-cursor="hover">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M22 16.92V19.92C22 20.42 21.96 20.93 21.88 21.42C21.49 24.28 19.4 26 16.73 26C7.59 26 1 19.41 1 10.27C1 7.6 2.72 5.51 5.58 5.12C6.07 5.04 6.58 5 7.08 5H10.08C10.58 5 11.03 5.3 11.21 5.76L12.74 9.29C12.89 9.65 12.81 10.06 12.54 10.35L10.76 12.13C10.39 12.5 10.35 13.09 10.66 13.51C11.43 14.64 12.36 15.57 13.49 16.34C13.91 16.65 14.5 16.61 14.87 16.24L16.65 14.46C16.94 14.19 17.35 14.11 17.71 14.26L21.24 15.79C21.7 15.97 22 16.42 22 16.92Z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="info-content">
+              <div class="info-label">Call Us</div>
+              <a href="tel:+1234567890" class="info-value">+1 (234) 567-890</a>
+            </div>
+          </div>
+
+          <div class="info-card" data-cursor="hover">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5.58 7.03 2 12 2S21 5.58 21 10Z" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="info-content">
+              <div class="info-label">Visit Us</div>
+              <div class="info-value">New York, NY<br>United States</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    position: relative;
+    min-height: 100vh;
+    padding: 80px 0 60px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Three.js Canvas */
+  .contact-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .contact-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* Big Text Header */
+  .contact-hero {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .contact-big-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: 800;
+    line-height: 0.85;
+    color: #fff;
+    margin-bottom: 30px;
+    letter-spacing: -0.04em;
+  }
+
+  .big-text-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  .big-text-line.highlight {
+    background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .contact-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  /* Enhanced Contact Layout */
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* Contact Form */
+  .contact-form-section {
+    position: relative;
+  }
+
+  .contact-form {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 25px;
+    margin-bottom: 40px;
+  }
+
+  .form-group {
+    position: relative;
+  }
+
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .form-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+    display: block;
+    letter-spacing: 0.5px;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-bottom-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .form-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0 center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    opacity: 0.8;
+  }
+
+  .form-select option {
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  .form-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.8);
+    transition: width 0.3s ease;
+  }
+
+  .form-input:focus + .form-line,
+  .form-select:focus + .form-line,
+  .form-textarea:focus + .form-line {
+    width: 100%;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  /* Submit Button */
+  .form-submit {
+    text-align: center;
+  }
+
+  .submit-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 36px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: none;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .submit-btn:hover .btn-glow {
+    left: 100%;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .submit-btn:hover .btn-arrow {
+    transform: translateX(5px);
+  }
+
+  /* Contact Info Section */
+  .contact-info-section {
+    position: relative;
+  }
+
+  .contact-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    transition: all 0.4s ease;
+  }
+
+  .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .info-icon {
+    flex-shrink: 0;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+  }
+
+  .info-card:hover .info-icon {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+  }
+
+  .info-content {
+    flex: 1;
+  }
+
+  .info-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .info-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+  }
+
+  .info-value:hover {
+    color: #fff;
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .contact-content {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+    
+    .contact-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact {
+      padding: 60px 0 40px;
+    }
+
+    .contact-container {
+      padding: 0 20px;
+    }
+
+    .contact-hero {
+      margin-bottom: 60px;
+    }
+
+    .contact-form {
+      padding: 30px;
+    }
+
+    .form-grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+
+    .contact-content {
+      gap: 40px;
+    }
+
+    .contact-info-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .info-card {
+      padding: 20px;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced Contact Form with Three.js Background
+  function initContactForm() {
+    console.log('📧 Initializing enhanced contact form...');
+
+    // Three.js Background Scene
+    function initThreeJSBackground() {
+      // @ts-ignore - THREE is loaded globally
+      if (typeof THREE === 'undefined') {
+        console.log('⚠️ Three.js not loaded, skipping 3D background');
+        return;
+      }
+
+      const canvas = document.getElementById('contact-canvas') as HTMLCanvasElement;
+      if (!canvas) return;
+
+      // @ts-ignore - THREE is loaded globally
+      const scene = new THREE.Scene();
+      // @ts-ignore - THREE is loaded globally
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      // @ts-ignore - THREE is loaded globally
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // Create floating geometric shapes
+      // @ts-ignore - THREE is loaded globally
+      const shapes: THREE.Mesh[] = [];
+      const geometries = [
+        // @ts-ignore - THREE is loaded globally
+        new THREE.IcosahedronGeometry(0.8, 0),
+        // @ts-ignore - THREE is loaded globally
+        new THREE.OctahedronGeometry(0.6, 0),
+        // @ts-ignore - THREE is loaded globally
+        new THREE.TetrahedronGeometry(0.7, 0),
+        // @ts-ignore - THREE is loaded globally
+        new THREE.DodecahedronGeometry(0.5, 0)
+      ];
+
+      // Create multiple floating shapes
+      for (let i = 0; i < 15; i++) {
+        const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+        // @ts-ignore - THREE is loaded globally
+        const material = new THREE.MeshBasicMaterial({ 
+          color: 0xffffff,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.1 + Math.random() * 0.1
+        });
+        
+        // @ts-ignore - THREE is loaded globally
+        const shape = new THREE.Mesh(geometry, material);
+        
+        // Random positioning
+        shape.position.x = (Math.random() - 0.5) * 20;
+        shape.position.y = (Math.random() - 0.5) * 20;
+        shape.position.z = (Math.random() - 0.5) * 20;
+        
+        // Random rotation
+        shape.rotation.x = Math.random() * Math.PI;
+        shape.rotation.y = Math.random() * Math.PI;
+        shape.rotation.z = Math.random() * Math.PI;
+        
+        shapes.push(shape);
+        scene.add(shape);
+      }
+
+      camera.position.z = 5;
+
+      // Animation loop
+      function animate() {
+        requestAnimationFrame(animate);
+
+        // Rotate and float shapes
+        shapes.forEach((shape, index) => {
+          shape.rotation.x += 0.005 + index * 0.0001;
+          shape.rotation.y += 0.003 + index * 0.0001;
+          shape.position.y += Math.sin(Date.now() * 0.001 + index) * 0.002;
+          shape.position.x += Math.cos(Date.now() * 0.0008 + index) * 0.001;
+        });
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      // Handle resize
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      console.log('✅ Three.js contact background initialized');
+    }
+
+    // Initialize Three.js background
+    initThreeJSBackground();
+
+    // Contact Form Animations
+    function initContactAnimations() {
+      if (typeof gsap === 'undefined') {
+        console.log('⚠️ GSAP not available, showing contact content immediately');
+        setTimeout(() => {
+          const elements = ['.big-text-line', '.contact-subtitle'];
+          elements.forEach(selector => {
+            const element = document.querySelector(selector) as HTMLElement;
+            if (element) {
+              element.style.opacity = '1';
+              element.style.transform = 'translateY(0)';
+            }
+          });
+        }, 500);
+        return;
+      }
+
+      // Animate big text
+      gsap.to('.big-text-line', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power2.out',
+        delay: 0.5
+      });
+
+      // Animate subtitle
+      gsap.to('.contact-subtitle', {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        delay: 1.2
+      });
+
+      // Animate form and info cards on scroll
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.contact-content',
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+
+      tl.from('.contact-form', {
+        opacity: 0,
+        x: -50,
+        duration: 0.8,
+        ease: 'power2.out'
+      })
+      .from('.info-card', {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out'
+      }, '-=0.4');
+    }
+
+    initContactAnimations();
+
+    // Form submission handler
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
+      const btnText = submitBtn.querySelector('.btn-text');
+      
+      if (submitBtn && btnText) {
+        submitBtn.disabled = true;
+        btnText.textContent = 'Sending...';
+        
+        // Simulate form submission
+        setTimeout(() => {
+          btnText.textContent = 'Message Sent!';
+          
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            btnText.textContent = 'Send Message';
+            (form as HTMLFormElement).reset();
+          }, 2000);
+        }, 1500);
+      }
+    });
+
+    console.log('✅ Enhanced contact form initialized');
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContactForm);
+  } else {
+    initContactForm();
+  }
+</script> 

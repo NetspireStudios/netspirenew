@@ -1,0 +1,556 @@
+---
+// Featured Work Section - Grid Layout with Parallax
+---
+
+<section class="portfolio" id="work">
+  <div class="portfolio-container">
+    <!-- Portfolio Header -->
+    <div class="portfolio-header">
+      <div class="header-content">
+        <h2 class="portfolio-title">Featured Work</h2>
+        <div class="portfolio-description">
+          <p>A SELECTION OF OUR MOST PASSIONATELY CRAFTED WORKS WITH FORWARD-THINKING CLIENTS AND FRIENDS OVER THE YEARS.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      <!-- Row 1 -->
+      <div class="project-row" data-row="1">
+        <!-- Project 1 - Devin AI -->
+        <div class="project-card" data-project="devin">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&auto=format" alt="Devin AI" loading="lazy" />
+          </div>
+          <div class="project-info">
+            <div class="project-category">WEB • DESIGN • DEVELOPMENT • 3D</div>
+            <h3 class="project-name">Devin AI</h3>
+          </div>
+        </div>
+
+        <!-- Project 2 - Porsche Dream Machine -->
+        <div class="project-card" data-project="porsche">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop&auto=format" alt="Porsche Dream Machine" loading="lazy" />
+          </div>
+          <div class="project-info">
+            <div class="project-category">CONCEPT • 3D ILLUSTRATION • MOGRAPH • VIDEO</div>
+            <h3 class="project-name">Porsche: Dream Machine</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="project-row" data-row="2">
+        <!-- Project 3 - Aurora Analytics -->
+        <div class="project-card" data-project="aurora">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&auto=format" alt="Aurora Analytics" loading="lazy" />
+          </div>
+          <div class="project-info">
+            <div class="project-category">DATA • VISUALIZATION • WEB • API</div>
+            <h3 class="project-name">Aurora Analytics</h3>
+          </div>
+        </div>
+
+        <!-- Project 4 - Quantum App -->
+        <div class="project-card" data-project="quantum">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&auto=format" alt="Quantum App" loading="lazy" />
+          </div>
+          <div class="project-info">
+            <div class="project-category">MOBILE • AR • COLLABORATION • UX</div>
+            <h3 class="project-name">Quantum App</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="project-row" data-row="3">
+        <!-- Project 5 - Digital Studio -->
+        <div class="project-card" data-project="studio">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop&auto=format" alt="Digital Studio" loading="lazy" />
+          </div>
+          <div class="project-info">
+            <div class="project-category">CREATIVE • PLATFORM • REAL-TIME • COLLAB</div>
+            <h3 class="project-name">Digital Studio</h3>
+          </div>
+        </div>
+
+        <!-- Project 6 - Future Finance -->
+        <div class="project-card" data-project="finance">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&auto=format" alt="Future Finance" loading="lazy" />
+          </div>
+          <div class="project-info">
+            <div class="project-category">FINTECH • AI • BLOCKCHAIN • INVESTMENT</div>
+            <h3 class="project-name">Future Finance</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio {
+    background: #fff;
+    position: relative;
+    padding: 120px 0;
+    overflow: hidden;
+  }
+
+  .portfolio-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* Portfolio Header */
+  .portfolio-header {
+    margin-bottom: 100px;
+  }
+
+  .header-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .portfolio-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 400;
+    line-height: 0.9;
+    color: #000;
+    margin: 0;
+    letter-spacing: -0.02em;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .portfolio-description {
+    display: flex;
+    align-items: center;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .portfolio-description p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 0;
+    max-width: 400px;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .project-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Project Cards */
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    cursor: none;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .project-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #f5f5f5;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-card:hover .project-image {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .project-category {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: #999;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .project-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+  }
+
+  .project-card:hover .project-name {
+    color: #666;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .portfolio-container {
+      padding: 0 30px;
+    }
+
+    .header-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: left;
+    }
+
+    .project-row {
+      gap: 30px;
+    }
+
+    .projects-grid {
+      gap: 60px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .portfolio {
+      padding: 80px 0;
+    }
+
+    .portfolio-container {
+      padding: 0 20px;
+    }
+
+    .portfolio-header {
+      margin-bottom: 60px;
+    }
+
+    .header-content {
+      gap: 30px;
+    }
+
+    .portfolio-description p {
+      font-size: 12px;
+    }
+
+    .project-row {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .projects-grid {
+      gap: 50px;
+    }
+
+    .project-image {
+      aspect-ratio: 16/10;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .portfolio {
+      padding: 60px 0;
+    }
+
+    .portfolio-header {
+      margin-bottom: 50px;
+    }
+
+    .projects-grid {
+      gap: 40px;
+    }
+  }
+</style>
+
+<script>
+  // Simplified Portfolio Grid with Enhanced Animations
+  function initPortfolioGrid() {
+    console.log('🎨 Initializing portfolio grid...');
+
+    // Wait for GSAP to be ready (if available)
+    function waitForGSAP() {
+      return new Promise((resolve) => {
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+          resolve(true);
+        } else {
+          // Give GSAP up to 3 seconds to load
+          let attempts = 0;
+          const maxAttempts = 30;
+          const interval = setInterval(() => {
+            attempts++;
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+              clearInterval(interval);
+              resolve(true);
+            } else if (attempts >= maxAttempts) {
+              clearInterval(interval);
+              resolve(false);
+            }
+          }, 100);
+        }
+      });
+    }
+
+    // Enhanced GSAP Animations
+    function initGSAPAnimations() {
+      console.log('✅ Initializing GSAP portfolio animations');
+      
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Set initial states for animation
+      gsap.set('.portfolio-title', { y: 60, opacity: 0 });
+      gsap.set('.portfolio-description', { y: 40, opacity: 0 });
+      gsap.set('.project-row', { y: 80, opacity: 0 });
+
+      // Header animation
+      const headerTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.portfolio-header',
+          start: 'top 85%',
+          end: 'bottom 60%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+
+      headerTl
+        .to('.portfolio-title', {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power3.out'
+        })
+        .to('.portfolio-description', {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: 'power3.out'
+        }, '-=0.6');
+
+      // Project rows animation with parallax
+      const projectRows = document.querySelectorAll('.project-row');
+      
+      projectRows.forEach((row, rowIndex) => {
+        // Row reveal animation
+        gsap.to(row, {
+          y: 0,
+          opacity: 1,
+          duration: 1.4,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          }
+        });
+
+        // Individual card animations
+        const cards = row.querySelectorAll('.project-card');
+        cards.forEach((card, cardIndex) => {
+          // Card entrance animation
+          gsap.fromTo(card, {
+            y: 60,
+            opacity: 0,
+            scale: 0.95
+          }, {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.2,
+            ease: 'power3.out',
+            delay: cardIndex * 0.15,
+            scrollTrigger: {
+              trigger: row,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            }
+          });
+
+          // Parallax effect on scroll
+          gsap.to(card, {
+            y: -30,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: row,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.5
+            }
+          });
+
+          // Image parallax
+          const image = card.querySelector('.project-image img');
+          if (image) {
+            gsap.to(image, {
+              y: -20,
+              scale: 1.08,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 2
+              }
+            });
+          }
+        });
+      });
+
+      // Enhanced hover effects
+      initHoverEffects(true);
+      
+      console.log('✅ GSAP portfolio animations ready');
+    }
+
+    // Fallback animations without GSAP
+    function initFallbackAnimations() {
+      console.log('📱 Using fallback portfolio animations');
+      
+      // Ensure all content is visible
+      const elements = document.querySelectorAll('.portfolio-title, .portfolio-description, .project-row, .project-card');
+      elements.forEach((el, index) => {
+        const element = el as HTMLElement;
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+        element.style.transition = `all 0.8s ease ${index * 0.1}s`;
+      });
+
+      // Initialize basic hover effects
+      initHoverEffects(false);
+      
+      console.log('✅ Fallback animations complete');
+    }
+
+    // Hover effects (with or without GSAP)
+    function initHoverEffects(hasGSAP: boolean) {
+      const projectCards = document.querySelectorAll('.project-card');
+      
+      projectCards.forEach((card) => {
+        const image = card.querySelector('.project-image');
+        const imageElement = card.querySelector('.project-image img');
+        const projectName = card.querySelector('.project-name');
+        
+        if (hasGSAP) {
+          // GSAP hover timeline
+          const hoverTl = gsap.timeline({ paused: true });
+          
+          hoverTl
+            .to(card, {
+              y: -12,
+              scale: 1.02,
+              duration: 0.6,
+              ease: 'power2.out'
+            }, 0)
+            .to(image, {
+              boxShadow: '0 25px 70px rgba(0, 0, 0, 0.2)',
+              duration: 0.6,
+              ease: 'power2.out'
+            }, 0)
+            .to(imageElement, {
+              scale: 1.08,
+              duration: 0.8,
+              ease: 'power2.out'
+            }, 0);
+
+          card.addEventListener('mouseenter', () => hoverTl.play());
+          card.addEventListener('mouseleave', () => hoverTl.reverse());
+        } else {
+          // CSS-only hover effects
+          card.addEventListener('mouseenter', () => {
+            (card as HTMLElement).style.transform = 'translateY(-8px) scale(1.02)';
+            if (image) (image as HTMLElement).style.boxShadow = '0 25px 70px rgba(0, 0, 0, 0.2)';
+            if (imageElement) (imageElement as HTMLElement).style.transform = 'scale(1.05)';
+          });
+
+          card.addEventListener('mouseleave', () => {
+            (card as HTMLElement).style.transform = 'translateY(0) scale(1)';
+            if (image) (image as HTMLElement).style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.08)';
+            if (imageElement) (imageElement as HTMLElement).style.transform = 'scale(1)';
+          });
+        }
+
+        // Click handling
+        card.addEventListener('click', () => {
+          const projectName = card.getAttribute('data-project');
+          console.log(`🎯 Project clicked: ${projectName}`);
+        });
+      });
+    }
+
+    // Initialize portfolio
+    async function initialize() {
+      const hasGSAP = await waitForGSAP();
+      
+      if (hasGSAP) {
+        initGSAPAnimations();
+      } else {
+        initFallbackAnimations();
+      }
+      
+      console.log('✅ Portfolio grid initialization complete');
+    }
+
+    // Start initialization
+    initialize();
+
+    // Refresh on resize
+    window.addEventListener('resize', () => {
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortfolioGrid);
+  } else {
+    initPortfolioGrid();
+  }
+</script> 

@@ -1,0 +1,217 @@
+---
+export interface Props {
+  sceneUrl: string;
+  height?: string;
+  width?: string;
+  className?: string;
+}
+
+const { 
+  sceneUrl, 
+  height = "100vh", 
+  width = "100%", 
+  className = "" 
+} = Astro.props;
+
+// Generate unique ID for this instance
+const canvasId = `spline-canvas-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class={`spline-container ${className}`}>
+  <canvas id={canvasId} class="spline-canvas"></canvas>
+  <div class="spline-loader" id={`loader-${canvasId}`}>
+    <div class="loader-spinner"></div>
+    <p>Loading 3D Scene...</p>
+  </div>
+</div>
+
+<style define:vars={{ height, width }}>
+  .spline-container {
+    position: relative;
+    width: var(--width);
+    height: var(--height);
+    overflow: hidden;
+    border-radius: 0;
+  }
+  
+  .spline-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  
+  .spline-canvas.loaded {
+    opacity: 1;
+  }
+  
+  .spline-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    z-index: 10;
+    transition: opacity 0.5s ease;
+  }
+  
+  .spline-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .loader-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-left: 3px solid #000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+  }
+  
+  .spline-loader p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    font-weight: 500;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .spline-container {
+      height: 60vh;
+      min-height: 400px;
+    }
+  }
+</style>
+
+<script define:vars={{ sceneUrl, canvasId }}>
+  async function initSplineScene() {
+    console.log('🚀 Starting Spline scene initialization...');
+    console.log('Scene URL:', sceneUrl);
+    console.log('Canvas ID:', canvasId);
+    
+    try {
+      // Check if elements exist first
+      const canvas = document.getElementById(canvasId);
+      const loader = document.getElementById(`loader-${canvasId}`);
+      
+      console.log('Canvas element:', canvas);
+      console.log('Loader element:', loader);
+      
+      if (!canvas || !loader) {
+        console.error('❌ Spline: Canvas or loader element not found');
+        console.error('Canvas ID searched:', canvasId);
+        console.error('Loader ID searched:', `loader-${canvasId}`);
+        return;
+      }
+      
+      console.log('🎨 Initializing Spline scene...');
+      
+      // Try dynamic import with error handling
+      let Application;
+      try {
+        const splineModule = await import('@splinetool/runtime');
+        Application = splineModule.Application;
+        console.log('✅ Spline runtime loaded successfully');
+      } catch (importError) {
+        console.error('❌ Failed to import Spline runtime:', importError);
+        
+        // Show error in loader
+        const loaderText = loader.querySelector('p');
+        const spinner = loader.querySelector('.loader-spinner');
+        
+        if (spinner) spinner.style.display = 'none';
+        if (loaderText) {
+          loaderText.textContent = 'Spline runtime not found';
+          loaderText.style.color = '#e74c3c';
+        }
+        return;
+      }
+      
+      const app = new Application(canvas);
+      console.log('🔧 Spline Application created');
+      
+      // Load the scene with detailed error handling
+      try {
+        console.log('📥 Loading scene:', sceneUrl);
+        await app.load(sceneUrl);
+        
+        // Scene loaded successfully
+        console.log('✅ Spline scene loaded successfully!');
+        
+        // Hide loader and show canvas
+        setTimeout(() => {
+          loader.classList.add('hidden');
+          canvas.classList.add('loaded');
+          console.log('🎭 Scene transition complete');
+        }, 500);
+        
+        // Optional: Add interaction events
+        canvas.addEventListener('click', () => {
+          console.log('🎯 Spline scene clicked');
+        });
+        
+      } catch (loadError) {
+        console.error('❌ Failed to load Spline scene:', loadError);
+        console.error('Scene URL that failed:', sceneUrl);
+        
+        // Show detailed error state
+        const loaderText = loader.querySelector('p');
+        const spinner = loader.querySelector('.loader-spinner');
+        
+        if (spinner) spinner.style.display = 'none';
+        if (loaderText) {
+          loaderText.textContent = 'Failed to load 3D scene';
+          loaderText.style.color = '#e74c3c';
+        }
+        
+        // Add retry functionality
+        setTimeout(() => {
+          if (loaderText) {
+            loaderText.innerHTML = 'Failed to load 3D scene<br><small style="font-size: 10px; opacity: 0.7;">Check console for details</small>';
+          }
+        }, 2000);
+      }
+      
+    } catch (generalError) {
+      console.error('❌ General Spline initialization error:', generalError);
+      
+      // Fallback error display
+      const loader = document.getElementById(`loader-${canvasId}`);
+      if (loader) {
+        const loaderText = loader.querySelector('p');
+        const spinner = loader.querySelector('.loader-spinner');
+        
+        if (spinner) spinner.style.display = 'none';
+        if (loaderText) {
+          loaderText.textContent = 'Spline initialization failed';
+          loaderText.style.color = '#e74c3c';
+        }
+      }
+    }
+  }
+  
+  // Initialize when DOM is ready
+  console.log('📋 Setting up Spline scene initialization...');
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSplineScene);
+    console.log('⏳ Waiting for DOM to load...');
+  } else {
+    console.log('🏃‍♂️ DOM already loaded, initializing immediately...');
+    initSplineScene();
+  }
+</script> 
