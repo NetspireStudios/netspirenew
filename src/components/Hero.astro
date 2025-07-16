@@ -6,7 +6,7 @@
   <!-- Spline 3D Background -->
   <div class="hero-spline">
     <iframe 
-      src="https://my.spline.design/particlenebula-5wlfO1WZ5n1l3UtE7M1j9Leh/" 
+      src="https://my.spline.design/fnxbotrobotcharacterconcept-b4x79NDCE6a6XfMFyuji3hYu/" 
       frameborder="0" 
       width="100%" 
       height="100%"
@@ -74,7 +74,45 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: linear-gradient(135deg, #000000 0%, #1a1a1a 25%, #000000 50%, #0a0a0a 75%, #000000 100%);
+    background: 
+      /* Silver grid overlay */
+      linear-gradient(rgba(192, 192, 192, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192, 192, 192, 0.1) 1px, transparent 1px),
+      /* Glow grid overlay */
+      linear-gradient(rgba(192, 192, 192, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192, 192, 192, 0.05) 1px, transparent 1px),
+      /* Black base */
+      linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #000000 50%, #080808 75%, #000000 100%);
+    background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px, 100% 100%;
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  }
+
+  /* Grid glow animation */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(rgba(192, 192, 192, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192, 192, 192, 0.03) 1px, transparent 1px);
+    background-size: 100px 100px;
+    animation: gridGlow 4s ease-in-out infinite alternate;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @keyframes gridGlow {
+    0% { 
+      opacity: 0.3;
+      transform: translateX(0) translateY(0);
+    }
+    100% { 
+      opacity: 0.6;
+      transform: translateX(25px) translateY(25px);
+    }
   }
 
   /* Spline Background */
@@ -84,7 +122,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 2;
     overflow: hidden;
   }
 
@@ -98,6 +136,7 @@
     outline: none;
     background: transparent;
     pointer-events: auto;
+    z-index: 2;
   }
 
   /* Content Overlay */
@@ -108,10 +147,11 @@
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(circle at 30% 30%, rgba(0,0,0,0.3) 0%, transparent 50%),
-      radial-gradient(circle at 70% 70%, rgba(0,0,0,0.4) 0%, transparent 50%),
-      linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%);
-    z-index: 2;
+      radial-gradient(circle at 30% 30%, rgba(0,0,0,0.2) 0%, transparent 60%),
+      radial-gradient(circle at 70% 70%, rgba(0,0,0,0.3) 0%, transparent 60%),
+      linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.4) 100%);
+    z-index: 3;
+    pointer-events: none;
   }
 
   /* Glow Effects */
@@ -119,8 +159,9 @@
     position: absolute;
     border-radius: 50%;
     filter: blur(120px);
-    z-index: 3;
+    z-index: 4;
     animation: float 8s ease-in-out infinite;
+    pointer-events: none;
   }
 
   .glow-1 {
@@ -128,7 +169,7 @@
     left: 20%;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(192, 192, 192, 0.08) 0%, transparent 70%);
     animation-delay: 0s;
   }
 
@@ -137,7 +178,7 @@
     right: 20%;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(192, 192, 192, 0.06) 0%, transparent 70%);
     animation-delay: 4s;
   }
 
@@ -156,6 +197,7 @@
     max-width: 1200px;
     padding: 0 60px;
     width: 100%;
+    pointer-events: auto;
   }
 
   .hero-subtitle {
@@ -228,10 +270,11 @@
     font-weight: 500;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    cursor: none;
+    cursor: pointer;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    pointer-events: auto;
   }
 
   .cta-button::before {
@@ -274,6 +317,8 @@
     gap: 20px;
     z-index: 10;
     opacity: 0;
+    pointer-events: auto;
+    cursor: pointer;
   }
 
   .scroll-text {
@@ -334,8 +379,9 @@
     position: absolute;
     width: 2px;
     height: 2px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(192, 192, 192, 0.4);
     border-radius: 50%;
+    box-shadow: 0 0 10px rgba(192, 192, 192, 0.3);
   }
 
   .floating-dot-1 {
