@@ -34,7 +34,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
     <meta property="og:image" content={Astro.site ? new URL(image, Astro.site).href : image} />
     
     <!-- Favicon -->
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href="/owl.ico" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -86,14 +86,11 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
         background-color: var(--white);
         color: var(--black);
         overflow-x: hidden;
-        cursor: none !important;
         line-height: 1.4;
         font-weight: 400;
       }
       
-      *, *::before, *::after {
-        cursor: none !important;
-      }
+
       
       /* Lenis Smooth Scroll */
       html.lenis {
@@ -174,7 +171,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
         padding: 0 60px;
         z-index: 1000;
         background: transparent;
-        transition: all 0.5s var(--transition);
+        transition: all 0.2s var(--transition);
       }
       
       .main-nav.scrolled {
@@ -186,13 +183,17 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
       .nav-logo {
         font-family: 'Space Grotesk', sans-serif;
         font-size: 28px;
-        font-weight: 300;
+        font-weight: 700;
         color: var(--white);
         letter-spacing: -0.02em;
         text-decoration: none;
-        transition: all 0.5s var(--transition);
+        transition: all 0.3s var(--transition);
         transform: scale(1);
-        mix-blend-mode: difference;
+      }
+
+      /* Logo dark mode (for light backgrounds) */
+      .nav-logo.dark {
+        color: var(--black);
       }
       
       .nav-logo.small {
@@ -205,7 +206,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
         height: 30px;
         background: none;
         border: none;
-        cursor: none;
+        cursor: pointer;
         z-index: 1001;
         display: flex;
         flex-direction: column;
@@ -216,15 +217,19 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
       
       .burger-line {
         width: 100%;
-        height: 1px;
+        height: 2px;
         background: var(--white);
-        transition: all 0.5s var(--transition);
+        transition: all 0.3s var(--transition);
         transform-origin: center;
-        mix-blend-mode: difference;
+      }
+
+      /* Burger menu dark mode (for light backgrounds) */
+      .burger-menu.dark .burger-line {
+        background: var(--black);
       }
       
       .burger-menu.active .burger-line:nth-child(1) {
-        transform: rotate(45deg) translate(2.5px, 2.5px);
+        transform: rotate(45deg) translate(3px, 3px);
       }
       
       .burger-menu.active .burger-line:nth-child(2) {
@@ -233,7 +238,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
       }
       
       .burger-menu.active .burger-line:nth-child(3) {
-        transform: rotate(-45deg) translate(2.5px, -2.5px);
+        transform: rotate(-45deg) translate(3px, -3px);
       }
       
       /* Fullscreen Menu */
@@ -248,7 +253,9 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
       }
       
       .fullscreen-menu.active {
@@ -272,53 +279,57 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
       }
       
       .menu-nav li {
-        margin: 40px 0;
+        margin: 28px 0;
         overflow: hidden;
       }
       
       .menu-nav a {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 72px;
-        font-weight: 300;
+        font-family: 'Inter', sans-serif;
+        font-size: 48px;
+        font-weight: 400;
         color: var(--white);
         text-decoration: none;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.01em;
         display: inline-block;
         position: relative;
-        transition: all 0.6s var(--transition);
-        transform: translateY(100px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(60px);
         opacity: 0;
       }
       
       .fullscreen-menu.active .menu-nav a {
         transform: translateY(0);
         opacity: 1;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
       
       .fullscreen-menu.active .menu-nav li:nth-child(1) a { transition-delay: 0.05s; }
-      .fullscreen-menu.active .menu-nav li:nth-child(2) a { transition-delay: 0.1s; }
-      .fullscreen-menu.active .menu-nav li:nth-child(3) a { transition-delay: 0.15s; }
-      .fullscreen-menu.active .menu-nav li:nth-child(4) a { transition-delay: 0.2s; }
+      .fullscreen-menu.active .menu-nav li:nth-child(2) a { transition-delay: 0.08s; }
+      .fullscreen-menu.active .menu-nav li:nth-child(3) a { transition-delay: 0.11s; }
+      .fullscreen-menu.active .menu-nav li:nth-child(4) a { transition-delay: 0.14s; }
+      .fullscreen-menu.active .menu-nav li:nth-child(5) a { transition-delay: 0.17s; }
+      .fullscreen-menu.active .menu-nav li:nth-child(6) a { transition-delay: 0.2s; }
       
       .menu-nav a::after {
         content: '';
         position: absolute;
-        bottom: -8px;
+        bottom: -6px;
         left: 0;
         width: 0;
         height: 2px;
-        background: var(--white);
-        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(255, 255, 255, 0.8);
+        transition: width 0.2s ease-out;
+        border-radius: 1px;
       }
       
-            .menu-nav a:hover::after {
+      .menu-nav a:hover::after {
         width: 100%;
       }
 
       .menu-nav a:hover {
-        transform: translateX(20px);
-        color: rgba(255, 255, 255, 0.9);
+        transform: translateX(8px);
+        color: rgba(255, 255, 255, 0.6);
+        transition: all 0.2s ease-out;
       }
       
       .menu-social {
@@ -382,55 +393,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
         opacity: 1;
       }
       
-      /* Adaptive Custom Cursor */
-      #cursor {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 20px;
-        height: 20px;
-        background-color: white;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 99999;
-        transform: translate(-50%, -50%);
-        transition: transform 0.1s ease-out, width 0.2s ease, height 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
-        display: block !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        will-change: transform;
-      }
-      
-      #cursor.dark {
-        background-color: black;
-      }
-      
-      #cursor.large {
-        width: 50px;
-        height: 50px;
-        background-color: transparent;
-        border: 2px solid white;
-      }
-      
-      #cursor.large.dark {
-        border-color: black;
-      }
-      
-      #cursor.text {
-        width: 30px;
-        height: 30px;
-      }
-      
-      /* Hide cursor on touch devices */
-      @media (hover: none) and (pointer: coarse) {
-        body, * { cursor: auto !important; }
-        .cursor { display: none !important; opacity: 0 !important; }
-      }
-      
-      @media (max-width: 768px) {
-        body, * { cursor: auto !important; }
-        .cursor { display: none !important; opacity: 0 !important; }
-      }
+
       
       /* Simplified styles */
       .title-word, .hero-description, .hero-cta, .scroll-indicator {
@@ -537,6 +500,216 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
           gap: 20px;
         }
       }
+
+      /* Page Transition Styles */
+      .page-transition {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #000;
+        z-index: 999999;
+        pointer-events: none;
+        transform: translateX(-100%);
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .page-transition.active {
+        transform: translateX(0);
+      }
+
+      .page-transition.exit {
+        transform: translateX(100%);
+      }
+
+      /* Mobile Optimization */
+      * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      input, textarea {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+      }
+
+      /* Smooth scrolling for all devices */
+      html {
+        scroll-behavior: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Performance optimizations */
+      .hero, .about-hero, .portfolio, .services, .contact, .about-philosophy {
+        will-change: transform;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      /* Touch device optimizations */
+      @media (hover: none) and (pointer: coarse) {
+        * {
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        .project-card:hover,
+        .cta-button:hover,
+        .modal-btn:hover {
+          transform: none;
+          box-shadow: none;
+        }
+      }
+
+      /* Mobile Navigation Improvements */
+      @media (max-width: 768px) {
+        .main-nav {
+          padding: 0 30px;
+          height: 80px;
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+        }
+        
+        .nav-logo {
+          font-size: 20px;
+        }
+        
+        .burger-menu {
+          width: 25px;
+          height: 25px;
+        }
+        
+        .burger-line {
+          height: 2px;
+        }
+        
+        .burger-menu.dark .burger-line {
+          background: var(--black);
+        }
+        
+        .menu-nav a {
+          font-size: 32px;
+          line-height: 1.2;
+          font-weight: 300;
+        }
+        
+        .menu-content {
+          padding: 0 30px;
+        }
+        
+        .menu-social {
+          bottom: 40px;
+          left: 30px;
+          gap: 30px;
+        }
+        
+        .menu-social a {
+          font-size: 12px !important;
+        }
+        
+        .preloader-logo {
+          font-size: 32px;
+        }
+        
+        .preloader-bar-container {
+          width: 280px;
+        }
+        
+        /* Mobile performance optimizations */
+        .hero-spline iframe,
+        .contact-spline iframe {
+          will-change: auto;
+          transform: translateZ(0);
+        }
+        
+        /* Disable hover effects on mobile */
+        .project-card,
+        .cta-button,
+        .modal-btn,
+        .tech-item {
+          transition: none;
+        }
+        
+        /* Optimize animations for mobile */
+        .title-word,
+        .hero-description,
+        .service-item,
+        .philosophy-item {
+          animation-duration: 0.5s;
+          will-change: auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .main-nav {
+          padding: 0 20px;
+          height: 70px;
+        }
+        
+        .nav-logo {
+          font-size: 18px;
+        }
+        
+        .burger-menu {
+          width: 22px;
+          height: 22px;
+        }
+        
+        .menu-nav a {
+          font-size: 28px;
+          font-weight: 300;
+        }
+        
+        .menu-content {
+          padding: 0 20px;
+        }
+        
+        .menu-social {
+          flex-direction: column;
+          gap: 20px;
+          bottom: 30px;
+          left: 20px;
+        }
+        
+        /* Further mobile optimizations */
+        .page-transition {
+          transition-duration: 0.4s;
+        }
+        
+        /* Reduce motion for better performance */
+        .philosophy-line,
+        .philosophy-connector {
+          transition-duration: 0.3s;
+        }
+      }
+
+      /* Reduce motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+        
+        .page-transition {
+          transition: none;
+        }
+        
+        .philosophy-line {
+          transform: translateY(-50%) scaleX(1);
+          opacity: 1;
+        }
+      }
     </style>
 	</head>
   
@@ -553,7 +726,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
     <!-- Navigation -->
     <nav class="main-nav" id="main-nav">
       <a href="/" class="nav-logo" id="nav-logo">NETSPIRE</a>
-      <button class="burger-menu" id="burger-menu" data-cursor="hover">
+      <button class="burger-menu" id="burger-menu">
         <span class="burger-line"></span>
         <span class="burger-line"></span>
         <span class="burger-line"></span>
@@ -564,13 +737,15 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
     <div class="fullscreen-menu" id="fullscreen-menu">
       <div class="menu-content">
         <ul class="menu-nav">
-          <li><a href="#work" data-cursor="text">Work</a></li>
+          <li><a href="/" data-cursor="text">Home</a></li>
           <li><a href="#services" data-cursor="text">Services</a></li>
-          <li><a href="#about" data-cursor="text">About</a></li>
+          <li><a href="#work" data-cursor="text">Projects</a></li>
+          <li><a href="/concepts" data-cursor="text">Concepts</a></li>
+          <li><a href="/about" data-cursor="text">About Us</a></li>
           <li><a href="#contact" data-cursor="text">Contact</a></li>
         </ul>
         <div class="menu-social">
-          <a href="#" data-cursor="hover">
+          <a href="https://www.instagram.com/netspirestudio/?hl=en" target="_blank" rel="noopener noreferrer" data-cursor="hover">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.5"/>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="1.5"/>
@@ -584,7 +759,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
             </svg>
             <span>Twitter</span>
           </a>
-          <a href="#" data-cursor="hover">
+          <a href="https://www.linkedin.com/company/netspirestudio" target="_blank" rel="noopener noreferrer" data-cursor="hover">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.5"/>
               <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.5"/>
@@ -592,19 +767,14 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
             </svg>
             <span>LinkedIn</span>
           </a>
-          <a href="#" data-cursor="hover">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-            <span>Dribbble</span>
-          </a>
         </div>
       </div>
     </div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor" id="cursor"></div>
+
+    
+    <!-- Page Transition -->
+    <div class="page-transition" id="page-transition"></div>
     
     <!-- Main Content -->
     <div class="main-content" id="main-content">
@@ -885,108 +1055,80 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
           }, 100);
         }
         
-        // Adaptive High-Performance Custom Cursor
-        function initCursor() {
-          const cursor = document.getElementById('cursor');
-          if (!cursor) {
-            console.log('❌ Cursor element not found');
-            return;
-          }
-          
-          console.log('✅ Initializing adaptive custom cursor');
-          
-          // Force cursor to be visible
-          cursor.style.display = 'block';
-          cursor.style.opacity = '1';
-          cursor.style.visibility = 'visible';
-          
-          let mouseX = 0;
-          let mouseY = 0;
-          
-          // Function to detect background color
-          function detectBackgroundColor(x, y) {
-            const elements = document.elementsFromPoint(x, y);
-            for (let el of elements) {
-              if (el === cursor) continue;
-              
-              const computedStyle = window.getComputedStyle(el);
-              const bgColor = computedStyle.backgroundColor;
-              
-              // Check if element has a dark background
-              if (bgColor && bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
-                // Parse RGB values
-                const rgb = bgColor.match(/\d+/g);
-                if (rgb) {
-                  const [r, g, b] = rgb.map(Number);
-                  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-                  return brightness < 128; // Dark background
-                }
-              }
-              
-              // Check for specific sections
-              if (el.classList.contains('hero') || 
-                  el.classList.contains('fullscreen-menu') ||
-                  el.classList.contains('preloader')) {
-                return true; // Dark background
-              }
-            }
-            
-            // Check scroll position for navbar background
-            const scrolled = window.scrollY > 100;
-            return !scrolled; // Default to dark background when not scrolled
-          }
-          
-          // High-performance mouse tracking with adaptive color
-          document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-            
-            // Adapt cursor color based on background
-            const isDarkBackground = detectBackgroundColor(mouseX, mouseY);
-            cursor.classList.toggle('dark', !isDarkBackground);
-          });
-          
-          // Cursor hover effects
-          document.querySelectorAll('[data-cursor="hover"], button, a').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-              cursor.classList.add('large');
-            });
-            el.addEventListener('mouseleave', () => {
-              cursor.classList.remove('large');
-            });
-          });
-          
-          document.querySelectorAll('[data-cursor="text"], .title-word').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-              cursor.classList.add('text');
-            });
-            el.addEventListener('mouseleave', () => {
-              cursor.classList.remove('text');
-            });
-          });
-          
-          // Hide on mobile/touch devices
-          if ('ontouchstart' in window || window.innerWidth < 768) {
-            cursor.style.display = 'none';
-            console.log('📱 Mobile detected - cursor hidden');
-          } else {
-            console.log('🖱️ Desktop adaptive cursor active');
-          }
-        }
-        
-        // Initialize cursor immediately
-        initCursor();
+
         
         // Enhanced Navigation functionality
         function initNavigation() {
           const burgerMenu = document.getElementById('burger-menu');
           const fullscreenMenu = document.getElementById('fullscreen-menu');
+          const navLogo = document.getElementById('nav-logo');
           let menuOpen = false;
           
           console.log('🔧 Initializing navigation...');
           console.log('Burger menu found:', !!burgerMenu);
           console.log('Fullscreen menu found:', !!fullscreenMenu);
+
+                    // Section-based navigation color detection
+          function updateNavigationColor() {
+            if (!burgerMenu || !navLogo) return;
+            
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            // Get all main sections
+            const heroSection = document.querySelector('.hero');
+            const servicesSection = document.querySelector('.services');
+            const quoteSection = document.querySelector('.quote-section');
+            const portfolioSection = document.querySelector('.portfolio');
+            const contactSection = document.querySelector('.contact');
+            
+            let isOnDarkBackground = true; // Default: dark background (white nav)
+            
+                         // Calculate section positions
+             const sections = [
+               { element: heroSection, dark: true },      // Hero - dark (3D robot)
+               { element: servicesSection, dark: false }, // Services - white
+               { element: quoteSection, dark: true },     // Quote/Sphere - dark  
+               { element: portfolioSection, dark: false }, // Portfolio - white
+               { element: contactSection, dark: true }    // Contact - dark
+             ];
+            
+            // Find which section we're currently in
+            for (let i = 0; i < sections.length; i++) {
+              const section = sections[i];
+              if (!section.element) continue;
+              
+              const rect = section.element.getBoundingClientRect();
+              const sectionTop = scrollY + rect.top;
+              const sectionBottom = sectionTop + rect.height;
+              
+              // Check if we're in this section (with some overlap tolerance)
+              if (scrollY >= sectionTop - windowHeight * 0.2 && scrollY < sectionBottom - windowHeight * 0.2) {
+                isOnDarkBackground = section.dark;
+                break;
+              }
+            }
+            
+            // Update navigation elements
+            if (isOnDarkBackground) {
+              // Dark background sections - use white nav elements
+              burgerMenu.classList.remove('dark');
+              navLogo.classList.remove('dark');
+            } else {
+              // Light background sections (Portfolio) - use dark nav elements
+              burgerMenu.classList.add('dark');
+              navLogo.classList.add('dark');
+            }
+          }
+          
+          // Update on scroll
+          window.addEventListener('scroll', updateNavigationColor);
+          
+          // Update on resize
+          window.addEventListener('resize', updateNavigationColor);
+          
+          // Initial update
+          setTimeout(updateNavigationColor, 100);
           
           // Burger menu click
           if (burgerMenu && fullscreenMenu) {
@@ -1004,27 +1146,27 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
               if (typeof gsap !== 'undefined') {
                                   if (menuOpen) {
                     gsap.fromTo('.menu-nav a', {
-                      y: 100,
+                      y: 60,
                       opacity: 0
                     }, {
                       y: 0,
                       opacity: 1,
                       duration: 0.4,
-                      ease: 'power3.out',
+                      ease: 'power2.out',
                       stagger: 0.05,
                       delay: 0.05
                     });
                     
                     gsap.fromTo('.menu-social a', {
-                      y: 50,
+                      y: 20,
                       opacity: 0
                     }, {
                       y: 0,
                       opacity: 0.7,
                       duration: 0.3,
-                      ease: 'power3.out',
+                      ease: 'power2.out',
                       stagger: 0.03,
-                      delay: 0.25
+                      delay: 0.2
                     });
                 } else {
                   gsap.to('.menu-nav a', {
@@ -1053,17 +1195,58 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
             console.log('❌ Navigation elements not found');
           }
           
-          return { burgerMenu, fullscreenMenu, menuOpen: () => menuOpen };
+          return { burgerMenu, fullscreenMenu, menuOpen: () => menuOpen, updateNavigationColor };
         }
         
         // Initialize navigation
         const nav = initNavigation();
         
+        // Page Transition System
+        function initPageTransitions() {
+          const pageTransition = document.getElementById('page-transition');
+          if (!pageTransition) return;
+
+          console.log('🎬 Initializing page transitions');
+
+          // Function to animate page transition
+          function animatePageTransition(url) {
+            return new Promise((resolve) => {
+              // Start transition (slide in from left)
+              pageTransition.classList.add('active');
+              
+              setTimeout(() => {
+                // Navigate to new page
+                window.location.href = url;
+                resolve(true);
+              }, 300); // Half the transition duration
+            });
+          }
+
+          // Function to exit transition on page load
+          function exitPageTransition() {
+            if (pageTransition.classList.contains('active')) {
+              setTimeout(() => {
+                pageTransition.classList.add('exit');
+                setTimeout(() => {
+                  pageTransition.classList.remove('active', 'exit');
+                }, 600);
+              }, 100);
+            }
+          }
+
+          // Exit transition on page load
+          exitPageTransition();
+
+          return { animatePageTransition };
+        }
+
+        // Initialize page transitions
+        const pageTransitions = initPageTransitions();
+
         // Menu links handling
         function initMenuLinks() {
           document.querySelectorAll('.menu-nav a').forEach(link => {
             link.addEventListener('click', (e) => {
-              e.preventDefault();
               const target = link.getAttribute('href');
               
               console.log('Menu link clicked:', target);
@@ -1072,24 +1255,72 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
               if (nav.burgerMenu) nav.burgerMenu.classList.remove('active');
               if (nav.fullscreenMenu) nav.fullscreenMenu.classList.remove('active');
               
-              // Scroll to target
-              if (target && target.startsWith('#')) {
-                const targetElement = document.querySelector(target);
-                if (targetElement) {
+              // Handle different link types
+              if (target === '/') {
+                // Home link - special handling
+                e.preventDefault();
+                const currentPath = window.location.pathname;
+                
+                if (currentPath === '/' || currentPath === '/index.html') {
+                  // Already on home page - scroll to top
                   const lenis = window.lenis;
                   if (lenis) {
-                    lenis.scrollTo(targetElement, { duration: 1.5 });
+                    lenis.scrollTo(0, { duration: 1.5 });
                   } else {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                   }
-                  console.log('Scrolling to:', target);
+                  console.log('Scrolling to top of home page');
                 } else {
-                  console.log('Target element not found:', target);
+                  // On sub-page - navigate to home page
+                  console.log('Navigating to home page');
+                  if (pageTransitions && pageTransitions.animatePageTransition) {
+                    pageTransitions.animatePageTransition('/');
+                  } else {
+                    window.location.href = '/';
+                  }
+                }
+              } else if (target && target.startsWith('#')) {
+                // Anchor link - prevent default and scroll
+                e.preventDefault();
+                const currentPath = window.location.pathname;
+                
+                if (currentPath === '/' || currentPath === '/index.html') {
+                  // On home page - scroll to section
+                  const targetElement = document.querySelector(target);
+                  if (targetElement) {
+                    const lenis = window.lenis;
+                    if (lenis) {
+                      lenis.scrollTo(targetElement, { duration: 1.5 });
+                    } else {
+                      targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    console.log('Scrolling to:', target);
+                  } else {
+                    console.log('Target element not found:', target);
+                  }
+                } else {
+                  // On sub-page - navigate to home page with hash
+                  console.log('Navigating to home page with anchor:', target);
+                  if (pageTransitions && pageTransitions.animatePageTransition) {
+                    pageTransitions.animatePageTransition('/' + target);
+                  } else {
+                    window.location.href = '/' + target;
+                  }
+                }
+              } else if (target && target.startsWith('/')) {
+                // Page navigation - animate transition
+                e.preventDefault();
+                console.log('Animating page transition to:', target);
+                if (pageTransitions && pageTransitions.animatePageTransition) {
+                  pageTransitions.animatePageTransition(target);
+                } else {
+                  // Fallback to direct navigation
+                  window.location.href = target;
                 }
               }
             });
           });
-          console.log('✅ Menu links initialized');
+          console.log('✅ Menu links initialized with page transitions');
         }
         
         // Initialize menu links
@@ -1110,6 +1341,12 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
               } else {
                 mainNav.classList.remove('scrolled');
                 navLogo.classList.remove('small');
+              }
+              
+              // Update navigation color when scrolling
+              const burgerMenu = document.getElementById('burger-menu');
+              if (burgerMenu && nav.updateNavigationColor) {
+                nav.updateNavigationColor();
               }
             }
           });

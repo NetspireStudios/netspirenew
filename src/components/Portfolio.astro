@@ -123,14 +123,13 @@
     </div>
   </div>
 
-  <!-- Project Detail Modal -->
+  <!-- Project Detail Modal - Mobile Optimized -->
   <div class="project-modal" id="project-modal">
     <div class="modal-backdrop" id="modal-backdrop"></div>
     <div class="modal-content" id="modal-content">
       <button class="modal-close" id="modal-close">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <span class="close-line"></span>
+        <span class="close-line"></span>
       </button>
       
       <div class="modal-image-container">
@@ -346,7 +345,7 @@
     color: #666;
   }
 
-  /* Project Modal */
+  /* Project Modal - Mobile Optimized */
   .project-modal {
     position: fixed;
     top: 0;
@@ -356,12 +355,18 @@
     z-index: 10000;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
   }
 
   .project-modal.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .modal-backdrop {
@@ -370,21 +375,24 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
   }
 
   .modal-content {
     position: relative;
     width: 100%;
-    height: 100%;
+    max-width: 1200px;
+    max-height: 90vh;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 60px 40px;
-    transform: scale(0.8);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
   }
 
   .project-modal.active .modal-content {
@@ -393,12 +401,12 @@
 
   .modal-close {
     position: absolute;
-    top: 40px;
-    right: 40px;
+    top: 20px;
+    right: 20px;
     width: 50px;
     height: 50px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     color: white;
     cursor: pointer;
@@ -406,34 +414,48 @@
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    z-index: 1000;
+    z-index: 10001;
     outline: none;
+    pointer-events: auto;
   }
 
   .modal-close:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
     transform: scale(1.1);
   }
 
-  .modal-close:active {
-    transform: scale(0.95);
+  .close-line {
+    position: absolute;
+    width: 24px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+  }
+
+  .close-line:first-child {
+    transform: rotate(45deg);
+  }
+
+  .close-line:last-child {
+    transform: rotate(-45deg);
   }
 
   .modal-image-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 40px;
+    background: #111;
   }
 
   .modal-image-container img {
     width: 100%;
     height: auto;
-    max-height: 80vh;
+    max-height: 60vh;
     object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
   }
 
   .modal-details {
@@ -442,10 +464,11 @@
     justify-content: center;
     padding: 40px;
     color: white;
+    background: #000;
   }
 
   .modal-header {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
 
   .modal-category {
@@ -456,18 +479,20 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 16px;
+    display: block;
   }
 
   .modal-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 500;
     color: white;
     margin: 0;
     line-height: 1.1;
     letter-spacing: -0.02em;
-    opacity: 1;
     display: block;
+    position: relative;
+    z-index: 100;
   }
 
   .modal-description {
@@ -475,15 +500,11 @@
     font-size: 16px;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 40px;
-  }
-
-  .modal-description p {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   .modal-tech-stack {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
 
   .modal-tech-stack h4 {
@@ -503,16 +524,25 @@
   }
 
   .tech-item {
-    padding: 8px 16px;
+    padding: 12px 20px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 25px;
+    border-radius: 30px;
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     color: white;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .tech-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
   }
 
   .modal-actions {
@@ -557,70 +587,68 @@
     border-color: rgba(255, 255, 255, 0.5);
   }
 
-  /* Responsive Design */
+  /* Mobile Responsive Modal */
   @media (max-width: 1024px) {
-    .portfolio-container {
-      padding: 0 30px;
-    }
-
-    .header-content {
-      grid-template-columns: 1fr;
-      gap: 40px;
-      text-align: left;
-    }
-
-    .project-row {
-      gap: 30px;
-    }
-
-    .projects-grid {
-      gap: 60px;
-    }
-
     .modal-content {
       grid-template-columns: 1fr;
-      gap: 40px;
-      padding: 40px 20px;
+      max-height: 95vh;
+      overflow-y: auto;
     }
 
     .modal-details {
-      padding: 20px 0;
+      padding: 30px;
+    }
+
+    .modal-image-container {
+      padding: 30px;
+    }
+
+    .modal-image-container img {
+      max-height: 40vh;
     }
   }
 
   @media (max-width: 768px) {
-    .portfolio {
-      padding: 80px 0;
+    .project-modal {
+      padding: 10px;
     }
 
-    .portfolio-container {
-      padding: 0 20px;
+    .modal-content {
+      border-radius: 15px;
+      max-height: 98vh;
     }
 
-    .portfolio-header {
-      margin-bottom: 60px;
+    .modal-close {
+      top: 15px;
+      right: 15px;
+      width: 45px;
+      height: 45px;
     }
 
-    .header-content {
-      gap: 30px;
+    .close-line {
+      width: 20px;
+      height: 2px;
     }
 
-    .portfolio-description p {
+    .modal-details {
+      padding: 25px 20px;
+    }
+
+    .modal-image-container {
+      padding: 20px;
+    }
+
+    .modal-title {
+      font-size: 2rem;
+    }
+
+    .modal-description {
+      font-size: 14px;
+    }
+
+    .tech-item {
+      padding: 10px 16px;
       font-size: 12px;
-    }
-
-    .project-row {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .projects-grid {
-      gap: 50px;
-    }
-
-    .project-image {
-      aspect-ratio: 16/10;
-      margin-bottom: 20px;
     }
 
     .modal-actions {
@@ -633,27 +661,21 @@
   }
 
   @media (max-width: 480px) {
-    .portfolio {
-      padding: 60px 0;
+    .modal-details {
+      padding: 20px 15px;
     }
 
-    .portfolio-header {
-      margin-bottom: 50px;
-    }
-
-    .projects-grid {
-      gap: 40px;
-    }
-
-    .modal-content {
-      padding: 20px;
+    .modal-image-container {
+      padding: 15px;
     }
 
     .modal-close {
-      top: 20px;
-      right: 20px;
       width: 40px;
       height: 40px;
+    }
+
+    .close-line {
+      width: 18px;
     }
   }
 </style>
@@ -663,7 +685,43 @@
   function initPortfolioGrid() {
     console.log('🎨 Initializing enhanced portfolio grid...');
 
-         // Project data
+         // Tech stack icon mapping
+     const techIcons: Record<string, string> = {
+       "React": "⚛️",
+       "TypeScript": "🔷",
+       "Three.js": "🎮",
+       "WebGL": "🖼️",
+       "Node.js": "🟢",
+       "Python": "🐍",
+       "TensorFlow": "🧠",
+       "Cinema 4D": "🎬",
+       "Blender": "🎨",
+       "After Effects": "🎞️",
+       "GSAP": "⚡",
+       "Vue.js": "💚",
+       "D3.js": "📊",
+       "FastAPI": "⚡",
+       "PostgreSQL": "🐘",
+       "Redis": "🔴",
+       "Docker": "🐳",
+       "React Native": "📱",
+       "ARKit": "🥽",
+       "ARCore": "🔮",
+       "WebRTC": "📹",
+       "Socket.io": "🔌",
+       "WebSockets": "🔗",
+       "Canvas API": "🎨",
+       "MongoDB": "🍃",
+       "Solidity": "💎",
+       "Web3.js": "⛓️",
+       "AWS": "☁️"
+     };
+
+     function getTechIcon(tech: string): string {
+       return techIcons[tech] || "🔧";
+     }
+
+     // Project data
      const projectData: Record<string, any> = {
       devin: {
         title: "Devin AI",
@@ -927,266 +985,234 @@
       console.log('✅ Fallback animations complete');
     }
 
-    // Project Detail Modal System
+    // COMPLETELY REBUILT PROJECT MODAL SYSTEM
     function initProjectModal() {
-      console.log('🎬 Initializing project detail modal system');
+      console.log('🎬 Initializing REBUILT project modal system');
       
-      const modal = document.getElementById('project-modal') as HTMLElement;
-      const modalBackdrop = document.getElementById('modal-backdrop') as HTMLElement;
-      const modalClose = document.getElementById('modal-close') as HTMLButtonElement;
-      const modalImage = document.getElementById('modal-image') as HTMLImageElement;
-      const modalCategory = document.getElementById('modal-category') as HTMLElement;
-      const modalTitle = document.getElementById('modal-title') as HTMLElement;
-      const modalDescription = document.getElementById('modal-description') as HTMLElement;
-      const modalTechStack = document.getElementById('modal-tech-stack') as HTMLElement;
-      const modalLiveBtn = document.getElementById('modal-live-btn') as HTMLAnchorElement;
-      const modalCaseBtn = document.getElementById('modal-case-btn') as HTMLAnchorElement;
+      // Get all modal elements
+      const modal = document.getElementById('project-modal');
+      const modalBackdrop = document.getElementById('modal-backdrop');
+      const modalClose = document.getElementById('modal-close');
+      const modalImage = document.getElementById('modal-image');
+      const modalCategory = document.getElementById('modal-category');
+      const modalTitle = document.getElementById('modal-title');
+      const modalDescription = document.getElementById('modal-description');
+      const modalTechStack = document.getElementById('modal-tech-stack');
+      const modalLiveBtn = document.getElementById('modal-live-btn');
+      const modalCaseBtn = document.getElementById('modal-case-btn');
 
       if (!modal || !modalBackdrop || !modalClose) {
         console.error('❌ Modal elements not found');
         return;
       }
 
-      let isModalOpen = false;
-      let currentProjectId = '';
+      // Modal state management
+      let modalState = {
+        isOpen: false,
+        currentProject: null as string | null,
+        isAnimating: false
+      };
 
-      function clearModalContent() {
-        console.log('🧹 Clearing modal content');
-        
-        // Clear all content elements immediately
-        if (modalImage) {
-          modalImage.src = '';
-          modalImage.alt = '';
-          modalImage.style.opacity = '0';
-        }
-        if (modalCategory) {
-          modalCategory.textContent = '';
-          modalCategory.style.opacity = '0';
-        }
-        if (modalTitle) {
-          modalTitle.textContent = '';
-          modalTitle.style.opacity = '0';
-        }
-        if (modalDescription) {
-          modalDescription.innerHTML = '';
-          modalDescription.style.opacity = '0';
-        }
-        if (modalTechStack) {
-          modalTechStack.innerHTML = '';
-          modalTechStack.style.opacity = '0';
-        }
-        if (modalLiveBtn) {
-          modalLiveBtn.href = '#';
-          modalLiveBtn.style.opacity = '0';
-        }
-        if (modalCaseBtn) {
-          modalCaseBtn.href = '#';
-          modalCaseBtn.style.opacity = '0';
-        }
-      }
-
-      function populateModalContent(project: any) {
-        console.log(`📝 Populating content for: ${project.title}`);
-        
-        // Populate all modal content immediately and ensure visibility
-        if (modalImage) {
-          // Use the first project card image as source
-          const projectCard = document.querySelector(`[data-project="${currentProjectId}"]`);
-          const sourceImage = projectCard?.querySelector('img') as HTMLImageElement;
-          if (sourceImage) {
-            modalImage.src = sourceImage.src;
-            modalImage.alt = project.title;
-            modalImage.style.opacity = '1';
-          }
-        }
-        
-        if (modalCategory) {
-          modalCategory.textContent = project.category;
-          modalCategory.style.opacity = '1';
-        }
-        
-        if (modalTitle) {
-          modalTitle.textContent = project.title;
-          modalTitle.style.opacity = '1';
-        }
-        
-        if (modalDescription) {
-          modalDescription.innerHTML = project.description;
-          modalDescription.style.opacity = '1';
-        }
-        
-        // Populate tech stack with proper styling
-        if (modalTechStack) {
-          modalTechStack.innerHTML = `
-            <h4>Technology Stack</h4>
-            <div class="tech-list">
-              ${project.techStack.map((tech: string) => `<span class="tech-item">${tech}</span>`).join('')}
-            </div>
-          `;
-          modalTechStack.style.opacity = '1';
-        }
-
-        // Update action buttons
-        if (modalLiveBtn) {
-          modalLiveBtn.href = project.liveUrl;
-          modalLiveBtn.style.opacity = '1';
-        }
-        if (modalCaseBtn) {
-          modalCaseBtn.href = project.caseStudyUrl;
-          modalCaseBtn.style.opacity = '1';
-        }
-      }
-
-      function openModal(projectId: string, clickedCard: HTMLElement) {
-        const project = projectData[projectId as keyof typeof projectData];
+      // BULLETPROOF content population function
+      function populateModalContent(projectId: string) {
+        const project = projectData[projectId];
         if (!project) {
           console.error(`❌ Project data not found for: ${projectId}`);
+          return false;
+        }
+
+        console.log(`📝 POPULATING MODAL FOR: ${project.title}`);
+
+        try {
+          // 1. POPULATE IMAGE
+          if (modalImage) {
+            const projectCard = document.querySelector(`[data-project="${projectId}"]`);
+            const sourceImage = projectCard?.querySelector('img') as HTMLImageElement;
+            if (sourceImage) {
+              (modalImage as HTMLImageElement).src = sourceImage.src;
+              (modalImage as HTMLImageElement).alt = project.title;
+              console.log('✅ Image populated');
+            }
+          }
+
+          // 2. POPULATE CATEGORY
+          if (modalCategory) {
+            modalCategory.textContent = project.category;
+            console.log('✅ Category populated');
+          }
+
+          // 3. POPULATE TITLE - BULLETPROOF METHOD
+          if (modalTitle) {
+            // Clear any existing content
+            modalTitle.innerHTML = '';
+            modalTitle.textContent = '';
+            
+            // Set the title text
+            modalTitle.textContent = project.title;
+            
+            // Force all styles to ensure visibility
+            modalTitle.style.cssText = `
+              font-family: 'Space Grotesk', sans-serif !important;
+              font-size: clamp(2rem, 4vw, 3.5rem) !important;
+              font-weight: 500 !important;
+              color: white !important;
+              margin: 0 !important;
+              line-height: 1.1 !important;
+              letter-spacing: -0.02em !important;
+              display: block !important;
+              opacity: 1 !important;
+              visibility: visible !important;
+              position: relative !important;
+              z-index: 100 !important;
+            `;
+            
+            console.log(`✅ TITLE BULLETPROOF SET: "${project.title}"`);
+          }
+
+          // 4. POPULATE DESCRIPTION
+          if (modalDescription) {
+            modalDescription.innerHTML = project.description;
+            console.log('✅ Description populated');
+          }
+
+          // 5. POPULATE TECH STACK
+          if (modalTechStack && project.techStack) {
+            modalTechStack.innerHTML = `
+              <h4>Technology Stack</h4>
+              <div class="tech-list">
+                ${project.techStack.map((tech: string) => `<span class="tech-item">${getTechIcon(tech)} ${tech}</span>`).join('')}
+              </div>
+            `;
+            console.log('✅ Tech stack populated');
+          }
+
+          // 6. POPULATE ACTION BUTTONS
+          if (modalLiveBtn) {
+            (modalLiveBtn as HTMLAnchorElement).href = project.liveUrl;
+          }
+          if (modalCaseBtn) {
+            (modalCaseBtn as HTMLAnchorElement).href = project.caseStudyUrl;
+          }
+
+          console.log('🎯 ALL CONTENT SUCCESSFULLY POPULATED');
+          return true;
+        } catch (error) {
+          console.error('❌ Error populating modal content:', error);
+          return false;
+        }
+      }
+
+      // BULLETPROOF modal open function
+      function openModal(projectId: string, clickedCard: HTMLElement) {
+        if (modalState.isAnimating || modalState.isOpen) {
+          console.log('⚠️ Modal is already open or animating');
           return;
         }
 
-        console.log(`🚀 Opening modal for: ${project.title}`);
+        console.log(`🚀 OPENING MODAL FOR: ${projectId}`);
         
-        // Set current state
-        isModalOpen = true;
-        currentProjectId = projectId;
+        modalState.isAnimating = true;
+        modalState.currentProject = projectId;
 
-        // Get clicked image for zoom animation
-        const clickedImage = clickedCard.querySelector('img') as HTMLImageElement;
-        if (!clickedImage) return;
-        const clickedImageRect = clickedImage.getBoundingClientRect();
-
-        // Clear previous content first
-        clearModalContent();
-        
-        // Populate new content immediately
-        populateModalContent(project);
+        // Populate content FIRST
+        const contentPopulated = populateModalContent(projectId);
+        if (!contentPopulated) {
+          modalState.isAnimating = false;
+          return;
+        }
 
         // Show modal
         if (modal) {
           modal.classList.add('active');
           document.body.style.overflow = 'hidden';
-        }
-
-        // GSAP zoom animation if available
-        if (typeof gsap !== 'undefined' && modalImage) {
-          // Set initial state for zoom animation
-          gsap.set(modalImage, {
-            scale: 0.5,
-            x: clickedImageRect.left + clickedImageRect.width/2 - window.innerWidth/2,
-            y: clickedImageRect.top + clickedImageRect.height/2 - window.innerHeight/2,
-            opacity: 0
-          });
-
-          // Animate zoom in
-          const tl = gsap.timeline();
-          tl.to(modalImage, {
-            scale: 1,
-            x: 0,
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out'
-          })
-          .from('.modal-details > *', {
-            x: 50,
-            opacity: 0,
-            duration: 0.6,
-            ease: 'power3.out',
-            stagger: 0.1
-          }, '-=0.4');
-        } else {
-          // Fallback without GSAP - ensure all content is visible
-          if (modalImage) modalImage.style.opacity = '1';
-          const detailElements = document.querySelectorAll('.modal-details > *');
-          detailElements.forEach((el) => {
-            (el as HTMLElement).style.opacity = '1';
-          });
-        }
-      }
-
-      function closeModal() {
-        if (!isModalOpen) return;
-        
-        console.log('🔒 Closing modal');
-        isModalOpen = false;
-        currentProjectId = '';
-        
-        if (typeof gsap !== 'undefined' && modalImage) {
-          // Animate zoom out
-          gsap.to(modalImage, {
-            scale: 0.8,
-            opacity: 0,
-            duration: 0.4,
-            ease: 'power3.in'
-          });
           
-          gsap.to('.modal-details > *', {
-            x: 30,
-            opacity: 0,
-            duration: 0.3,
-            ease: 'power3.in',
-            stagger: 0.05
+          // Update state
+          modalState.isOpen = true;
+          modalState.isAnimating = false;
+
+          console.log('✅ MODAL OPENED SUCCESSFULLY');
+        }
+      }
+
+      // BULLETPROOF modal close function
+      function closeModal() {
+        if (modalState.isAnimating || !modalState.isOpen) {
+          return;
+        }
+
+        console.log('🔒 CLOSING MODAL');
+        
+        modalState.isAnimating = true;
+
+        // Hide modal
+        if (modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+
+          // Reset state after animation
+          setTimeout(() => {
+            modalState.isOpen = false;
+            modalState.isAnimating = false;
+            modalState.currentProject = null;
+            console.log('✅ MODAL CLOSED SUCCESSFULLY');
+          }, 300);
+        }
+      }
+
+      // BULLETPROOF event listeners
+      function setupEventListeners() {
+        // Close button - MULTIPLE EVENT TYPES
+        if (modalClose) {
+          const handleClose = (e: Event) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('🔒 Close button clicked');
+            closeModal();
+          };
+
+          modalClose.addEventListener('click', handleClose, { passive: false });
+          modalClose.addEventListener('touchstart', handleClose, { passive: false });
+          modalClose.addEventListener('mousedown', handleClose, { passive: false });
+          
+          // Debug hover
+          modalClose.addEventListener('mouseenter', () => {
+            console.log('🎯 Close button hovered');
           });
 
-          setTimeout(() => {
-            if (modal) {
-              modal.classList.remove('active');
-              document.body.style.overflow = '';
+          console.log('✅ Close button events attached');
+        }
+
+        // Backdrop click
+        if (modalBackdrop) {
+          modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) {
+              console.log('🔒 Backdrop clicked');
+              closeModal();
             }
-            // Clear content after close animation
-            clearModalContent();
-          }, 400);
-        } else {
-          // Fallback without GSAP
-          if (modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
+          });
+          console.log('✅ Backdrop event attached');
+        }
+
+        // Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && modalState.isOpen) {
+            console.log('🔒 Escape key pressed');
+            closeModal();
           }
-          // Clear content immediately in fallback
-          clearModalContent();
-        }
+        });
+
+        console.log('✅ All event listeners attached');
       }
 
-      // Event listeners with proper cleanup
-      function handleCloseClick(e: Event) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeModal();
-      }
+      // Initialize event listeners
+      setupEventListeners();
 
-      function handleBackdropClick(e: Event) {
-        if (e.target === modalBackdrop) {
-          closeModal();
-        }
-      }
-
-      function handleEscapeKey(e: KeyboardEvent) {
-        if (e.key === 'Escape' && isModalOpen) {
-          closeModal();
-        }
-      }
-
-      // Attach event listeners with better error handling
-      if (modalClose) {
-        modalClose.addEventListener('click', handleCloseClick);
-        modalClose.addEventListener('touchstart', handleCloseClick); // Add touch support
-        console.log('✅ Close button listener attached');
-      } else {
-        console.error('❌ Modal close button not found');
-      }
-      
-      if (modalBackdrop) {
-        modalBackdrop.addEventListener('click', handleBackdropClick);
-        console.log('✅ Backdrop listener attached');
-      } else {
-        console.error('❌ Modal backdrop not found');
-      }
-      
-      document.addEventListener('keydown', handleEscapeKey);
-
-      console.log('✅ All modal event listeners attached');
-
-      return { openModal, closeModal };
+      // Return interface
+      return {
+        open: openModal,
+        close: closeModal,
+        getState: () => modalState
+      };
     }
 
     // Hover effects (with or without GSAP)
@@ -1246,7 +1272,7 @@
           console.log(`🎯 Project clicked: ${projectId}`);
           
                      if (modalSystem && projectId) {
-             modalSystem.openModal(projectId, card as HTMLElement);
+             modalSystem.open(projectId, card as HTMLElement);
            }
         });
       });

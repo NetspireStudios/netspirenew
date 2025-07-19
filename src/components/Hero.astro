@@ -11,7 +11,8 @@
       width="100%" 
       height="100%"
       class="spline-iframe"
-      loading="lazy">
+      loading="lazy"
+      allow="autoplay; fullscreen; vr">
     </iframe>
   </div>
   
@@ -22,7 +23,7 @@
   <div class="hero-glow glow-1"></div>
   <div class="hero-glow glow-2"></div>
   
-  <!-- Hero Content -->
+  <!-- Hero Content - Non-Interactive Zone -->
   <div class="hero-content">
     <h1 class="hero-title">
       <div class="title-line">
@@ -115,15 +116,16 @@
     }
   }
 
-  /* Spline Background */
+  /* Spline Background - Interactive for robot */
   .hero-spline {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 2;
+    z-index: 15;
     overflow: hidden;
+    pointer-events: auto;
   }
 
   .spline-iframe {
@@ -136,8 +138,11 @@
     outline: none;
     background: transparent;
     pointer-events: auto;
-    z-index: 2;
+    z-index: 15;
+    cursor: none !important;
   }
+
+
 
   /* Content Overlay */
   .hero-overlay {
@@ -189,15 +194,36 @@
     75% { transform: translate(20px, -30px) scale(1.05); }
   }
 
-  /* Hero Content */
+  /* Hero Content - Text blocks that need to coexist with robot */
   .hero-content {
     position: relative;
-    z-index: 10;
+    z-index: 20;
     text-align: center;
     max-width: 1200px;
     padding: 0 60px;
     width: 100%;
+    pointer-events: none; /* Disable by default to allow robot interaction */
+  }
+
+  /* Enable pointer events only for specific interactive elements */
+  .hero-content .cta-button {
     pointer-events: auto;
+    position: relative;
+    z-index: 21;
+  }
+
+  .scroll-indicator {
+    pointer-events: auto;
+    position: relative;
+    z-index: 21;
+  }
+
+  /* Text elements should be non-interactive to not block robot */
+  .hero-title,
+  .hero-description,
+  .hero-subtitle {
+    pointer-events: none;
+    user-select: none;
   }
 
   .hero-subtitle {
@@ -222,6 +248,11 @@
     margin-bottom: 40px;
     letter-spacing: -0.04em;
     text-transform: uppercase;
+    /* Add text shadow for better visibility over robot */
+    text-shadow: 
+      0 0 20px rgba(0, 0, 0, 0.8),
+      0 0 40px rgba(0, 0, 0, 0.6),
+      0 0 60px rgba(0, 0, 0, 0.4);
   }
 
   .title-line {
@@ -249,6 +280,10 @@
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
     margin: 0;
+    /* Add text shadow for better visibility */
+    text-shadow: 
+      0 0 15px rgba(0, 0, 0, 0.8),
+      0 0 30px rgba(0, 0, 0, 0.6);
   }
 
   /* CTA Button */
@@ -262,7 +297,8 @@
     align-items: center;
     gap: 12px;
     padding: 18px 36px;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #fff;
     font-family: 'Inter', sans-serif;
@@ -294,6 +330,7 @@
 
   .cta-button:hover {
     border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.5);
     transform: translateY(-2px);
   }
 
@@ -315,7 +352,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    z-index: 10;
+    z-index: 20;
     opacity: 0;
     pointer-events: auto;
     cursor: pointer;
@@ -328,6 +365,7 @@
     color: rgba(255, 255, 255, 0.5);
     letter-spacing: 1px;
     text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   }
 
   .scroll-line {
@@ -498,9 +536,41 @@
 </style>
 
 <script>
-  // Hero animations
+  // Hero animations and interaction management
   function initHeroAnimations() {
     console.log('🎬 Initializing hero animations...');
+    
+             // Simple interaction zones for hero buttons
+     function setupHeroInteractions() {
+       const heroSpline = document.querySelector('.hero-spline') as HTMLElement;
+       const ctaButton = document.querySelector('.cta-button') as HTMLElement;
+       const scrollIndicator = document.querySelector('.scroll-indicator') as HTMLElement;
+       
+       console.log('🤖 Setting up hero interactions with default cursor');
+       
+       // Enable Spline interaction for robot
+       if (heroSpline) {
+         heroSpline.style.pointerEvents = 'auto';
+       }
+       
+       // Button interaction zones - disable Spline when over buttons for clear interaction
+       [ctaButton, scrollIndicator].forEach(element => {
+         if (element) {
+           element.addEventListener('mouseenter', () => {
+             if (heroSpline) heroSpline.style.pointerEvents = 'none';
+           });
+           
+           element.addEventListener('mouseleave', () => {
+             if (heroSpline) heroSpline.style.pointerEvents = 'auto';
+           });
+         }
+       });
+       
+       console.log('✅ Hero interactions configured - robot will work with default cursor');
+     }
+    
+    // Initialize hero interactions with default cursor
+    setupHeroInteractions();
     
     // If GSAP is not available, show content immediately
     if (typeof gsap === 'undefined') {
@@ -578,6 +648,8 @@
         }
       }
     });
+    
+    console.log('✅ Hero animations and interactions initialized');
   }
 
   // Initialize when DOM is ready
