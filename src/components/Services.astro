@@ -480,12 +480,22 @@
 <script>
   import * as THREE from 'three';
 
-  // Enhanced Three.js Scene with Large Side Shapes
+  // Enhanced Three.js Scene with Large Side Shapes - Desktop Only
   function initServicesBackground() {
+    // Skip 3D on mobile devices and low-power devices
+    const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isLowPower = (navigator as any).deviceMemory && (navigator as any).deviceMemory <= 4;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (isMobile || isLowPower || reducedMotion) {
+      console.log('📱 Skipping Three.js on mobile/low-power device');
+      return;
+    }
+    
     const canvas = document.getElementById('services-canvas');
     if (!canvas) return;
 
-    console.log('🎨 Initializing enhanced Three.js services background...');
+    console.log('🎨 Initializing enhanced Three.js services background (desktop only)...');
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -571,8 +581,19 @@
     let startTime = Date.now();
 
     // Enhanced animation loop with smooth transitions
-    function animate() {
+    // Performance-optimized animation loop with frame limiting
+    let lastFrameTime = 0;
+    const targetFPS = 30; // Limit to 30fps for better performance
+    const frameInterval = 1000 / targetFPS;
+    
+    function animate(currentTime: number = 0) {
       animationId = requestAnimationFrame(animate);
+
+      // Frame rate limiting
+      if (currentTime - lastFrameTime < frameInterval) {
+        return;
+      }
+      lastFrameTime = currentTime;
 
       const time = (Date.now() - startTime) * 0.001;
 
@@ -602,13 +623,17 @@
       renderer.render(scene, camera);
     }
 
-    animate();
+    animate(0);
 
-    // Handle resize
+    // Handle resize with throttling
+    let resizeTimeout;
     function handleResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }, 150);
     }
 
     window.addEventListener('resize', handleResize);
@@ -622,7 +647,11 @@
       shapes.forEach(shape => {
         scene.remove(shape.mesh);
         shape.mesh.geometry.dispose();
-        shape.mesh.material.dispose();
+        if (Array.isArray(shape.mesh.material)) {
+          shape.mesh.material.forEach(material => material.dispose());
+        } else {
+          shape.mesh.material.dispose();
+        }
       });
       renderer.dispose();
     };

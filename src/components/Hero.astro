@@ -3,17 +3,11 @@
 ---
 
 <section class="hero" id="hero">
-  <!-- Spline 3D Background -->
-  <div class="hero-spline">
-    <iframe 
-      src="https://my.spline.design/fnxbotrobotcharacterconcept-b4x79NDCE6a6XfMFyuji3hYu/" 
-      frameborder="0" 
-      width="100%" 
-      height="100%"
-      class="spline-iframe"
-      loading="lazy"
-      allow="autoplay; fullscreen; vr">
-    </iframe>
+  <!-- Optimized 3D Background - Desktop Only -->
+  <div class="hero-spline" id="hero-spline">
+    <!-- Mobile fallback gradient -->
+    <div class="mobile-fallback-bg"></div>
+    <!-- Desktop Spline iframe (loaded via JS) -->
   </div>
   
   <!-- Content Overlay -->
@@ -588,19 +582,23 @@
       return;
     }
 
-    // Simple, fast animations
+    // Performance-optimized animations
+    const isMobile = window.innerWidth <= 768;
+    const animationDuration = isMobile ? 0.4 : 0.6;
+    const delay = isMobile ? 1500 : 2500;
+
     setTimeout(() => {
       gsap.to('.title-word', {
         y: 0,
         opacity: 1,
-        duration: 0.6,
+        duration: animationDuration,
         ease: 'power2.out'
       });
       
       gsap.to('.hero-description', {
         opacity: 1,
         y: 0,
-        duration: 0.5,
+        duration: animationDuration * 0.8,
         ease: 'power2.out',
         delay: 0.2
       });
@@ -608,7 +606,7 @@
       gsap.to('.hero-cta', {
         opacity: 1,
         y: 0,
-        duration: 0.5,
+        duration: animationDuration * 0.8,
         ease: 'power2.out',
         delay: 0.4
       });
@@ -616,11 +614,35 @@
       gsap.to('.scroll-indicator', {
         opacity: 1,
         y: 0,
-        duration: 0.5,
+        duration: animationDuration * 0.8,
         ease: 'power2.out',
         delay: 0.6
       });
-    }, 2500);
+    }, delay);
+  }
+
+  function loadSplineForDesktop() {
+    const heroSpline = document.getElementById('hero-spline');
+    if (!heroSpline) return;
+
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://my.spline.design/fnxbotrobotcharacterconcept-b4x79NDCE6a6XfMFyuji3hYu/';
+    iframe.setAttribute('frameborder', '0');
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.className = 'spline-iframe';
+    iframe.setAttribute('loading', 'lazy');
+    iframe.setAttribute('allow', 'autoplay; fullscreen; vr');
+    
+    // Hide mobile fallback when iframe loads
+    iframe.onload = () => {
+      const fallbackBg = document.querySelector('.mobile-fallback-bg') as HTMLElement;
+      if (fallbackBg) {
+        fallbackBg.style.opacity = '0';
+      }
+    };
+
+    heroSpline.appendChild(iframe);
 
     // CTA button click
     document.querySelector('.cta-button')?.addEventListener('click', () => {
@@ -654,8 +676,8 @@
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHeroAnimations);
+    document.addEventListener('DOMContentLoaded', initOptimizedHero);
   } else {
-    initHeroAnimations();
+    initOptimizedHero();
   }
 </script> 

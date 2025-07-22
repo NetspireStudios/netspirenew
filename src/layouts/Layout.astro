@@ -41,12 +41,12 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     
-    <!-- GSAP CDN with fallback check -->
+    <!-- Optimized GSAP CDN - Only essential plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onload="window.gsapLoaded = true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    
+    <!-- Centralized Animation Manager -->
+    <script type="module" src="/scripts/animation-manager.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
     
     <!-- Lenis Smooth Scroll - Updated CDN -->
@@ -889,24 +889,31 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
       }
       
       // Enhanced initialization with GSAP/Lenis
-      function initializeWebsite() {
-        console.log('🚀 Checking for GSAP and Lenis...');
+      async function initializeWebsite() {
+        console.log('🚀 Initializing optimized NETSPIRE...');
         
-        // Fallback timer for content visibility
-        setTimeout(() => {
-          if (!window.gsapLoaded || typeof gsap === 'undefined') {
-            console.log('⚠️ GSAP failed to load - using fallback animations');
-            document.body.classList.add('content-fallback');
+        // Initialize animation manager
+        if (window.animationManager) {
+          const hasGSAP = await window.animationManager.initGSAP();
+          
+          if (hasGSAP && !window.animationManager.shouldSkipHeavyAnimations()) {
+            initOptimizedAnimations();
+          } else {
+            initFallbackAnimations();
           }
-        }, 3000);
+        }
         
-        // Simple Lenis initialization
-        if (typeof Lenis !== 'undefined') {
-          console.log('✅ Lenis loaded');
+        // Optimized Lenis - only on desktop
+        if (typeof Lenis !== 'undefined' && !window.animationManager?.isMobile) {
+          console.log('✅ Initializing Lenis (desktop only)');
           
           const lenis = new Lenis({
             duration: 1.2,
-            smooth: true
+            smooth: true,
+            // Performance optimizations
+            touchMultiplier: 0,
+            wheelMultiplier: 1,
+            normalizeWheel: true
           });
           
           function raf(time) {
@@ -917,52 +924,58 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
           
           window.lenis = lenis;
         }
+      }
+
+      function initOptimizedAnimations() {
+        console.log('✅ Initializing optimized animations');
         
-        // Enhanced GSAP setup with animations
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-          console.log('✅ GSAP loaded - initializing animations');
-          gsap.registerPlugin(ScrollTrigger);
+        const am = window.animationManager;
           
-          // Hero title animation
+        // Hero title animation - using animation manager
+        am.createAnimation('hero-timeline', () => {
           gsap.set('.title-word', { y: '100%', opacity: 0 });
           gsap.set('.hero-description', { y: 30, opacity: 0 });
           gsap.set('.hero-cta', { y: 30, opacity: 0 });
           gsap.set('.scroll-indicator', { y: 30, opacity: 0 });
           
-          // Animate hero elements
           const tl = gsap.timeline({ delay: 0.5 });
           tl.to('.title-word', {
             y: 0,
             opacity: 1,
-            duration: 1.2,
+            duration: am.isMobile ? 0.6 : 1.2,
             ease: 'power3.out'
           })
           .to('.hero-description', {
             y: 0,
             opacity: 1,
-            duration: 0.8,
+            duration: am.isMobile ? 0.4 : 0.8,
             ease: 'power3.out'
           }, '-=0.6')
           .to('.hero-cta', {
             y: 0,
             opacity: 1,
-            duration: 0.8,
+            duration: am.isMobile ? 0.4 : 0.8,
             ease: 'power3.out'
           }, '-=0.4')
           .to('.scroll-indicator', {
             y: 0,
             opacity: 1,
-            duration: 0.6,
+            duration: am.isMobile ? 0.3 : 0.6,
             ease: 'power3.out'
           }, '-=0.2');
           
-          // Services header animation
-          gsap.set('.services .title-word', { y: '100%', opacity: 0 });
-          gsap.set('.services .section-description', { y: 30, opacity: 0 });
-          ScrollTrigger.create({
+          return tl;
+        });
+          
+        // Services animations - only on desktop
+        if (!am.isMobile) {
+          am.createScrollTrigger('services-header', {
             trigger: '.services-header',
             start: 'top 80%',
             onEnter: () => {
+              gsap.set('.services .title-word', { y: '100%', opacity: 0 });
+              gsap.set('.services .section-description', { y: 30, opacity: 0 });
+              
               const tl = gsap.timeline();
               tl.to('.services .title-word', {
                 y: 0,
@@ -980,17 +993,17 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
             }
           });
 
-          // Enhanced Service items animation with 3D effects
-          gsap.set('.service-item', { 
-            y: 80, 
-            opacity: 0,
-            rotationY: 15,
-            scale: 0.9
-          });
-          ScrollTrigger.create({
+          am.createScrollTrigger('service-items', {
             trigger: '.services-grid',
             start: 'top 75%',
             onEnter: () => {
+              gsap.set('.service-item', { 
+                y: 80, 
+                opacity: 0,
+                rotationY: 15,
+                scale: 0.9
+              });
+              
               gsap.to('.service-item', {
                 y: 0,
                 opacity: 1,
@@ -1002,58 +1015,34 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
               });
             }
           });
-          
-
-
-          // Enhanced Contact section animations
-          gsap.set('.contact .big-text-line', { y: 100, opacity: 0 });
-          gsap.set('.contact .contact-subtitle', { y: 30, opacity: 0 });
-          ScrollTrigger.create({
-            trigger: '.contact-hero',
-            start: 'top 80%',
-            onEnter: () => {
-              const tl = gsap.timeline();
-              tl.to('.contact .big-text-line', {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                ease: 'power3.out',
-                stagger: 0.15
-              })
-              .to('.contact .contact-subtitle', {
-                y: 0,
-                opacity: 1,
-                duration: 0.8,
-                ease: 'power3.out'
-              }, '-=0.4');
-            }
-          });
-
-          // Quote sections animations
-          document.querySelectorAll('.quote-section').forEach((section, index) => {
-            gsap.set(section.querySelector('.quote-content'), { y: 50, opacity: 0 });
-            ScrollTrigger.create({
-              trigger: section,
-              start: 'top 75%',
-              onEnter: () => {
-                gsap.to(section.querySelector('.quote-content'), {
-                  y: 0,
-                  opacity: 1,
-                  duration: 1.2,
-                  ease: 'power3.out'
-                });
-              }
-            });
-          });
-          
-        } else {
-          console.log('⚠️ GSAP/ScrollTrigger not available - using fallback animations');
-          // Force fallback animations immediately
-          setTimeout(() => {
-            document.body.classList.add('content-fallback');
-            console.log('🔧 Fallback animations activated');
-          }, 100);
         }
+
+        // Simplified mobile animations
+        if (am.isMobile) {
+          setTimeout(() => {
+            const elements = document.querySelectorAll('.service-item, .contact .big-text-line');
+            elements.forEach(el => {
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            });
+          }, 1000);
+        }
+      }
+
+      function initFallbackAnimations() {
+        console.log('📱 Using fallback animations');
+        
+        setTimeout(() => {
+          const elements = document.querySelectorAll('.title-word, .hero-description, .hero-cta, .scroll-indicator, .service-item, .contact .big-text-line');
+          elements.forEach((el, index) => {
+            setTimeout(() => {
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+              el.style.transition = 'all 0.8s ease';
+            }, index * 100);
+          });
+        }, 500);
+      }
         
 
         
