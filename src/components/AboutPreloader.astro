@@ -1,0 +1,147 @@
+---
+// Fast, Optimized Preloader for About Us Page
+---
+
+<div class="about-preloader" id="aboutPreloader">
+  <div class="preloader-content">
+    <div class="preloader-logo">ABOUT US</div>
+    <div class="preloader-line">
+      <div class="preloader-progress"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .about-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 50%, #1a1a1a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+
+  .about-preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .preloader-content {
+    text-align: center;
+    transform: translateY(-20px);
+  }
+
+  .preloader-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 30px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: logoFadeIn 1s ease 0.2s forwards;
+  }
+
+  .preloader-line {
+    width: 300px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 0 auto;
+    opacity: 0;
+    animation: lineFadeIn 0.8s ease 0.6s forwards;
+  }
+
+  .preloader-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #ffffff 0%, #cccccc 100%);
+    border-radius: 2px;
+    width: 0%;
+    animation: progressFill 1.2s ease 0.8s forwards;
+  }
+
+  @keyframes logoFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes lineFadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes progressFill {
+    to {
+      width: 100%;
+    }
+  }
+
+  /* Mobile Optimizations */
+  @media (max-width: 768px) {
+    .preloader-logo {
+      font-size: clamp(2rem, 8vw, 3rem);
+      letter-spacing: 2px;
+      margin-bottom: 25px;
+    }
+
+    .preloader-line {
+      width: 250px;
+      height: 2px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .preloader-logo {
+      font-size: clamp(1.8rem, 8vw, 2.5rem);
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .preloader-line {
+      width: 200px;
+      height: 2px;
+    }
+  }
+</style>
+
+<script>
+  function initAboutPreloader() {
+    console.log('⚡ Initializing fast About Us preloader...');
+    
+    const preloader = document.getElementById('aboutPreloader');
+    if (!preloader) return;
+
+    // Fast preloader - hide after 2.2 seconds (slightly longer than concepts for About content)
+    setTimeout(() => {
+      preloader.classList.add('hidden');
+      console.log('✅ About Us preloader complete');
+      
+      // Remove from DOM after animation completes
+      setTimeout(() => {
+        if (preloader.parentNode) {
+          preloader.parentNode.removeChild(preloader);
+        }
+      }, 800);
+    }, 2200);
+  }
+
+  // Initialize immediately and on DOM ready for reliability
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAboutPreloader);
+  } else {
+    initAboutPreloader();
+  }
+</script> 
