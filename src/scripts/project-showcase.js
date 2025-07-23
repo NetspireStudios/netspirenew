@@ -3,57 +3,74 @@
 export function initProjectShowcase() {
   console.log('Initializing Project Showcase...');
 
-  // Project data
+  // Wait a moment for DOM to be fully ready
+  if (document.readyState === 'loading') {
+    console.log('⏳ DOM still loading, waiting...');
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(initProjectShowcase, 100);
+    });
+    return;
+  }
+
+  // Updated project data to match our new concepts
   const projectsData = [
     {
       number: '01',
-      category: 'E-Commerce',
-      title: 'Digital Commerce Revolution',
-      description: 'Next-generation e-commerce platform with AI-powered recommendations and seamless user experience.',
-      placeholder: 'E-COMMERCE PLATFORM',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&auto=format',
-      tags: ['Next.js', 'AI/ML', 'Payment', 'Mobile-First']
+      category: 'AI & Automation',
+      title: 'Intelligent Business Solutions',
+      description: 'Sophisticated yet approachable design for AI services. Features interactive demos, trust signals, and clear ROI calculators.',
+      placeholder: 'AI AGENTS PLATFORM',
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&auto=format',
+      tags: ['24/7 Support', 'Automation', 'Analytics', 'AI Training']
     },
     {
       number: '02',
-      category: 'SaaS Platform',
-      title: 'Enterprise Analytics Suite',
-      description: 'Comprehensive business intelligence platform with real-time data visualization and automated reporting.',
-      placeholder: 'ANALYTICS PLATFORM',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&auto=format',
-      tags: ['React', 'D3.js', 'Analytics', 'Enterprise']
+      category: 'Mobile Development',
+      title: 'App Development Showcase',
+      description: 'Clean, modern design highlighting app portfolios with interactive prototypes and detailed development process.',
+      placeholder: 'APP DEVELOPMENT STUDIO',
+      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&auto=format',
+      tags: ['iOS Apps', 'Android', 'Cross-Platform', 'App Store']
     },
     {
       number: '03',
-      category: 'Healthcare',
-      title: 'Telemedicine Gateway',
-      description: 'Secure patient-doctor communication platform with integrated appointment scheduling and health tracking.',
-      placeholder: 'HEALTH PLATFORM',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop&auto=format',
-      tags: ['Security', 'HIPAA', 'React', 'Real-time']
+      category: 'Web Development',
+      title: 'Professional Web Agency',
+      description: 'Authority-building design with comprehensive service pages, live speed tests, and social proof integration.',
+      placeholder: 'WEB DEVELOPMENT AGENCY',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&auto=format',
+      tags: ['Frontend', 'Backend', 'E-commerce', 'Security']
     },
     {
       number: '04',
-      category: 'Education',
-      title: 'Learning Management Evolution',
-      description: 'Modern LMS with interactive content delivery, progress tracking, and collaborative learning features.',
-      placeholder: 'EDUCATION PLATFORM',
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&auto=format',
-      tags: ['Vue.js', 'Interactive', 'Progress', 'Social']
+      category: 'Performance & Speed',
+      title: 'Speed Optimization Dashboard',
+      description: 'Technical yet accessible design showcasing performance improvements with live metrics and instant audits.',
+      placeholder: 'PERFORMANCE OPTIMIZATION',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&auto=format',
+      tags: ['Speed Tests', 'Caching', 'CDN', 'Monitoring']
     },
     {
       number: '05',
-      category: 'Fintech',
-      title: 'Financial Freedom App',
-      description: 'Personal finance management with investment tracking, budgeting tools, and financial goal planning.',
-      placeholder: 'FINTECH APP',
-      image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&auto=format',
-      tags: ['Finance', 'Security', 'Mobile', 'Analytics']
+      category: 'SEO & Marketing',
+      title: 'SEO Growth Platform',
+      description: 'Credibility-focused design with live ranking displays, detailed case studies, and transparent reporting tools.',
+      placeholder: 'SEO GROWTH PLATFORM',
+      image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&h=600&fit=crop&auto=format',
+      tags: ['Keyword Research', 'Rankings', 'Analytics', 'Reports']
+    },
+    {
+      number: '06',
+      category: 'API & Integration',
+      title: 'Developer Platform',
+      description: 'Technical yet user-friendly design with interactive documentation, API testing tools, and comprehensive guides.',
+      placeholder: 'API INTEGRATION PLATFORM',
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&auto=format',
+      tags: ['REST API', 'GraphQL', 'Webhooks', 'Documentation']
     }
   ];
 
   let currentProjectIndex = 0;
-  let isTransitioning = false;
 
   // Get DOM elements
   const currentProjectEl = document.getElementById('currentProject');
@@ -62,306 +79,203 @@ export function initProjectShowcase() {
   const projectTitleEl = document.getElementById('projectTitle');
   const projectDescriptionEl = document.getElementById('projectDescription');
   const placeholderTextEl = document.getElementById('placeholderText');
+  const projectTechEl = document.getElementById('projectTech');
   const prevBtn = document.getElementById('prevProject');
   const nextBtn = document.getElementById('nextProject');
-
-  // Get existing indicators instead of creating new ones
   const indicators = document.querySelectorAll('.indicator');
-  
-  console.log(`🔍 Found ${indicators.length} indicators`);
 
-  // Remove the createIndicators function call since we now have static indicators
-  // createIndicators();
+  console.log('🔍 Found elements:', {
+    currentProject: !!currentProjectEl,
+    projectNumber: !!projectNumberEl,
+    projectCategory: !!projectCategoryEl,
+    projectTitle: !!projectTitleEl,
+    projectDescription: !!projectDescriptionEl,
+    placeholderText: !!placeholderTextEl,
+    projectTech: !!projectTechEl,
+    prevBtn: !!prevBtn,
+    nextBtn: !!nextBtn,
+    indicators: indicators.length
+  });
 
-  // BULLETPROOF Update project display
+  // Simple function to update project content
   function updateProject(index) {
     console.log(`🎯 Updating to project ${index + 1}`);
     
-    // Prevent out of bounds
+    // Make sure index is valid
     if (index < 0) index = projectsData.length - 1;
     if (index >= projectsData.length) index = 0;
-    currentProjectIndex = index;
-    
-    // Force reset transition state
-    isTransitioning = true;
     
     const project = projectsData[index];
-    console.log(`📝 Project data:`, project);
+    console.log('📝 Project data:', project);
 
-    // Immediate content update with smooth transitions
-    const updateContent = () => {
+    // Update all content immediately with error checking
+    try {
       if (currentProjectEl) {
         currentProjectEl.textContent = (index + 1).toString().padStart(2, '0');
-        console.log(`✅ Updated counter: ${currentProjectEl.textContent}`);
+        console.log('✅ Updated counter to:', currentProjectEl.textContent);
+      } else {
+        console.warn('⚠️ Current project element not found');
       }
-      if (projectNumberEl) projectNumberEl.textContent = project.number;
-      if (projectCategoryEl) projectCategoryEl.textContent = project.category;
-      if (projectTitleEl) projectTitleEl.textContent = project.title;
-      if (projectDescriptionEl) projectDescriptionEl.textContent = project.description;
-      if (placeholderTextEl) placeholderTextEl.textContent = project.placeholder;
 
-      // Update project image
-      const projectImageContainer = document.getElementById('projectImage');
-      if (projectImageContainer && project.image) {
-        // Check if image already exists
-        let imageElement = projectImageContainer.querySelector('img');
-        
-        if (!imageElement) {
-          // Create new image element
-          imageElement = document.createElement('img');
-          imageElement.style.cssText = `
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-          `;
-          
-          // Insert before placeholder
-          const placeholder = projectImageContainer.querySelector('.image-placeholder');
-          if (placeholder) {
-            projectImageContainer.insertBefore(imageElement, placeholder);
-            // Hide placeholder when image loads
-            imageElement.onload = () => {
-              placeholder.style.opacity = '0.2';
-              placeholder.style.zIndex = '0';
-            };
-          }
-        }
-        
-        // Update image source
-        imageElement.src = project.image;
-        imageElement.alt = project.title;
+      if (projectNumberEl) {
+        projectNumberEl.textContent = project.number;
+        console.log('✅ Updated project number to:', project.number);
+      } else {
+        console.warn('⚠️ Project number element not found');
+      }
+
+      if (projectCategoryEl) {
+        projectCategoryEl.textContent = project.category;
+        console.log('✅ Updated category to:', project.category);
+      } else {
+        console.warn('⚠️ Project category element not found');
+      }
+
+      if (projectTitleEl) {
+        projectTitleEl.textContent = project.title;
+        console.log('✅ Updated title to:', project.title);
+      } else {
+        console.warn('⚠️ Project title element not found');
+      }
+
+      if (projectDescriptionEl) {
+        projectDescriptionEl.textContent = project.description;
+        console.log('✅ Updated description');
+      } else {
+        console.warn('⚠️ Project description element not found');
+      }
+
+      if (placeholderTextEl) {
+        placeholderTextEl.textContent = project.placeholder;
+        console.log('✅ Updated placeholder to:', project.placeholder);
+      } else {
+        console.warn('⚠️ Placeholder text element not found');
       }
 
       // Update tech tags
-      const techContainer = document.querySelector('.project-tech');
-      if (techContainer) {
-        techContainer.innerHTML = project.tags.map(tag => 
+      if (projectTechEl && project.tags) {
+        projectTechEl.innerHTML = project.tags.map(tag => 
           `<div class="tech-tag">${tag}</div>`
         ).join('');
+        console.log('✅ Updated tech tags');
+      } else {
+        console.warn('⚠️ Project tech element not found or no tags');
       }
-      
-      console.log(`✅ All content updated for project ${index + 1}`);
-    };
 
-    // Use GSAP if available, otherwise CSS transitions
-    if (typeof gsap !== 'undefined' && gsap.to) {
-      gsap.to([projectNumberEl, projectCategoryEl, projectTitleEl, projectDescriptionEl, placeholderTextEl], {
-        opacity: 0.3,
-        duration: 0.2,
-        ease: 'power2.out',
-        onComplete: () => {
-          updateContent();
-          gsap.to([projectNumberEl, projectCategoryEl, projectTitleEl, projectDescriptionEl, placeholderTextEl], {
-            opacity: 1,
-            duration: 0.3,
-            ease: 'power2.out',
-            onComplete: () => {
-              isTransitioning = false;
-              console.log(`✅ GSAP transition complete for project ${index + 1}`);
-            }
-          });
+      // Update indicators
+      indicators.forEach((indicator, i) => {
+        if (i === index) {
+          indicator.classList.add('active');
+        } else {
+          indicator.classList.remove('active');
         }
       });
-    } else {
-      // CSS fallback transition
-      updateContent();
-      setTimeout(() => {
-        isTransitioning = false;
-        console.log(`✅ CSS transition complete for project ${index + 1}`);
-      }, 300);
-    }
+      console.log('✅ Updated indicators');
 
-    // Update indicators
-    indicators.forEach((indicator, i) => {
-      const isActive = i === index;
-      indicator.classList.toggle('active', isActive);
-      indicator.style.background = isActive ? '#ffffff' : 'transparent';
-      indicator.style.borderColor = isActive ? '#ffffff' : 'rgba(255, 255, 255, 0.3)';
-    });
+      currentProjectIndex = index;
+      console.log(`✅ Project ${index + 1} update complete`);
+      
+    } catch (error) {
+      console.error('❌ Error updating project:', error);
+    }
   }
 
-  // BULLETPROOF Navigate to next project
-  function nextProject() {
-    console.log('🔄 Next project clicked');
-    if (isTransitioning) {
-      console.log('⚠️ Transition in progress, forcing next anyway');
-      isTransitioning = false; // Force reset if stuck
-    }
-    
+  // Simple navigation functions
+  function goToNext() {
+    console.log('➡️ Next button clicked');
     const nextIndex = (currentProjectIndex + 1) % projectsData.length;
-    console.log(`➡️ Moving from ${currentProjectIndex} to ${nextIndex}`);
     updateProject(nextIndex);
   }
 
-  // BULLETPROOF Navigate to previous project
-  function prevProject() {
-    console.log('🔄 Previous project clicked');
-    if (isTransitioning) {
-      console.log('⚠️ Transition in progress, forcing previous anyway');
-      isTransitioning = false; // Force reset if stuck
-    }
-    
+  function goToPrevious() {
+    console.log('⬅️ Previous button clicked');
     const prevIndex = (currentProjectIndex - 1 + projectsData.length) % projectsData.length;
-    console.log(`⬅️ Moving from ${currentProjectIndex} to ${prevIndex}`);
     updateProject(prevIndex);
   }
 
-  // BULLETPROOF Event listeners
+  // Add event listeners
   if (nextBtn) {
-    console.log('✅ Next button found, attaching event');
-    nextBtn.addEventListener('click', (e) => {
+    console.log('🔗 Adding next button listener');
+    
+    nextBtn.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      nextProject();
+      console.log('🖱️ Next button clicked - going to next project');
+      goToNext();
     });
+    
+    nextBtn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('👆 Next button touched - going to next project');
+      goToNext();
+    });
+    
   } else {
     console.error('❌ Next button not found');
   }
 
   if (prevBtn) {
-    console.log('✅ Previous button found, attaching event');
-    prevBtn.addEventListener('click', (e) => {
+    console.log('🔗 Adding previous button listener');
+    
+    prevBtn.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      prevProject();
+      console.log('🖱️ Previous button clicked - going to previous project');
+      goToPrevious();
     });
+    
+    prevBtn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('👆 Previous button touched - going to previous project');
+      goToPrevious();
+    });
+    
   } else {
     console.error('❌ Previous button not found');
   }
 
-  // Indicator clicks
+  // Add indicator click functionality with better mobile support
   indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => {
-      if (index !== currentProjectIndex && !isTransitioning) {
-        currentProjectIndex = index;
-        updateProject(currentProjectIndex);
-      }
+    indicator.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log(`🎯 Indicator ${index + 1} clicked - going to project ${index + 1}`);
+      updateProject(index);
+    });
+    
+    indicator.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log(`👆 Indicator ${index + 1} touched - going to project ${index + 1}`);
+      updateProject(index);
     });
   });
 
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      prevProject();
-    } else if (e.key === 'ArrowRight') {
-      nextProject();
-    }
-  });
-
-  // Enhanced drag/swipe support with animations
-  let startX = 0;
-  let currentX = 0;
-  let isDragging = false;
-  let startTime = 0;
-  const projectDisplay = document.querySelector('.project-display');
-  
-  if (projectDisplay) {
-    // Mouse drag support
-    projectDisplay.addEventListener('mousedown', handleStart);
-    projectDisplay.addEventListener('mousemove', handleMove);
-    projectDisplay.addEventListener('mouseup', handleEnd);
-    projectDisplay.addEventListener('mouseleave', handleEnd);
-
-    // Touch support
-    projectDisplay.addEventListener('touchstart', handleStart, { passive: false });
-    projectDisplay.addEventListener('touchmove', handleMove, { passive: false });
-    projectDisplay.addEventListener('touchend', handleEnd);
-
-    function handleStart(e) {
-      if (isTransitioning) return;
-      
-      isDragging = true;
-      startTime = Date.now();
-      startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
-      currentX = startX;
-      
-      projectDisplay.style.cursor = 'grabbing';
-      projectDisplay.style.transition = 'none';
-      
-      e.preventDefault();
-    }
-
-    function handleMove(e) {
-      if (!isDragging || isTransitioning) return;
-      
-      currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
-      const diff = currentX - startX;
-      const maxDrag = 100;
-      const constrainedDiff = Math.max(-maxDrag, Math.min(maxDrag, diff));
-      
-      // Apply subtle transform for visual feedback
-      projectDisplay.style.transform = `translateX(${constrainedDiff * 0.3}px)`;
-      
-      // Add resistance effect
-      const opacity = 1 - Math.abs(constrainedDiff) / maxDrag * 0.1;
-      projectDisplay.style.opacity = opacity;
-    }
-
-    function handleEnd(e) {
-      if (!isDragging) return;
-      
-      isDragging = false;
-      const endTime = Date.now();
-      const timeDiff = endTime - startTime;
-      const distance = currentX - startX;
-      const velocity = Math.abs(distance) / timeDiff;
-      
-      // Reset styles with smooth transition
-      projectDisplay.style.cursor = 'grab';
-      projectDisplay.style.transition = 'all 0.3s ease';
-      projectDisplay.style.transform = 'translateX(0)';
-      projectDisplay.style.opacity = '1';
-      
-      // Determine if swipe should trigger navigation
-      const shouldNavigate = Math.abs(distance) > 50 || velocity > 0.5;
-      
-      if (shouldNavigate) {
-        // Add haptic feedback for mobile
-        if ('vibrate' in navigator) {
-          navigator.vibrate(50);
-        }
-        
-        setTimeout(() => {
-          if (distance > 0) {
-            prevProject();
-          } else {
-            nextProject();
-          }
-        }, 100);
-      }
-    }
-
-    // Add visual indicator that element is draggable
-    projectDisplay.style.cursor = 'grab';
-    projectDisplay.style.userSelect = 'none';
-  }
-
-  // Auto-advance (optional)
-  let autoAdvanceInterval;
-  
-  function startAutoAdvance() {
-    autoAdvanceInterval = setInterval(nextProject, 8000); // 8 seconds
-  }
-
-  function stopAutoAdvance() {
-    clearInterval(autoAdvanceInterval);
-  }
-
-  // Start auto-advance and pause on hover
-  startAutoAdvance();
-  
-  if (projectDisplay) {
-    projectDisplay.addEventListener('mouseenter', stopAutoAdvance);
-    projectDisplay.addEventListener('mouseleave', startAutoAdvance);
-  }
-
-  // Initialize first project
+  // Initialize with first project
   updateProject(0);
 
-  console.log('✅ Project Showcase initialized with', projectsData.length, 'projects');
+  console.log('✅ Project Showcase initialized successfully with', projectsData.length, 'projects');
+  
+  // Add debugging method to global scope for testing
+  window.testProjectButtons = function() {
+    console.log('🧪 Testing project buttons...');
+    console.log('Next button:', nextBtn ? 'Found' : 'Missing');
+    console.log('Prev button:', prevBtn ? 'Found' : 'Missing');
+    console.log('Indicators:', indicators.length);
+    
+    if (nextBtn) {
+      console.log('🔥 Triggering next button...');
+      goToNext();
+    }
+  };
+  
+  // Final safety check - retry in 2 seconds if buttons don't work
+  setTimeout(() => {
+    if (!nextBtn || !prevBtn) {
+      console.warn('⚠️ Buttons not found, retrying initialization...');
+      initProjectShowcase();
+    }
+  }, 2000);
 } 

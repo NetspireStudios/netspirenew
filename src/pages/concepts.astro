@@ -74,7 +74,7 @@ import ConceptsPreloader from '../components/ConceptsPreloader.astro';
             <span class="divider-dot"></span>
             <span class="divider-line"></span>
           </div>
-          <span class="total-projects">05</span>
+          <span class="total-projects">06</span>
         </div>
         
         <button class="nav-arrow next-arrow" id="nextProject">
@@ -86,13 +86,16 @@ import ConceptsPreloader from '../components/ConceptsPreloader.astro';
         </button>
       </div>
 
+      <!-- Swipe Instruction (Mobile Only) -->
+      <div class="swipe-instruction">Swipe</div>
+
       <!-- Enhanced Project Display -->
       <div class="project-display">
         <div class="project-visual">
           <div class="visual-background"></div>
           <div class="project-image" id="projectImage">
             <div class="image-placeholder">
-              <span class="placeholder-text" id="placeholderText">E-COMMERCE PLATFORM</span>
+              <span class="placeholder-text" id="placeholderText">AI AGENTS PLATFORM</span>
               <div class="placeholder-overlay"></div>
             </div>
           </div>
@@ -102,20 +105,20 @@ import ConceptsPreloader from '../components/ConceptsPreloader.astro';
         <div class="project-details">
           <div class="project-header">
             <div class="project-number" id="projectNumber">01</div>
-            <div class="project-category" id="projectCategory">E-Commerce</div>
+            <div class="project-category" id="projectCategory">AI & Automation</div>
           </div>
           
-          <h3 class="project-title" id="projectTitle">Digital Commerce Revolution</h3>
+          <h3 class="project-title" id="projectTitle">Intelligent Business Solutions</h3>
           
           <p class="project-description" id="projectDescription">
-            Next-generation e-commerce platform with AI-powered recommendations and seamless user experience.
+            Sophisticated yet approachable design for AI services. Features interactive demos, trust signals, and clear ROI calculators.
           </p>
           
           <div class="project-tech" id="projectTech">
-            <div class="tech-tag">React</div>
-            <div class="tech-tag">Node.js</div>
-            <div class="tech-tag">AI/ML</div>
-            <div class="tech-tag">WebGL</div>
+            <div class="tech-tag">24/7 Support</div>
+            <div class="tech-tag">Automation</div>
+            <div class="tech-tag">Analytics</div>
+            <div class="tech-tag">AI Training</div>
           </div>
 
           <div class="project-actions">
@@ -128,113 +131,60 @@ import ConceptsPreloader from '../components/ConceptsPreloader.astro';
           </div>
         </div>
         
-        <!-- Project Indicators -->
-        <div class="project-indicators">
-          <div class="indicators-container">
-            <div class="indicator active" data-project="0">
-              <div class="indicator-progress"></div>
-            </div>
-            <div class="indicator" data-project="1">
-              <div class="indicator-progress"></div>
-            </div>
-            <div class="indicator" data-project="2">
-              <div class="indicator-progress"></div>
-            </div>
-            <div class="indicator" data-project="3">
-              <div class="indicator-progress"></div>
-            </div>
-            <div class="indicator" data-project="4">
-              <div class="indicator-progress"></div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Conversion Importance Section -->
-  <section class="conversion-importance">
-    <div class="conversion-container">
-      <div class="conversion-content">
-        <div class="conversion-header">
-          <h2>Why Converting Sites Matter?</h2>
-          <p class="conversion-intro">
-            In today's competitive digital landscape, having a beautiful website isn't enough. 
-            Your site needs to convert visitors into customers, and that requires strategic design decisions 
-            backed by data and user psychology.
-          </p>
+  <!-- Why Our Concepts Work -->
+  <section class="concepts-value">
+    <div class="value-container">
+      <div class="value-content">
+        <div class="value-header">
+          <h2>Why Our Concepts Drive Results</h2>
+          <p>Every design decision is backed by conversion psychology and real-world testing.</p>
         </div>
 
-        <div class="conversion-main">
-          <div class="conversion-text">
-            <div class="conversion-point">
-              <div class="point-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                  <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <h3>User-Centered Design</h3>
-              <p>Every element is strategically placed to guide users toward your desired action, reducing friction and increasing conversions by up to 200%.</p>
+        <div class="value-grid">
+          <div class="value-item">
+            <div class="value-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
-
-            <div class="conversion-point">
-              <div class="point-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                  <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <h3>Speed & Performance</h3>
-              <p>Fast-loading sites keep users engaged. Even a 1-second delay can reduce conversions by 7%. Our optimized sites load in under 2 seconds.</p>
-            </div>
-
-            <div class="conversion-point">
-              <div class="point-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                  <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11ZM23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <h3>Trust & Credibility</h3>
-              <p>Professional design builds trust instantly. Users are 38% more likely to engage with well-designed content and make purchasing decisions.</p>
-            </div>
+            <h3>Conversion Psychology</h3>
+            <p>Every element is positioned using proven psychology principles that guide users toward your desired action.</p>
           </div>
 
-          <div class="conversion-visual">
-            <div class="conversion-image">
-              <div class="image-placeholder">
-                <svg width="200" height="150" viewBox="0 0 200 150" fill="none">
-                  <rect width="200" height="150" rx="12" fill="#f8f9fa"/>
-                  <rect x="20" y="20" width="160" height="8" rx="4" fill="#e9ecef"/>
-                  <rect x="20" y="40" width="120" height="8" rx="4" fill="#e9ecef"/>
-                  <rect x="20" y="70" width="60" height="40" rx="8" fill="#6c757d"/>
-                  <rect x="100" y="70" width="80" height="20" rx="4" fill="#e9ecef"/>
-                  <rect x="100" y="100" width="60" height="10" rx="4" fill="#e9ecef"/>
-                  <circle cx="160" cy="40" r="15" fill="#28a745"/>
-                  <path d="M155 40L158 43L165 36" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div class="image-caption">Conversion-Optimized Design</div>
+          <div class="value-item">
+            <div class="value-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
+            <h3>Lightning Fast</h3>
+            <p>Optimized for speed with under 2-second load times. Fast sites convert 2.5x better than slow ones.</p>
           </div>
-        </div>
 
-        <div class="conversion-stats">
-          <div class="stats-intro">
-            <h3>Our Results Speak for Themselves</h3>
-            <p>Here's what happens when you prioritize conversion optimization:</p>
+          <div class="value-item">
+            <div class="value-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Mobile-First Design</h3>
+            <p>Designed for mobile users first, ensuring perfect experiences across all devices and screen sizes.</p>
           </div>
-          <div class="stats-grid">
-            <div class="stat">
-              <div class="stat-number">3.2x</div>
-              <div class="stat-label">Higher Conversion Rate</div>
+
+          <div class="value-item">
+            <div class="value-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
-            <div class="stat">
-              <div class="stat-number">47%</div>
-              <div class="stat-label">Increase in Sales</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number">68%</div>
-              <div class="stat-label">Better User Engagement</div>
-            </div>
+            <h3>Data-Driven</h3>
+            <p>Each concept is tested and optimized based on real user behavior and conversion data.</p>
           </div>
         </div>
       </div>
@@ -291,42 +241,7 @@ import ConceptsPreloader from '../components/ConceptsPreloader.astro';
     </div>
   </section>
 
-  <!-- Pre-Footer CTA Section -->
-  <section class="pre-footer-cta">
-    <div class="pre-footer-container">
-      <div class="pre-footer-content">
-        <div class="cta-main">
-          <h2 class="cta-title">Ready to Transform Your Business?</h2>
-          <p class="cta-description">Join hundreds of companies that have revolutionized their digital presence with our conversion-optimized designs.</p>
-          <div class="cta-action">
-            <a href="#contact" class="cta-primary-btn">
-              <span>Start Your Project</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-            <a href="#contact" class="cta-secondary-btn">
-              <span>Schedule Consultation</span>
-            </a>
-          </div>
-        </div>
-        <div class="cta-stats">
-          <div class="stat-item">
-            <div class="stat-number">250%</div>
-            <div class="stat-label">Avg. Conversion Increase</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">48hrs</div>
-            <div class="stat-label">First Draft Delivery</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Client Satisfaction</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- Footer -->
   <footer class="concepts-footer">
@@ -390,7 +305,6 @@ import ConceptsPreloader from '../components/ConceptsPreloader.astro';
 <!-- Import Modular JavaScript -->
 <script type="module">
   import { initHeroAnimations, initTitleAnimation, initPageTransitions } from '/src/scripts/concepts-animations.js';
-  import { initProjectShowcase } from '/src/scripts/project-showcase.js';
 
   // Initialize all modules when DOM is ready
   document.addEventListener('DOMContentLoaded', () => {
@@ -401,159 +315,326 @@ import ConceptsPreloader from '../components/ConceptsPreloader.astro';
     initTitleAnimation();
     initPageTransitions();
     
-    // Initialize interactive components
-    initProjectShowcase();
-    
     console.log('✅ Concepts Page initialized successfully');
   });
 </script>
 
+<!-- Simple Direct Project Carousel -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('🎯 Starting simple carousel...');
+  
+  // Project data
+  const projects = [
+    {
+      number: '01',
+      category: 'AI & Automation',
+      title: 'Intelligent Business Solutions',
+      description: 'Sophisticated yet approachable design for AI services. Features interactive demos, trust signals, and clear ROI calculators.',
+      placeholder: 'AI AGENTS PLATFORM',
+      tags: ['24/7 Support', 'Automation', 'Analytics', 'AI Training']
+    },
+    {
+      number: '02',
+      category: 'Mobile Development',
+      title: 'App Development Showcase',
+      description: 'Clean, modern design highlighting app portfolios with interactive prototypes and detailed development process.',
+      placeholder: 'APP DEVELOPMENT',
+      tags: ['iOS Apps', 'Android', 'Cross-Platform', 'App Store']
+    },
+    {
+      number: '03',
+      category: 'Web Development',
+      title: 'Professional Web Agency',
+      description: 'Authority-building design with comprehensive service pages, live speed tests, and social proof integration.',
+      placeholder: 'WEB AGENCY',
+      tags: ['Frontend', 'Backend', 'E-commerce', 'Security']
+    },
+    {
+      number: '04',
+      category: 'Performance & Speed',
+      title: 'Speed Optimization Dashboard',
+      description: 'Technical yet accessible design showcasing performance improvements with live metrics and instant audits.',
+      placeholder: 'SPEED OPTIMIZATION',
+      tags: ['Speed Tests', 'Caching', 'CDN', 'Monitoring']
+    },
+    {
+      number: '05',
+      category: 'SEO & Marketing',
+      title: 'SEO Growth Platform',
+      description: 'Credibility-focused design with live ranking displays, detailed case studies, and transparent reporting tools.',
+      placeholder: 'SEO PLATFORM',
+      tags: ['Keyword Research', 'Rankings', 'Analytics', 'Reports']
+    },
+    {
+      number: '06',
+      category: 'API & Integration',
+      title: 'Developer Platform',
+      description: 'Technical yet user-friendly design with interactive documentation, API testing tools, and comprehensive guides.',
+      placeholder: 'DEVELOPER PLATFORM',
+      tags: ['REST API', 'GraphQL', 'Webhooks', 'Documentation']
+    }
+  ];
+  
+  let currentIndex = 0;
+  
+  /**
+   * @param {number} projectIndex
+   */
+  function updateProject(projectIndex) {
+    console.log('📝 Updating to project:', projectIndex + 1);
+    const project = projects[projectIndex];
+    
+    // Add fade out effect
+    const projectDisplay = document.querySelector('.project-display');
+    if (projectDisplay) {
+      projectDisplay.style.opacity = '0.7';
+      projectDisplay.style.transform = 'scale(0.98)';
+    }
+    
+    // Update content after a brief delay for smooth transition
+    setTimeout(() => {
+      // Update all elements
+      const currentProjectEl = document.getElementById('currentProject');
+      const projectNumberEl = document.getElementById('projectNumber');
+      const projectCategoryEl = document.getElementById('projectCategory');
+      const projectTitleEl = document.getElementById('projectTitle');
+      const projectDescriptionEl = document.getElementById('projectDescription');
+      
+      // Update basic content
+      if (currentProjectEl) currentProjectEl.textContent = (projectIndex + 1).toString().padStart(2, '0');
+      if (projectNumberEl) projectNumberEl.textContent = project.number;
+      if (projectCategoryEl) projectCategoryEl.textContent = project.category;
+      if (projectTitleEl) projectTitleEl.textContent = project.title;
+      if (projectDescriptionEl) projectDescriptionEl.textContent = project.description;
+      
+      // Update image instead of placeholder text
+      const projectImageEl = document.querySelector('.project-image');
+      if (projectImageEl) {
+        projectImageEl.innerHTML = `
+          <div class="image-placeholder">
+            <span class="placeholder-text">${project.placeholder}</span>
+            <div class="placeholder-overlay"></div>
+          </div>
+        `;
+      }
+      
+      // Update tech tags
+      const projectTechEl = document.getElementById('projectTech');
+      if (projectTechEl) {
+        projectTechEl.innerHTML = project.tags.map(tag => `<div class="tech-tag">${tag}</div>`).join('');
+      }
+      
+      // Fade back in
+      if (projectDisplay) {
+        projectDisplay.style.opacity = '1';
+        projectDisplay.style.transform = 'scale(1)';
+      }
+      
+      currentIndex = projectIndex;
+      console.log('✅ Project updated successfully');
+    }, 150);
+  }
+  
+  function nextProject() {
+    console.log('➡️ Going to next project');
+    const nextIndex = (currentIndex + 1) % projects.length;
+    
+    // Add swipe animation
+    const projectDisplay = document.querySelector('.project-display');
+    if (projectDisplay) {
+      projectDisplay.classList.add('swipe-left');
+      setTimeout(() => {
+        projectDisplay.classList.remove('swipe-left');
+      }, 400);
+    }
+    
+    updateProject(nextIndex);
+  }
+  
+  function prevProject() {
+    console.log('⬅️ Going to previous project');
+    const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
+    
+    // Add swipe animation
+    const projectDisplay = document.querySelector('.project-display');
+    if (projectDisplay) {
+      projectDisplay.classList.add('swipe-right');
+      setTimeout(() => {
+        projectDisplay.classList.remove('swipe-right');
+      }, 400);
+    }
+    
+    updateProject(prevIndex);
+  }
+  
+  // Add event listeners
+  const nextBtn = document.getElementById('nextProject');
+  const prevBtn = document.getElementById('prevProject');
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('🔥 Next button clicked!');
+      nextProject();
+    });
+  }
+  
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('🔥 Previous button clicked!');
+      prevProject();
+    });
+  }
+  
+  // Add touch/swipe functionality for mobile
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isTouch = false;
+  let isDragging = false;
+  
+  const projectDisplay = document.querySelector('.project-display');
+  
+  document.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    isTouch = true;
+    isDragging = false;
+  });
+
+  document.addEventListener('touchmove', function(e) {
+    if (!isTouch) return;
+    
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const deltaX = Math.abs(currentX - touchStartX);
+    const deltaY = Math.abs(currentY - touchStartY);
+    
+    // Only trigger horizontal swipe if moving more horizontally than vertically
+    if (deltaX > deltaY && deltaX > 10) {
+      isDragging = true;
+      e.preventDefault(); // Prevent page scroll during horizontal swipe
+      
+      // Add visual feedback during drag
+      const progress = Math.min(deltaX / 100, 1);
+      if (projectDisplay) {
+        projectDisplay.style.transform = `scale(${1 - progress * 0.05})`;
+        projectDisplay.style.opacity = `${1 - progress * 0.1}`;
+      }
+    }
+  }, { passive: false });
+
+  document.addEventListener('touchend', function(e) {
+    if (!isTouch) return;
+    
+    const touchEndX = e.changedTouches[0].clientX;
+    const swipeDistance = touchStartX - touchEndX;
+    
+    // Reset visual feedback
+    if (projectDisplay) {
+      projectDisplay.style.transform = '';
+      projectDisplay.style.opacity = '';
+    }
+    
+    // Only trigger swipe if we were actually dragging horizontally
+    if (isDragging && Math.abs(swipeDistance) > 30) {
+      if (swipeDistance > 0) {
+        console.log('👉 Swiped left (next)');
+        nextProject();
+      } else {
+        console.log('👈 Swiped right (prev)');
+        prevProject();
+      }
+    }
+    
+    isTouch = false;
+    isDragging = false;
+  });
+  
+  console.log('✅ Carousel initialized with', projects.length, 'projects');
+});
+</script>
+
 <!-- Add missing CSS for sections not yet extracted -->
 <style>
-  /* Conversion Importance Section */
-  .conversion-importance {
-    padding: 120px 0;
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  /* Value Section - Keep from new design */
+  .concepts-value {
+    background: #f8f9fa;
+    padding: 80px 0;
   }
 
-  .conversion-container {
-    max-width: 1200px;
+  .value-container {
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 0 60px;
+    padding: 0 20px;
   }
 
-  .conversion-content {
-    display: flex;
-    flex-direction: column;
-    gap: 80px;
-  }
-
-  .conversion-header {
+  .value-header {
     text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+    margin-bottom: 60px;
   }
 
-  .conversion-header h2 {
+  .value-header h2 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
-    color: #000000;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
-  }
-
-  .conversion-intro {
-    font-family: 'Inter', sans-serif;
-    font-size: 18px;
-    line-height: 1.6;
-    color: #666666;
-    margin: 0;
-  }
-
-  .conversion-main {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .conversion-text {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .conversion-point {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-  }
-
-  .point-icon {
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    color: #000000;
-  }
-
-  .conversion-point h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #000000;
-    margin: 0 0 12px 0;
-  }
-
-  .conversion-point p {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #666666;
-    margin: 0;
-  }
-
-  .conversion-visual {
-    display: flex;
-    justify-content: center;
-  }
-
-  .conversion-image {
-    text-align: center;
-  }
-
-  .image-caption {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    color: #666666;
-    margin-top: 16px;
-    font-weight: 500;
-  }
-
-  .conversion-stats {
-    text-align: center;
-  }
-
-  .stats-intro h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #000000;
+    color: #000;
     margin-bottom: 16px;
   }
 
-  .stats-intro p {
+  .value-header p {
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    color: #666666;
-    margin-bottom: 40px;
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
   }
 
-  .stats-grid {
+  .value-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 40px;
   }
 
-  .stat {
+  .value-item {
     text-align: center;
+    padding: 20px;
   }
 
-  .stat-number {
+  .value-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    color: #000;
+  }
+
+  .value-item h3 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 3rem;
-    font-weight: 700;
-    color: #000000;
-    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 12px;
   }
 
-  .stat-label {
+  .value-item p {
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    color: #666666;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+  }
+
+  /* Responsive for value section */
+  @media (min-width: 768px) {
+    .value-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .value-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px;
+    }
   }
 
   /* Contact CTA Section */
@@ -656,113 +737,71 @@ import ConceptsPreloader from '../components/ConceptsPreloader.astro';
     transform: translateY(-2px);
   }
 
-  /* Project Indicators Styles */
-  .project-indicators {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    opacity: 1;
+  /* Smooth transitions for project content */
+  .project-title,
+  .project-description,
+  .project-category,
+  .project-tech,
+  .placeholder-text {
+    transition: all 0.3s ease-out;
   }
 
-  .indicators-container {
-    display: flex;
-    gap: 20px;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(20px);
-    padding: 20px 30px;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .project-display {
+    transition: opacity 0.2s ease-out;
   }
 
-  .indicator {
-    position: relative;
-    width: 50px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    overflow: hidden;
-  }
-
-  .indicator-progress {
+  /* Image overlay styles */
+  .image-overlay {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 0;
-    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
-    border-radius: 4px;
-    transition: width 0.4s ease;
-  }
-
-  .indicator.active {
-    background: rgba(255, 255, 255, 0.3);
-  }
-
-  .indicator.active .indicator-progress {
     width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    border-radius: 24px;
+    z-index: 2;
   }
 
-  .indicator:hover {
-    background: rgba(255, 255, 255, 0.4);
-    transform: scale(1.1);
+  .image-title {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: white;
+    text-align: center;
+    z-index: 3;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   }
 
-  /* Responsive Design */
   @media (max-width: 768px) {
-    .conversion-container,
-    .cta-container {
-      padding: 0 20px;
-    }
-
-    .conversion-main {
-      grid-template-columns: 1fr;
-      gap: 50px;
-    }
-
-    .stats-grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-
-    .cta-benefits {
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .cta-button {
-      width: 100%;
-      max-width: 280px;
-      justify-content: center;
+    .image-title {
+      font-size: 1rem;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
     }
   }
-</style>
 
-<!-- Import Modular JavaScript -->
-<script type="module">
-  import { initHeroAnimations, initTitleAnimation, initPageTransitions } from '/src/scripts/concepts-animations.js';
-  import { initProjectShowcase } from '/src/scripts/project-showcase.js';
+  /* Swipe animation styles */
+  .project-display.swipe-left {
+    transform: translateX(-100px);
+    opacity: 0.7;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+  }
 
-  // Initialize all modules when DOM is ready
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 Initializing Concepts Page...');
-    
-    // Initialize animations
-    initHeroAnimations();
-    initTitleAnimation();
-    initPageTransitions();
-    
-    // Initialize interactive components
-    initProjectShowcase();
-    
-    console.log('✅ Concepts Page initialized successfully');
-  });
-</script> 
+  .project-display.swipe-right {
+    transform: translateX(100px);
+    opacity: 0.7;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+  }
+
+</style> 

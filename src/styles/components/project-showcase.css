@@ -173,6 +173,26 @@
   border-color: #ffffff;
   transform: translateY(-3px);
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+  color: #000000;
+}
+
+/* Ensure buttons are clickable and not blocked */
+.nav-arrow {
+  position: relative;
+  z-index: 100;
+  pointer-events: auto !important;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-arrow:active {
+  transform: translateY(-1px);
+}
+
+.projects-navigation {
+  position: relative;
+  z-index: 50;
 }
 
 .project-counter {
@@ -421,4 +441,404 @@
   box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+}
+
+/* MOBILE RESPONSIVE STYLES */
+@media (max-width: 768px) {
+  .projects-showcase-section {
+    padding: 60px 0;
+    min-height: auto;
+  }
+
+  .cinematic-title-container {
+    margin-bottom: 40px;
+  }
+
+  .title-background-text {
+    font-size: clamp(6rem, 15vw, 12rem);
+  }
+
+  .title-word {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .cinematic-subtitle {
+    font-size: 14px;
+  }
+
+  /* Mobile Navigation - Simple Arrows on Project Box Sides */
+  .projects-navigation {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 0;
+    pointer-events: none;
+  }
+
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0;
+    background: none;
+    border: none;
+    font-size: 0;
+    width: 30px;
+    height: 30px;
+    pointer-events: auto;
+    z-index: 100;
+    backdrop-filter: none;
+    border-radius: 0;
+  }
+
+  .prev-arrow {
+    left: -50px;
+  }
+
+  .next-arrow {
+    right: -50px;
+  }
+
+  .nav-arrow span {
+    display: none;
+  }
+
+  .nav-arrow svg {
+    width: 24px;
+    height: 24px;
+    color: white;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-arrow:hover svg {
+    opacity: 1;
+  }
+
+  /* Remove ALL possible tap highlights and effects */
+  .nav-arrow {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    outline: none !important;
+    background: none !important;
+    border: none !important;
+  }
+
+  .nav-arrow:focus,
+  .nav-arrow:active,
+  .nav-arrow:hover {
+    outline: none !important;
+    background: none !important;
+    border: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .nav-arrow:active {
+    transform: none !important;
+  }
+
+  /* Prevent text selection on arrows */
+  .nav-arrow,
+  .nav-arrow *,
+  .nav-arrow svg,
+  .nav-arrow span {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+  }
+
+  /* Prevent any visual feedback */
+  .nav-arrow::selection,
+  .nav-arrow *::selection {
+    background: transparent !important;
+  }
+
+  .nav-arrow::-moz-selection,
+  .nav-arrow *::-moz-selection {
+    background: transparent !important;
+  }
+
+  /* Completely disable any possible highlight effects */
+  .nav-arrow,
+  .nav-arrow:focus,
+  .nav-arrow:active,
+  .nav-arrow:visited,
+  .nav-arrow:hover {
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    outline: 0 !important;
+    outline: none !important;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove focus rings and other visual states */
+  .nav-arrow:focus-visible,
+  .nav-arrow:focus-within {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .project-counter {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    gap: 10px;
+  }
+
+  .divider-line {
+    width: 20px;
+    height: 1px;
+  }
+
+  .divider-dot {
+    width: 4px;
+    height: 4px;
+  }
+
+  /* Mobile Project Display - Stack Vertically */
+  .project-display {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 30px 20px;
+    margin: 0 20px;
+    border-radius: 20px;
+  }
+
+  .project-visual {
+    height: 250px;
+    order: 2;
+  }
+
+  .placeholder-text {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  .project-details {
+    gap: 15px;
+    order: 1;
+  }
+
+  .project-header {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .project-number {
+    font-size: 1rem;
+  }
+
+  .project-category {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+
+  .project-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .project-description {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .tech-tag {
+    font-size: 10px;
+    padding: 8px 12px;
+  }
+
+  .view-project-btn {
+    padding: 12px 24px;
+    font-size: 12px;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .view-project-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-showcase-section {
+    padding: 40px 0;
+  }
+
+  .cinematic-title-container {
+    margin-bottom: 30px;
+  }
+
+  .nav-arrow {
+    padding: 10px 16px;
+    font-size: 11px;
+    min-width: 100px;
+  }
+
+  .project-counter {
+    font-size: 1rem;
+  }
+
+  .project-display {
+    padding: 20px 15px;
+    margin: 0 15px;
+  }
+
+  .project-visual {
+    height: 200px;
+  }
+
+  .placeholder-text {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .project-title {
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+  }
+
+  .project-description {
+    font-size: 13px;
+  }
+
+  .tech-tag {
+    font-size: 9px;
+    padding: 6px 10px;
+  }
+
+  .view-project-btn {
+    padding: 10px 20px;
+    font-size: 11px;
+  }
+} 
+
+/* Smooth transitions for project content */
+.project-title,
+.project-description,
+.project-category,
+.project-tech,
+.placeholder-text,
+.project-image {
+  transition: all 0.4s ease-out;
+}
+
+.project-display {
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* Swipe animation classes */
+.swipe-left {
+  animation: swipeLeft 0.4s ease-out;
+}
+
+.swipe-right {
+  animation: swipeRight 0.4s ease-out;
+}
+
+@keyframes swipeLeft {
+  0% { transform: translateX(0); opacity: 1; }
+  50% { transform: translateX(-50px); opacity: 0.5; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes swipeRight {
+  0% { transform: translateX(0); opacity: 1; }
+  50% { transform: translateX(50px); opacity: 0.5; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Enhanced mobile swipe visual feedback */
+@media (max-width: 768px) {
+  .project-display {
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  }
+  
+  .project-display.swiping {
+    transition: none;
+  }
+}
+
+/* Swipe instruction for mobile */
+.swipe-instruction {
+  display: none;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  animation: fadeInOut 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.swipe-instruction::before {
+  content: "← ";
+  opacity: 0.8;
+}
+
+.swipe-instruction::after {
+  content: " →";
+  opacity: 0.8;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  30%, 70% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .swipe-instruction {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Remove tap highlights and effects from nav arrows */
+  .nav-arrow {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    outline: none;
+  }
+
+  .nav-arrow:focus {
+    outline: none;
+  }
+
+  .nav-arrow:active {
+    transform: none;
+    opacity: 1;
+  }
 } 
