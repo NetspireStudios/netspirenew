@@ -615,180 +615,297 @@
 
   @media (max-width: 768px) {
     .project-modal {
-      padding: 0;
-      align-items: flex-start;
-      padding-top: 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 99999;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 999999 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: rgba(0, 0, 0, 0.95) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
 
     .modal-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.98);
-      z-index: 99998;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background: rgba(0, 0, 0, 0.98) !important;
+      z-index: 999998 !important;
     }
 
     .modal-content {
-      border-radius: 0;
-      max-height: 100vh;
-      height: 100vh;
-      width: 100vw;
-      margin: 0;
-      transform: translateY(0) !important;
-      background: #000000;
-      color: #ffffff;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 99999;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
+      position: relative !important;
+      width: 95vw !important;
+      max-width: 95vw !important;
+      height: 90vh !important;
+      max-height: 90vh !important;
+      margin: auto !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      border-radius: 20px !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      z-index: 999999 !important;
+      transform: none !important;
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8) !important;
     }
 
+    /* ENHANCED CLOSE BUTTON - GUARANTEED VISIBILITY */
     .modal-close {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      z-index: 100000;
-      backdrop-filter: blur(20px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      position: fixed !important;
+      top: 30px !important;
+      right: 30px !important;
+      width: 60px !important;
+      height: 60px !important;
+      background: rgba(255, 255, 255, 0.9) !important;
+      border: 3px solid #ffffff !important;
+      border-radius: 50% !important;
+      z-index: 9999999 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+      backdrop-filter: blur(20px) !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
     }
 
     .modal-close:hover {
-      background: rgba(255, 255, 255, 0.25);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: scale(1.1);
+      background: rgba(255, 255, 255, 1) !important;
+      transform: scale(1.1) !important;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
     }
 
     .modal-close:active {
-      transform: scale(0.95);
+      transform: scale(0.95) !important;
     }
 
+    /* FIXED CLOSE ICON LINES */
     .close-line {
-      position: absolute;
-      width: 20px;
-      height: 2px;
-      background: white;
-      border-radius: 1px;
+      position: absolute !important;
+      width: 24px !important;
+      height: 3px !important;
+      background: #000000 !important;
+      border-radius: 2px !important;
     }
 
     .close-line:first-child {
-      transform: rotate(45deg);
+      transform: rotate(45deg) !important;
     }
 
     .close-line:last-child {
-      transform: rotate(-45deg);
+      transform: rotate(-45deg) !important;
     }
 
-    .modal-details {
-      padding: 80px 20px 40px 20px;
-      background: #000000;
-      color: #ffffff;
-      min-height: 100vh;
-    }
-
+    /* MODAL CONTENT SECTIONS */
     .modal-image-container {
-      padding: 20px;
-      background: #111111;
-      order: 1;
+      padding: 30px 20px 20px 20px !important;
+      background: #111111 !important;
+      order: 1 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
 
     .modal-image-container img {
-      max-height: 40vh;
-      width: 100%;
-      object-fit: cover;
-      border-radius: 12px;
+      max-height: 35vh !important;
+      width: 100% !important;
+      object-fit: cover !important;
+      border-radius: 12px !important;
+    }
+
+    .modal-details {
+      padding: 20px 25px 40px 25px !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      order: 2 !important;
+      text-align: center !important;
     }
 
     .modal-header {
-      margin-bottom: 20px;
+      margin-bottom: 20px !important;
+      text-align: center !important;
     }
 
     .modal-category {
-      color: #cccccc;
-      font-size: 12px;
+      color: #cccccc !important;
+      font-size: 12px !important;
+      text-align: center !important;
+      margin-bottom: 10px !important;
     }
 
     .modal-title {
-      font-size: 1.8rem;
-      color: #ffffff;
-      line-height: 1.2;
+      font-size: 1.8rem !important;
+      color: #ffffff !important;
+      line-height: 1.2 !important;
+      text-align: center !important;
+      margin-bottom: 20px !important;
     }
 
     .modal-description {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #cccccc;
-      margin-bottom: 20px;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+      color: #cccccc !important;
+      margin-bottom: 20px !important;
+      text-align: center !important;
+    }
+
+    /* CENTERED TECH STACK */
+    .modal-tech-stack {
+      margin-bottom: 25px !important;
+    }
+
+    .tech-list {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      justify-content: center !important;
     }
 
     .tech-item {
-      padding: 8px 14px;
-      font-size: 11px;
-      background: #333333;
-      color: #ffffff;
-      border: 1px solid #555555;
+      padding: 8px 14px !important;
+      font-size: 11px !important;
+      background: #333333 !important;
+      color: #ffffff !important;
+      border: 1px solid #555555 !important;
+      border-radius: 6px !important;
     }
 
     .modal-actions {
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 25px;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 12px !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
 
     .modal-btn {
-      justify-content: center;
-      padding: 14px 24px;
-      font-size: 14px;
-      border-radius: 8px;
-      width: 100%;
+      width: 100% !important;
+      max-width: 280px !important;
+      padding: 14px 24px !important;
+      font-size: 14px !important;
+      border-radius: 8px !important;
+      text-align: center !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
     }
 
     .modal-btn.primary {
-      background: #ffffff;
-      color: #000000;
-      border: 2px solid #ffffff;
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 2px solid #ffffff !important;
     }
 
     .modal-btn.secondary {
-      background: transparent;
-      color: #ffffff;
-      border: 2px solid #ffffff;
+      background: transparent !important;
+      color: #ffffff !important;
+      border: 2px solid #ffffff !important;
     }
 
-    /* Prevent body scroll on mobile and hide navbar */
+    /* FORCE HIDE NAVBAR AND PREVENT SCROLL */
     body.modal-open {
-      overflow: hidden;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
+      overflow: hidden !important;
+      position: fixed !important;
+      width: 100% !important;
+      height: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
     }
 
-    /* Force hide navbar when modal is open */
-    body.modal-open .main-nav {
+    /* COMPLETELY HIDE NAVBAR */
+    body.modal-open .main-nav,
+    body.modal-open nav,
+    body.modal-open header {
       display: none !important;
       visibility: hidden !important;
       opacity: 0 !important;
       z-index: -1 !important;
+      pointer-events: none !important;
+    }
+
+    /* HIDE ALL OTHER UI ELEMENTS */
+    body.modal-open .burger-menu,
+    body.modal-open .nav-logo,
+    body.modal-open .menu-nav {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+
+    /* ULTIMATE NAVBAR HIDING - TARGET ALL POSSIBLE SELECTORS */
+    .project-modal.active ~ .main-nav,
+    .project-modal.active ~ nav,
+    .project-modal.active ~ header,
+    body.modal-open * [class*="nav"],
+    body.modal-open * [class*="header"],
+    body.modal-open * [id*="nav"],
+    body.modal-open * [id*="header"] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      z-index: -9999 !important;
+      pointer-events: none !important;
+      position: absolute !important;
+      left: -9999px !important;
+      top: -9999px !important;
+    }
+
+    /* NUCLEAR OPTION - HIDE EVERYTHING AT TOP OF SCREEN WHEN MODAL OPEN */
+    body.modal-open *:not(.project-modal):not(.modal-backdrop):not(.modal-content):not(.modal-close):not(.close-line) {
+      z-index: -1 !important;
+    }
+
+    body.modal-open > *:not(.project-modal) {
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: translateY(-100vh) !important;
+    }
+
+    /* ENSURE MODAL ELEMENTS STAY VISIBLE */
+    body.modal-open .project-modal,
+    body.modal-open .project-modal *,
+    body.modal-open .modal-backdrop,
+    body.modal-open .modal-content,
+    body.modal-open .modal-close {
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      transform: none !important;
+      z-index: 999999 !important;
+    }
+
+    /* STYLES FOR BULLET POINT DESCRIPTIONS */
+    .project-features {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      text-align: left !important;
+    }
+
+    .project-features li {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 12px !important;
+      margin-bottom: 12px !important;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+      color: #cccccc !important;
+      padding: 8px 0 !important;
+    }
+
+    .project-features li:last-child {
+      margin-bottom: 0 !important;
     }
 
     /* Hide video/complex backgrounds on mobile */
@@ -874,32 +991,30 @@
   }
 
   @media (max-width: 480px) {
-    .modal-details {
-      padding: 15px;
-    }
-
-    .modal-image-container {
-      padding: 15px;
-    }
-
+    /* Extra small mobile devices */
     .modal-close {
-      width: 45px;
-      height: 45px;
-      top: 5px;
-      right: 5px;
+      top: 20px !important;
+      right: 20px !important;
+      width: 55px !important;
+      height: 55px !important;
     }
 
     .close-line {
-      width: 20px;
-      height: 2px;
+      width: 20px !important;
+      height: 2px !important;
+    }
+
+    .modal-content {
+      width: 98vw !important;
+      height: 95vh !important;
     }
 
     .modal-title {
-      font-size: 1.5rem;
+      font-size: 1.5rem !important;
     }
 
     .modal-description {
-      font-size: 13px;
+      font-size: 13px !important;
     }
 
     /* Portfolio Mobile Optimization - Small Screens */
@@ -1123,9 +1238,12 @@
         title: "Devin AI",
         category: "WEB • DESIGN • DEVELOPMENT • 3D",
         description: `
-          <p>Devin AI represents the future of artificial intelligence in software development. We crafted a cutting-edge interface that seamlessly blends advanced AI capabilities with intuitive user experience.</p>
-          <p>The project challenged us to visualize complex AI processes in an accessible way, resulting in a platform that democratizes advanced coding capabilities for developers worldwide.</p>
-          <p>Through extensive user research and iterative design, we created an interface that feels both powerful and approachable, setting new standards for AI-assisted development tools.</p>
+          <ul class="project-features">
+            <li>🤖 Advanced AI capabilities seamlessly integrated with intuitive user experience</li>
+            <li>🎯 Democratizes complex coding processes for developers worldwide</li>
+            <li>⚡ Visualizes AI processes in an accessible and approachable way</li>
+            <li>🚀 Sets new standards for AI-assisted development tools</li>
+          </ul>
         `,
         techStack: ["React", "TypeScript", "Three.js", "WebGL", "Node.js", "Python", "TensorFlow"],
         liveUrl: "https://devin-ai-demo.com",
@@ -1135,9 +1253,12 @@
         title: "Porsche: Dream Machine",
         category: "CONCEPT • 3D ILLUSTRATION • MOGRAPH • VIDEO",
         description: `
-          <p>An ambitious conceptual project that reimagines the Porsche experience through immersive 3D storytelling and motion graphics. This dream machine concept pushes the boundaries of automotive visualization.</p>
-          <p>We developed a fully interactive 3D environment where users can explore every detail of this conceptual vehicle, from its aerodynamic curves to its innovative interior design.</p>
-          <p>The project combines cutting-edge 3D rendering with sophisticated motion design, creating an emotional connection between the viewer and the vehicle that transcends traditional automotive marketing.</p>
+          <ul class="project-features">
+            <li>🏎️ Immersive 3D storytelling that reimagines automotive visualization</li>
+            <li>🎨 Fully interactive environment exploring every vehicle detail</li>
+            <li>✨ Cutting-edge 3D rendering with sophisticated motion design</li>
+            <li>💫 Creates emotional connection beyond traditional marketing</li>
+          </ul>
         `,
         techStack: ["Cinema 4D", "Blender", "After Effects", "WebGL", "Three.js", "GSAP"],
         liveUrl: "https://porsche-dream.com",
@@ -1147,9 +1268,12 @@
         title: "Aurora Analytics",
         category: "DATA • VISUALIZATION • WEB • API",
         description: `
-          <p>Aurora Analytics transforms complex data into beautiful, actionable insights. We designed and developed a comprehensive analytics platform that makes data visualization both powerful and intuitive.</p>
-          <p>The platform features real-time data processing, interactive dashboards, and AI-powered insights that help businesses make informed decisions quickly and confidently.</p>
-          <p>Our custom visualization engine can handle millions of data points while maintaining smooth performance, setting new benchmarks for data analytics platforms.</p>
+          <ul class="project-features">
+            <li>📊 Transforms complex data into beautiful, actionable insights</li>
+            <li>⚡ Real-time processing with interactive AI-powered dashboards</li>
+            <li>🚀 Custom visualization engine handling millions of data points</li>
+            <li>📈 Helps businesses make informed decisions quickly and confidently</li>
+          </ul>
         `,
         techStack: ["Vue.js", "D3.js", "Python", "FastAPI", "PostgreSQL", "Redis", "Docker"],
         liveUrl: "https://aurora-analytics.com",
@@ -1159,9 +1283,12 @@
         title: "Quantum App",
         category: "MOBILE • AR • COLLABORATION • UX",
         description: `
-          <p>Quantum App redefines mobile collaboration through augmented reality and intuitive design. This groundbreaking application allows teams to collaborate in shared AR spaces, regardless of physical location.</p>
-          <p>We developed custom AR frameworks that enable real-time object manipulation and seamless multi-user experiences, pushing the boundaries of what's possible in mobile AR.</p>
-          <p>The interface design prioritizes gesture-based interactions and spatial computing, creating a natural and efficient workflow for modern distributed teams.</p>
+          <ul class="project-features">
+            <li>🥽 Redefines mobile collaboration through augmented reality</li>
+            <li>👥 Teams collaborate in shared AR spaces regardless of location</li>
+            <li>🛠️ Custom AR frameworks enable real-time object manipulation</li>
+            <li>🎯 Gesture-based interactions for natural workflow efficiency</li>
+          </ul>
         `,
         techStack: ["React Native", "ARKit", "ARCore", "WebRTC", "Node.js", "Socket.io"],
         liveUrl: "https://quantum-app.com",
@@ -1171,9 +1298,12 @@
         title: "Digital Studio",
         category: "CREATIVE • PLATFORM • REAL-TIME • COLLAB",
         description: `
-          <p>Digital Studio is a revolutionary creative platform that enables real-time collaboration between designers, developers, and creators worldwide. Built for the modern creative workflow.</p>
-          <p>The platform features live editing capabilities, version control for creative assets, and AI-assisted design tools that amplify human creativity rather than replace it.</p>
-          <p>We engineered a sophisticated real-time synchronization system that ensures seamless collaboration even with complex multimedia projects and large file sizes.</p>
+          <ul class="project-features">
+            <li>🎨 Revolutionary platform for real-time creative collaboration</li>
+            <li>🔄 Live editing with version control for creative assets</li>
+            <li>🤖 AI-assisted design tools that amplify human creativity</li>
+            <li>⚡ Sophisticated synchronization for complex multimedia projects</li>
+          </ul>
         `,
         techStack: ["React", "WebRTC", "WebSockets", "Canvas API", "Node.js", "MongoDB"],
         liveUrl: "https://digital-studio.com",
@@ -1183,9 +1313,12 @@
         title: "Future Finance",
         category: "FINTECH • AI • BLOCKCHAIN • INVESTMENT",
         description: `
-          <p>Future Finance combines artificial intelligence with blockchain technology to create the next generation of investment platforms. We designed an interface that makes complex financial instruments accessible to everyone.</p>
-          <p>The platform features AI-powered portfolio optimization, real-time market analysis, and secure blockchain-based transactions, all wrapped in an intuitive and trustworthy user experience.</p>
-          <p>Our custom trading algorithms and risk assessment tools help users make informed investment decisions while maintaining the highest standards of security and compliance.</p>
+          <ul class="project-features">
+            <li>💰 AI + blockchain technology for next-gen investment platforms</li>
+            <li>📱 Makes complex financial instruments accessible to everyone</li>
+            <li>🔒 Secure blockchain transactions with intuitive user experience</li>
+            <li>📊 Custom trading algorithms with advanced risk assessment tools</li>
+          </ul>
         `,
         techStack: ["React", "TypeScript", "Solidity", "Web3.js", "Python", "TensorFlow", "AWS"],
         liveUrl: "https://future-finance.com",
