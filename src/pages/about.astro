@@ -1428,274 +1428,147 @@ import AboutPreloader from '../components/AboutPreloader.astro';
 
 <script>
   function initAboutPage() {
-    console.log('🎨 Initializing About page with advanced animations...');
+    console.log('🎨 Initializing About page with optimized animations...');
 
-    // Wait for GSAP to be ready
+    // Simplified GSAP availability check
     function waitForGSAP() {
       return new Promise((resolve) => {
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
           resolve(true);
         } else {
-          let attempts = 0;
-          const maxAttempts = 30;
-          
-          const checkGSAP = () => {
-            attempts++;
-            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-              resolve(true);
-            } else if (attempts >= maxAttempts) {
-              console.log('⚠️ GSAP not available, using fallback animations');
-              resolve(false);
-            } else {
-              setTimeout(checkGSAP, 100);
-            }
-          };
-          
-          checkGSAP();
+          // Reduced timeout for faster fallback
+          setTimeout(() => {
+            const hasGSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+            console.log(hasGSAP ? '✅ GSAP loaded' : '⚡ Using fast fallback animations');
+            resolve(hasGSAP);
+          }, 200);
         }
       });
     }
 
-    function initAdvancedGSAPAnimations() {
-      console.log('✅ Initializing advanced GSAP about page animations');
+    function initOptimizedGSAPAnimations() {
+      console.log('✅ Initializing optimized GSAP about page animations');
       
       gsap.registerPlugin(ScrollTrigger);
 
-      // Hero section entrance animation
-      const heroTl = gsap.timeline({ delay: 0.5 });
+      // Simplified hero animation
+      const heroTl = gsap.timeline({ delay: 0.3 });
       
       heroTl
         .to('.hero-badge', {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power3.out'
+          duration: 0.6,
+          ease: 'power2.out'
         })
         .to('.title-word', {
           opacity: 1,
           y: 0,
-          duration: 1,
-          ease: 'power3.out',
-          stagger: 0.1
-        }, '-=0.4')
+          duration: 0.8,
+          ease: 'power2.out',
+          stagger: 0.08
+        }, '-=0.3')
         .to('.hero-description', {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power3.out'
-        }, '-=0.6');
+          duration: 0.5,
+          ease: 'power2.out'
+        }, '-=0.4');
 
-      // Story section animations
-      ScrollTrigger.create({
-        trigger: '.about-story',
-        start: 'top 80%',
-        onEnter: () => {
-          const storyTl = gsap.timeline();
-          
-          storyTl
-            .to('.story-header .section-number', {
-              opacity: 1,
-              x: 0,
-              duration: 0.6,
-              ease: 'power3.out'
-            })
-            .to('.story-header .section-title', {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              ease: 'power3.out'
-            }, '-=0.4')
-            .to('.story-text', {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power3.out'
-            }, '-=0.6')
-            .to('.stat-block', {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: 'power3.out',
-              stagger: 0.1
-            }, '-=0.4');
-        }
-      });
+      // Optimized scroll-triggered animations
+      const elements = [
+        { trigger: '.about-story', targets: '.story-header .section-number, .story-header .section-title, .story-text, .stat-block' },
+        { trigger: '.about-philosophy', targets: '.philosophy-header .section-number, .philosophy-header .section-title' },
+        { trigger: '.about-values', targets: '.values-header .section-number, .values-header .section-title, .value-card' },
+        { trigger: '.about-cta', targets: '.cta-content' }
+      ];
 
-      // Philosophy section animations with detailed sections
-      ScrollTrigger.create({
-        trigger: '.about-philosophy',
-        start: 'top 80%',
-        onEnter: () => {
-          const philosophyTl = gsap.timeline();
-          
-          philosophyTl
-            .to('.philosophy-header .section-number', {
-              opacity: 1,
-              x: 0,
-              duration: 0.6,
-              ease: 'power3.out'
-            })
-            .to('.philosophy-header .section-title', {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              ease: 'power3.out'
-            }, '-=0.4')
-            .to('.philosophy-subtitle', {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power3.out'
-            }, '-=0.6')
-            .to('.philosophy-line', {
-              scaleX: 1,
-              duration: 1.5,
-              ease: 'power2.out'
-            }, '-=0.4');
-        }
-      });
-
-      // Enhanced parallax line effect on scroll
-      ScrollTrigger.create({
-        trigger: '.philosophy-line-wrapper',
-        start: 'top 80%',
-        end: 'bottom 20%',
-        scrub: 1,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const line = document.getElementById('philosophy-line');
-          if (line) {
-            // Create dynamic scaling effect
-            const scale = 0.3 + (progress * 0.7); // Scale from 30% to 100%
-            gsap.set(line, {
-              scaleX: scale,
-              opacity: Math.min(1, progress * 2) // Fade in first half of scroll
-            });
-          }
-        }
-      });
-
-      // Philosophy detailed sections animation
-      gsap.utils.toArray('.philosophy-section').forEach((section, index) => {
-        const element = section as HTMLElement;
-        
+      elements.forEach((item, index) => {
         ScrollTrigger.create({
-          trigger: element,
+          trigger: item.trigger,
           start: 'top 85%',
           onEnter: () => {
-            element.classList.add('animate');
-            console.log(`Philosophy section ${index + 1} animated`);
-          }
-        });
-      });
-
-      // Values section - Performance optimized animations
-      ScrollTrigger.create({
-        trigger: '.about-values',
-        start: 'top 80%',
-        onEnter: () => {
-          const valuesTl = gsap.timeline();
-          
-          valuesTl
-            .to('.values-header .section-number', {
+            gsap.to(item.targets, {
               opacity: 1,
+              y: 0,
               x: 0,
               duration: 0.6,
-              ease: 'power3.out'
-            })
-            .to('.values-header .section-title', {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              ease: 'power3.out'
-            }, '-=0.4')
-            .to('.values-subtitle', {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power3.out'
-            }, '-=0.6');
-        }
-      });
-
-      // Values cards - Lightweight CSS animations instead of heavy GSAP
-      const observerOptions = {
-        threshold: 0.3,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
-      const valueObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add('animate');
-            }, index * 200); // Stagger delay
-            valueObserver.unobserve(entry.target);
+              ease: 'power2.out',
+              stagger: 0.1
+            });
           }
         });
-      }, observerOptions);
-
-      // Observe all value cards
-      document.querySelectorAll('.value-card').forEach(card => {
-        valueObserver.observe(card);
       });
 
-      // CTA section animation
+      // Philosophy line animation
       ScrollTrigger.create({
-        trigger: '.about-cta',
-        start: 'top 80%',
+        trigger: '.philosophy-line',
+        start: 'top 85%',
         onEnter: () => {
-          gsap.to('.cta-content', {
-            opacity: 1,
-            y: 0,
+          gsap.to('.philosophy-line', {
+            scaleX: 1,
             duration: 1,
-            ease: 'power3.out'
+            ease: 'power2.out'
           });
         }
       });
 
-      console.log('✅ Advanced About page GSAP animations initialized');
+      console.log('✅ Optimized About page GSAP animations initialized');
     }
 
-    function initFallbackAnimations() {
-      console.log('📱 Using fallback about page animations');
+    function initFastFallbackAnimations() {
+      console.log('⚡ Using fast fallback about page animations');
       
-      // Ensure all content is visible with staggered timing
+      // Fast CSS-only animations
       const elements = document.querySelectorAll('.hero-badge, .title-word, .hero-description, .section-number, .section-title, .story-text, .stat-block, .philosophy-section, .value-card, .cta-content');
       
       elements.forEach((el, index) => {
         const element = el as HTMLElement;
+        // Immediate visibility with staggered timing
         setTimeout(() => {
           element.style.opacity = '1';
-          element.style.transform = 'translateY(0) translateX(0)';
-          element.style.transition = 'all 0.8s ease';
-        }, index * 100);
+          element.style.transform = 'translateY(0) translateX(0) scaleX(1)';
+          element.style.transition = 'all 0.6s ease';
+        }, index * 50); // Faster stagger
       });
+
+      // Fast philosophy line animation
+      const philosophyLine = document.querySelector('.philosophy-line') as HTMLElement;
+      if (philosophyLine) {
+        setTimeout(() => {
+          philosophyLine.style.transform = 'translate(-50%, -50%) scaleX(1)';
+          philosophyLine.style.transition = 'transform 0.8s ease';
+        }, 500);
+      }
       
-      console.log('✅ About page fallback animations complete');
+      console.log('✅ Fast fallback animations complete');
     }
 
-    // Initialize about page animations
+    // Optimized initialization
     async function initialize() {
       const hasGSAP = await waitForGSAP();
       
       if (hasGSAP) {
-        initAdvancedGSAPAnimations();
+        initOptimizedGSAPAnimations();
       } else {
-        initFallbackAnimations();
+        initFastFallbackAnimations();
       }
       
-      console.log('✅ About page initialization complete');
+      console.log('✅ About page optimization complete');
     }
 
     // Start initialization
     initialize();
 
-    // Refresh ScrollTrigger on resize
+    // Optimized resize handler
+    let resizeTimeout: ReturnType<typeof setTimeout> | undefined;
     window.addEventListener('resize', () => {
-      if (typeof ScrollTrigger !== 'undefined') {
-        ScrollTrigger.refresh();
-      }
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (typeof ScrollTrigger !== 'undefined') {
+          ScrollTrigger.refresh();
+        }
+      }, 150);
     });
   }
 
@@ -1706,7 +1579,7 @@ import AboutPreloader from '../components/AboutPreloader.astro';
     initAboutPage();
   }
 
-  // Page Transition System
+  // Page Transition System (Optimized)
   function initPageTransitions() {
     const transitionOverlay = document.getElementById('pageTransition');
     const transitionBg = transitionOverlay?.querySelector('.transition-background') as HTMLElement;

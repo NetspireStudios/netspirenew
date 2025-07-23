@@ -11,6 +11,7 @@ export function initProjectShowcase() {
       title: 'Digital Commerce Revolution',
       description: 'Next-generation e-commerce platform with AI-powered recommendations and seamless user experience.',
       placeholder: 'E-COMMERCE PLATFORM',
+      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&auto=format',
       tags: ['Next.js', 'AI/ML', 'Payment', 'Mobile-First']
     },
     {
@@ -19,6 +20,7 @@ export function initProjectShowcase() {
       title: 'Enterprise Analytics Suite',
       description: 'Comprehensive business intelligence platform with real-time data visualization and automated reporting.',
       placeholder: 'ANALYTICS PLATFORM',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&auto=format',
       tags: ['React', 'D3.js', 'Analytics', 'Enterprise']
     },
     {
@@ -27,6 +29,7 @@ export function initProjectShowcase() {
       title: 'Telemedicine Gateway',
       description: 'Secure patient-doctor communication platform with integrated appointment scheduling and health tracking.',
       placeholder: 'HEALTH PLATFORM',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop&auto=format',
       tags: ['Security', 'HIPAA', 'React', 'Real-time']
     },
     {
@@ -35,6 +38,7 @@ export function initProjectShowcase() {
       title: 'Learning Management Evolution',
       description: 'Modern LMS with interactive content delivery, progress tracking, and collaborative learning features.',
       placeholder: 'EDUCATION PLATFORM',
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&auto=format',
       tags: ['Vue.js', 'Interactive', 'Progress', 'Social']
     },
     {
@@ -43,6 +47,7 @@ export function initProjectShowcase() {
       title: 'Financial Freedom App',
       description: 'Personal finance management with investment tracking, budgeting tools, and financial goal planning.',
       placeholder: 'FINTECH APP',
+      image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&auto=format',
       tags: ['Finance', 'Security', 'Mobile', 'Analytics']
     }
   ];
@@ -60,51 +65,13 @@ export function initProjectShowcase() {
   const prevBtn = document.getElementById('prevProject');
   const nextBtn = document.getElementById('nextProject');
 
-  // Create indicator elements if they don't exist
-  createIndicators();
-
-  function createIndicators() {
-    const indicatorContainer = document.querySelector('.project-indicators');
-    if (!indicatorContainer) {
-      const container = document.createElement('div');
-      container.className = 'project-indicators';
-      container.style.cssText = `
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        margin-top: 40px;
-      `;
-      
-      projectsData.forEach((_, index) => {
-        const indicator = document.createElement('button');
-        indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
-        indicator.style.cssText = `
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          border: 2px solid rgba(255, 255, 255, 0.3);
-          background: transparent;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        `;
-        
-        // Add active state styles
-        if (index === 0) {
-          indicator.style.background = '#ffffff';
-          indicator.style.borderColor = '#ffffff';
-        }
-        
-        container.appendChild(indicator);
-      });
-      
-      const projectDisplay = document.querySelector('.project-display');
-      if (projectDisplay) {
-        projectDisplay.appendChild(container);
-      }
-    }
-  }
-
+  // Get existing indicators instead of creating new ones
   const indicators = document.querySelectorAll('.indicator');
+  
+  console.log(`🔍 Found ${indicators.length} indicators`);
+
+  // Remove the createIndicators function call since we now have static indicators
+  // createIndicators();
 
   // BULLETPROOF Update project display
   function updateProject(index) {
@@ -132,6 +99,43 @@ export function initProjectShowcase() {
       if (projectTitleEl) projectTitleEl.textContent = project.title;
       if (projectDescriptionEl) projectDescriptionEl.textContent = project.description;
       if (placeholderTextEl) placeholderTextEl.textContent = project.placeholder;
+
+      // Update project image
+      const projectImageContainer = document.getElementById('projectImage');
+      if (projectImageContainer && project.image) {
+        // Check if image already exists
+        let imageElement = projectImageContainer.querySelector('img');
+        
+        if (!imageElement) {
+          // Create new image element
+          imageElement = document.createElement('img');
+          imageElement.style.cssText = `
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+          `;
+          
+          // Insert before placeholder
+          const placeholder = projectImageContainer.querySelector('.image-placeholder');
+          if (placeholder) {
+            projectImageContainer.insertBefore(imageElement, placeholder);
+            // Hide placeholder when image loads
+            imageElement.onload = () => {
+              placeholder.style.opacity = '0.2';
+              placeholder.style.zIndex = '0';
+            };
+          }
+        }
+        
+        // Update image source
+        imageElement.src = project.image;
+        imageElement.alt = project.title;
+      }
 
       // Update tech tags
       const techContainer = document.querySelector('.project-tech');

@@ -615,48 +615,106 @@
 
   @media (max-width: 768px) {
     .project-modal {
-      padding: 5px;
+      padding: 0;
       align-items: flex-start;
-      padding-top: 20px;
+      padding-top: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.98);
+      z-index: 99998;
     }
 
     .modal-content {
-      border-radius: 12px;
-      max-height: 95vh;
-      width: 100%;
+      border-radius: 0;
+      max-height: 100vh;
+      height: 100vh;
+      width: 100vw;
       margin: 0;
       transform: translateY(0) !important;
       background: #000000;
       color: #ffffff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99999;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .modal-close {
       position: fixed;
-      top: 10px;
-      right: 10px;
+      top: 20px;
+      right: 20px;
       width: 50px;
       height: 50px;
-      background: rgba(0, 0, 0, 0.8);
-      border: none;
-      z-index: 10002;
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      z-index: 100000;
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: scale(1.1);
+    }
+
+    .modal-close:active {
+      transform: scale(0.95);
     }
 
     .close-line {
-      width: 24px;
-      height: 3px;
+      position: absolute;
+      width: 20px;
+      height: 2px;
       background: white;
+      border-radius: 1px;
+    }
+
+    .close-line:first-child {
+      transform: rotate(45deg);
+    }
+
+    .close-line:last-child {
+      transform: rotate(-45deg);
     }
 
     .modal-details {
-      padding: 20px;
+      padding: 80px 20px 40px 20px;
       background: #000000;
       color: #ffffff;
+      min-height: 100vh;
     }
 
     .modal-image-container {
       padding: 20px;
       background: #111111;
+      order: 1;
+    }
+
+    .modal-image-container img {
+      max-height: 40vh;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 12px;
     }
 
     .modal-header {
@@ -715,7 +773,7 @@
       border: 2px solid #ffffff;
     }
 
-    /* Prevent body scroll on mobile */
+    /* Prevent body scroll on mobile and hide navbar */
     body.modal-open {
       overflow: hidden;
       position: fixed;
@@ -723,6 +781,14 @@
       height: 100%;
       top: 0;
       left: 0;
+    }
+
+    /* Force hide navbar when modal is open */
+    body.modal-open .main-nav {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      z-index: -1 !important;
     }
 
     /* Hide video/complex backgrounds on mobile */
@@ -1340,7 +1406,8 @@
       let modalState = {
         isOpen: false,
         currentProject: null as string | null,
-        isAnimating: false
+        isAnimating: false,
+        scrollPosition: 0
       };
 
       // BULLETPROOF content population function
@@ -1444,9 +1511,12 @@
         modalState.isAnimating = true;
         modalState.currentProject = projectId;
 
-        // Store current scroll position to prevent jump to top
-        const scrollY = window.scrollY;
-        document.body.style.top = `-${scrollY}px`;
+        // Store current scroll position BEFORE any body modifications
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        console.log(`📍 Storing scroll position: ${scrollY}`);
+        
+        // Store scroll position in modal state for reliable restoration
+        modalState.scrollPosition = scrollY;
 
         // Populate content FIRST
         const contentPopulated = populateModalContent(projectId);
@@ -1465,6 +1535,7 @@
           document.body.style.position = 'fixed';
           document.body.style.width = '100%';
           document.body.style.height = '100%';
+          document.body.style.top = `-${scrollY}px`;
           
           // Ensure modal is focusable and accessible
           modal.setAttribute('aria-modal', 'true');
@@ -1489,12 +1560,15 @@
         
         modalState.isAnimating = true;
 
+        // Get stored scroll position
+        const scrollY = modalState.scrollPosition || 0;
+        console.log(`📍 Restoring scroll position: ${scrollY}`);
+
         // Hide modal with bulletproof mobile cleanup
         if (modal) {
           modal.classList.remove('active');
           
-          // Restore scroll position and body state
-          const scrollY = document.body.style.top;
+          // Restore body state CAREFULLY
           document.body.classList.remove('modal-open');
           document.body.style.overflow = '';
           document.body.style.position = '';
@@ -1502,10 +1576,15 @@
           document.body.style.height = '';
           document.body.style.top = '';
           
-          // Restore scroll position to prevent jump to top
-          if (scrollY) {
-            window.scrollTo(0, parseInt(scrollY || '0') * -1);
-          }
+          // Restore scroll position IMMEDIATELY to prevent jump
+          window.scrollTo(0, scrollY);
+          
+          // Force scroll position (some browsers need this)
+          requestAnimationFrame(() => {
+            window.scrollTo(0, scrollY);
+            document.documentElement.scrollTop = scrollY;
+            document.body.scrollTop = scrollY;
+          });
 
           // Remove modal attributes
           modal.removeAttribute('aria-modal');
@@ -1516,6 +1595,7 @@
             modalState.isOpen = false;
             modalState.isAnimating = false;
             modalState.currentProject = null;
+            modalState.scrollPosition = 0;
             console.log('✅ MODAL CLOSED SUCCESSFULLY (Bulletproof Mobile)');
           }, 200);
         }

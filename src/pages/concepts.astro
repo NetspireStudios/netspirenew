@@ -127,6 +127,27 @@ import ConceptsPreloader from '../components/ConceptsPreloader.astro';
             </button>
           </div>
         </div>
+        
+        <!-- Project Indicators -->
+        <div class="project-indicators">
+          <div class="indicators-container">
+            <div class="indicator active" data-project="0">
+              <div class="indicator-progress"></div>
+            </div>
+            <div class="indicator" data-project="1">
+              <div class="indicator-progress"></div>
+            </div>
+            <div class="indicator" data-project="2">
+              <div class="indicator-progress"></div>
+            </div>
+            <div class="indicator" data-project="3">
+              <div class="indicator-progress"></div>
+            </div>
+            <div class="indicator" data-project="4">
+              <div class="indicator-progress"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -633,6 +654,61 @@ import ConceptsPreloader from '../components/ConceptsPreloader.astro';
     background: #ffffff;
     color: #000000;
     transform: translateY(-2px);
+  }
+
+  /* Project Indicators Styles */
+  .project-indicators {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    opacity: 1;
+  }
+
+  .indicators-container {
+    display: flex;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    padding: 20px 30px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .indicator {
+    position: relative;
+    width: 50px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    overflow: hidden;
+  }
+
+  .indicator-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+
+  .indicator.active {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .indicator.active .indicator-progress {
+    width: 100%;
+  }
+
+  .indicator:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
   }
 
   /* Responsive Design */
