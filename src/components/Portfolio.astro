@@ -620,10 +620,10 @@
       left: 0 !important;
       width: 100vw !important;
       height: 100vh !important;
-      z-index: 999999 !important;
+      z-index: 99999999 !important;
       padding: 0 !important;
       margin: 0 !important;
-      background: rgba(0, 0, 0, 0.95) !important;
+      background: rgba(0, 0, 0, 0.98) !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -635,8 +635,8 @@
       left: 0 !important;
       width: 100vw !important;
       height: 100vh !important;
-      background: rgba(0, 0, 0, 0.98) !important;
-      z-index: 999998 !important;
+      background: rgba(0, 0, 0, 0.99) !important;
+      z-index: 99999998 !important;
     }
 
     .modal-content {
@@ -651,48 +651,48 @@
       border-radius: 20px !important;
       overflow-y: auto !important;
       -webkit-overflow-scrolling: touch !important;
-      z-index: 999999 !important;
+      z-index: 99999999 !important;
       transform: none !important;
       display: grid !important;
       grid-template-columns: 1fr !important;
       box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8) !important;
     }
 
-    /* ENHANCED CLOSE BUTTON - GUARANTEED VISIBILITY */
+    /* ULTRA-AGGRESSIVE CLOSE BUTTON - MAXIMUM VISIBILITY */
     .modal-close {
       position: fixed !important;
-      top: 30px !important;
-      right: 30px !important;
-      width: 60px !important;
-      height: 60px !important;
-      background: rgba(255, 255, 255, 0.9) !important;
-      border: 3px solid #ffffff !important;
+      top: 20px !important;
+      right: 20px !important;
+      width: 70px !important;
+      height: 70px !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      border: 4px solid #ffffff !important;
       border-radius: 50% !important;
-      z-index: 9999999 !important;
+      z-index: 999999999 !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
       cursor: pointer !important;
       transition: all 0.3s ease !important;
-      backdrop-filter: blur(20px) !important;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+      backdrop-filter: blur(30px) !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
     }
 
     .modal-close:hover {
       background: rgba(255, 255, 255, 1) !important;
       transform: scale(1.1) !important;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6) !important;
     }
 
     .modal-close:active {
       transform: scale(0.95) !important;
     }
 
-    /* FIXED CLOSE ICON LINES */
+    /* ULTRA-VISIBLE CLOSE ICON LINES */
     .close-line {
       position: absolute !important;
-      width: 24px !important;
-      height: 3px !important;
+      width: 28px !important;
+      height: 4px !important;
       background: #000000 !important;
       border-radius: 2px !important;
     }
@@ -812,7 +812,7 @@
       border: 2px solid #ffffff !important;
     }
 
-    /* FORCE HIDE NAVBAR AND PREVENT SCROLL */
+    /* ULTRA-AGGRESSIVE NAVBAR HIDING AND SCROLL PREVENTION */
     body.modal-open {
       overflow: hidden !important;
       position: fixed !important;
@@ -822,90 +822,74 @@
       left: 0 !important;
     }
 
-    /* COMPLETELY HIDE NAVBAR */
+    /* NUCLEAR NAVBAR HIDING - EVERY POSSIBLE SELECTOR */
     body.modal-open .main-nav,
     body.modal-open nav,
-    body.modal-open header {
+    body.modal-open header,
+    body.modal-open .navbar,
+    body.modal-open .navigation,
+    body.modal-open .top-nav,
+    body.modal-open [class*="nav"],
+    body.modal-open [id*="nav"] {
       display: none !important;
       visibility: hidden !important;
       opacity: 0 !important;
-      z-index: -1 !important;
-      pointer-events: none !important;
-    }
-
-    /* HIDE ALL OTHER UI ELEMENTS */
-    body.modal-open .burger-menu,
-    body.modal-open .nav-logo,
-    body.modal-open .menu-nav {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-    }
-
-    /* ULTIMATE NAVBAR HIDING - TARGET ALL POSSIBLE SELECTORS */
-    .project-modal.active ~ .main-nav,
-    .project-modal.active ~ nav,
-    .project-modal.active ~ header,
-    body.modal-open * [class*="nav"],
-    body.modal-open * [class*="header"],
-    body.modal-open * [id*="nav"],
-    body.modal-open * [id*="header"] {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      z-index: -9999 !important;
+      z-index: -999999 !important;
       pointer-events: none !important;
       position: absolute !important;
       left: -9999px !important;
       top: -9999px !important;
     }
 
-    /* NUCLEAR OPTION - HIDE EVERYTHING AT TOP OF SCREEN WHEN MODAL OPEN */
-    body.modal-open *:not(.project-modal):not(.modal-backdrop):not(.modal-content):not(.modal-close):not(.close-line) {
-      z-index: -1 !important;
-    }
-
-    body.modal-open > *:not(.project-modal) {
+    /* HIDE ALL NAVBAR CHILD ELEMENTS */
+    body.modal-open .burger-menu,
+    body.modal-open .nav-logo,
+    body.modal-open .menu-nav,
+    body.modal-open .menu-toggle,
+    body.modal-open .hamburger {
+      display: none !important;
       visibility: hidden !important;
       opacity: 0 !important;
+      z-index: -999999 !important;
       pointer-events: none !important;
-      transform: translateY(-100vh) !important;
     }
 
-    /* ENSURE MODAL ELEMENTS STAY VISIBLE */
-    body.modal-open .project-modal,
-    body.modal-open .project-modal *,
-    body.modal-open .modal-backdrop,
-    body.modal-open .modal-content,
-    body.modal-open .modal-close {
-      visibility: visible !important;
-      opacity: 1 !important;
-      pointer-events: auto !important;
-      transform: none !important;
-      z-index: 999999 !important;
+    /* ADDITIONAL FULL-SCREEN NAVBAR BLOCKER */
+    .project-modal::before {
+      content: '' !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background: rgba(0, 0, 0, 0.99) !important;
+      z-index: 99999997 !important;
+      pointer-events: none !important;
     }
 
-    /* STYLES FOR BULLET POINT DESCRIPTIONS */
-    .project-features {
-      list-style: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      text-align: left !important;
+    /* DIRECT NAVBAR TARGETING - OVERRIDE EVERYTHING */
+    .main-nav {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      z-index: -999999 !important;
+      transform: translateY(-200px) !important;
+      position: absolute !important;
+      left: -9999px !important;
+      top: -9999px !important;
     }
 
-    .project-features li {
-      display: flex !important;
-      align-items: flex-start !important;
-      gap: 12px !important;
-      margin-bottom: 12px !important;
-      font-size: 14px !important;
-      line-height: 1.5 !important;
-      color: #cccccc !important;
-      padding: 8px 0 !important;
-    }
-
-    .project-features li:last-child {
-      margin-bottom: 0 !important;
+    /* FORCE HIDE SPECIFIC NAVBAR ELEMENTS ON MOBILE */
+    nav,
+    header,
+    .navbar,
+    .navigation,
+    [class*="nav-"],
+    [id*="nav-"] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      z-index: -999999 !important;
     }
 
     /* Hide video/complex backgrounds on mobile */
@@ -1238,12 +1222,9 @@
         title: "Devin AI",
         category: "WEB • DESIGN • DEVELOPMENT • 3D",
         description: `
-          <ul class="project-features">
-            <li>🤖 Advanced AI capabilities seamlessly integrated with intuitive user experience</li>
-            <li>🎯 Democratizes complex coding processes for developers worldwide</li>
-            <li>⚡ Visualizes AI processes in an accessible and approachable way</li>
-            <li>🚀 Sets new standards for AI-assisted development tools</li>
-          </ul>
+          <p>Devin AI represents the future of artificial intelligence in software development. We crafted a cutting-edge interface that seamlessly blends advanced AI capabilities with intuitive user experience.</p>
+          <p>The project challenged us to visualize complex AI processes in an accessible way, resulting in a platform that democratizes advanced coding capabilities for developers worldwide.</p>
+          <p>Through extensive user research and iterative design, we created an interface that feels both powerful and approachable, setting new standards for AI-assisted development tools.</p>
         `,
         techStack: ["React", "TypeScript", "Three.js", "WebGL", "Node.js", "Python", "TensorFlow"],
         liveUrl: "https://devin-ai-demo.com",
@@ -1253,12 +1234,9 @@
         title: "Porsche: Dream Machine",
         category: "CONCEPT • 3D ILLUSTRATION • MOGRAPH • VIDEO",
         description: `
-          <ul class="project-features">
-            <li>🏎️ Immersive 3D storytelling that reimagines automotive visualization</li>
-            <li>🎨 Fully interactive environment exploring every vehicle detail</li>
-            <li>✨ Cutting-edge 3D rendering with sophisticated motion design</li>
-            <li>💫 Creates emotional connection beyond traditional marketing</li>
-          </ul>
+          <p>An ambitious conceptual project that reimagines the Porsche experience through immersive 3D storytelling and motion graphics. This dream machine concept pushes the boundaries of automotive visualization.</p>
+          <p>We developed a fully interactive 3D environment where users can explore every detail of this conceptual vehicle, from its aerodynamic curves to its innovative interior design.</p>
+          <p>The project combines cutting-edge 3D rendering with sophisticated motion design, creating an emotional connection between the viewer and the vehicle that transcends traditional automotive marketing.</p>
         `,
         techStack: ["Cinema 4D", "Blender", "After Effects", "WebGL", "Three.js", "GSAP"],
         liveUrl: "https://porsche-dream.com",
@@ -1268,12 +1246,9 @@
         title: "Aurora Analytics",
         category: "DATA • VISUALIZATION • WEB • API",
         description: `
-          <ul class="project-features">
-            <li>📊 Transforms complex data into beautiful, actionable insights</li>
-            <li>⚡ Real-time processing with interactive AI-powered dashboards</li>
-            <li>🚀 Custom visualization engine handling millions of data points</li>
-            <li>📈 Helps businesses make informed decisions quickly and confidently</li>
-          </ul>
+          <p>Aurora Analytics transforms complex data into beautiful, actionable insights. We designed and developed a comprehensive analytics platform that makes data visualization both powerful and intuitive.</p>
+          <p>The platform features real-time data processing, interactive dashboards, and AI-powered insights that help businesses make informed decisions quickly and confidently.</p>
+          <p>Our custom visualization engine can handle millions of data points while maintaining smooth performance, setting new benchmarks for data analytics platforms.</p>
         `,
         techStack: ["Vue.js", "D3.js", "Python", "FastAPI", "PostgreSQL", "Redis", "Docker"],
         liveUrl: "https://aurora-analytics.com",
@@ -1283,12 +1258,9 @@
         title: "Quantum App",
         category: "MOBILE • AR • COLLABORATION • UX",
         description: `
-          <ul class="project-features">
-            <li>🥽 Redefines mobile collaboration through augmented reality</li>
-            <li>👥 Teams collaborate in shared AR spaces regardless of location</li>
-            <li>🛠️ Custom AR frameworks enable real-time object manipulation</li>
-            <li>🎯 Gesture-based interactions for natural workflow efficiency</li>
-          </ul>
+          <p>Quantum App redefines mobile collaboration through augmented reality and intuitive design. This groundbreaking application allows teams to collaborate in shared AR spaces, regardless of physical location.</p>
+          <p>We developed custom AR frameworks that enable real-time object manipulation and seamless multi-user experiences, pushing the boundaries of what's possible in mobile AR.</p>
+          <p>The interface design prioritizes gesture-based interactions and spatial computing, creating a natural and efficient workflow for modern distributed teams.</p>
         `,
         techStack: ["React Native", "ARKit", "ARCore", "WebRTC", "Node.js", "Socket.io"],
         liveUrl: "https://quantum-app.com",
@@ -1298,12 +1270,9 @@
         title: "Digital Studio",
         category: "CREATIVE • PLATFORM • REAL-TIME • COLLAB",
         description: `
-          <ul class="project-features">
-            <li>🎨 Revolutionary platform for real-time creative collaboration</li>
-            <li>🔄 Live editing with version control for creative assets</li>
-            <li>🤖 AI-assisted design tools that amplify human creativity</li>
-            <li>⚡ Sophisticated synchronization for complex multimedia projects</li>
-          </ul>
+          <p>Digital Studio is a revolutionary creative platform that enables real-time collaboration between designers, developers, and creators worldwide. Built for the modern creative workflow.</p>
+          <p>The platform features live editing capabilities, version control for creative assets, and AI-assisted design tools that amplify human creativity rather than replace it.</p>
+          <p>We engineered a sophisticated real-time synchronization system that ensures seamless collaboration even with complex multimedia projects and large file sizes.</p>
         `,
         techStack: ["React", "WebRTC", "WebSockets", "Canvas API", "Node.js", "MongoDB"],
         liveUrl: "https://digital-studio.com",
@@ -1313,12 +1282,9 @@
         title: "Future Finance",
         category: "FINTECH • AI • BLOCKCHAIN • INVESTMENT",
         description: `
-          <ul class="project-features">
-            <li>💰 AI + blockchain technology for next-gen investment platforms</li>
-            <li>📱 Makes complex financial instruments accessible to everyone</li>
-            <li>🔒 Secure blockchain transactions with intuitive user experience</li>
-            <li>📊 Custom trading algorithms with advanced risk assessment tools</li>
-          </ul>
+          <p>Future Finance combines artificial intelligence with blockchain technology to create the next generation of investment platforms. We designed an interface that makes complex financial instruments accessible to everyone.</p>
+          <p>The platform features AI-powered portfolio optimization, real-time market analysis, and secure blockchain-based transactions, all wrapped in an intuitive and trustworthy user experience.</p>
+          <p>Our custom trading algorithms and risk assessment tools help users make informed investment decisions while maintaining the highest standards of security and compliance.</p>
         `,
         techStack: ["React", "TypeScript", "Solidity", "Web3.js", "Python", "TensorFlow", "AWS"],
         liveUrl: "https://future-finance.com",
