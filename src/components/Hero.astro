@@ -351,11 +351,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 20px;
     z-index: 20;
     opacity: 0;
     pointer-events: auto;
     cursor: pointer;
+    width: auto;
+    margin: 0;
+    /* Ensure perfect centering */
+    text-align: center;
   }
 
   .scroll-text {
@@ -366,6 +371,10 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    /* Ensure text is centered */
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
   }
 
   .scroll-line {
@@ -374,6 +383,8 @@
     background: rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
+    /* Ensure line is centered */
+    margin: 0 auto;
   }
 
   .scroll-dot {
@@ -529,6 +540,14 @@
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
+      /* Enhanced mobile centering */
+      width: auto;
+      margin: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Optimize Spline iframe for mobile */
@@ -587,6 +606,16 @@
 
     .scroll-indicator {
       bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      /* Enhanced small mobile centering */
+      width: auto;
+      margin: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .spline-iframe {

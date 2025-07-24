@@ -742,12 +742,12 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
     <div class="fullscreen-menu" id="fullscreen-menu">
       <div class="menu-content">
         <ul class="menu-nav">
-          <li><a href="/" data-cursor="text">Home</a></li>
-          <li><a href="#services" data-cursor="text">Services</a></li>
-          <li><a href="#work" data-cursor="text">Projects</a></li>
-          <li><a href="/concepts" data-cursor="text">Concepts</a></li>
-          <li><a href="/about" data-cursor="text">About Us</a></li>
-          <li><a href="#contact" data-cursor="text">Contact</a></li>
+                      <li><a href="/" data-cursor="text">Home</a></li>
+            <li><a href="#services" data-cursor="text" class="scroll-link">About Us</a></li>
+            <li><a href="#services" data-cursor="text" class="scroll-link">Services</a></li>
+            <li><a href="#work" data-cursor="text" class="scroll-link">Projects</a></li>
+            <li><a href="/concepts" data-cursor="text">Concepts</a></li>
+            <li><a href="#contact" data-cursor="text" class="scroll-link">Contact</a></li>
         </ul>
         <div class="menu-social">
           <a href="https://www.instagram.com/netspirestudio/?hl=en" target="_blank" rel="noopener noreferrer" data-cursor="hover">
@@ -972,22 +972,21 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
             ease: 'power3.out'
           }, '-=0.2');
           
-          // Services header animation
-          gsap.set('.services .title-word', { y: '100%', opacity: 0 });
-          gsap.set('.services .section-description', { y: 30, opacity: 0 });
+          // About Us header animation
+          gsap.set('#services .overview-section h2', { y: '100%', opacity: 0 });
+          gsap.set('#services .lead-text', { y: 30, opacity: 0 });
           ScrollTrigger.create({
-            trigger: '.services-header',
+            trigger: '.overview-section',
             start: 'top 80%',
             onEnter: () => {
               const tl = gsap.timeline();
-              tl.to('.services .title-word', {
+              tl.to('#services .overview-section h2', {
                 y: 0,
                 opacity: 1,
                 duration: 0.8,
-                ease: 'power3.out',
-                stagger: 0.1
+                ease: 'power3.out'
               })
-              .to('.services .section-description', {
+              .to('#services .lead-text', {
                 y: 0,
                 opacity: 1,
                 duration: 0.6,
@@ -996,28 +995,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
             }
           });
 
-          // Enhanced Service items animation with 3D effects
-          gsap.set('.service-item', { 
-            y: 80, 
-            opacity: 0,
-            rotationY: 15,
-            scale: 0.9
-          });
-          ScrollTrigger.create({
-            trigger: '.services-grid',
-            start: 'top 75%',
-            onEnter: () => {
-              gsap.to('.service-item', {
-                y: 0,
-                opacity: 1,
-                rotationY: 0,
-                scale: 1,
-                duration: 1,
-                ease: 'power3.out',
-                stagger: 0.15
-              });
-            }
-          });
+
           
 
 
@@ -1093,7 +1071,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
             
             // Get all main sections
             const heroSection = document.querySelector('.hero');
-            const servicesSection = document.querySelector('.services');
+            const servicesSection = document.querySelector('.about-us'); // Services/About section
             const quoteSection = document.querySelector('.quote-section');
             const portfolioSection = document.querySelector('.portfolio');
             const contactSection = document.querySelector('.contact');
@@ -1243,8 +1221,64 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
           return { burgerMenu, fullscreenMenu, menuOpen: () => menuOpen, updateNavigationColor };
         }
         
-        // Initialize navigation
-        const nav = initNavigation();
+          // Initialize navigation
+  const nav = initNavigation();
+
+  // Smooth scroll functionality for burger menu
+  function initSmoothScrolling() {
+    const scrollLinks = document.querySelectorAll('.scroll-link');
+    const burgerMenu = document.querySelector('.burger-menu');
+    const fullscreenMenu = document.querySelector('.fullscreen-menu');
+    
+    scrollLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const href = this.getAttribute('href');
+        const targetId = href.replace('#', '');
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          console.log(`🎯 Scrolling to: ${targetId}`);
+          
+          // Close burger menu first
+          if (burgerMenu && fullscreenMenu) {
+            burgerMenu.classList.remove('active');
+            fullscreenMenu.classList.remove('active');
+            
+            // Restore body scroll
+            const currentScroll = parseInt(document.body.style.top || '0') * -1;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.overflow = '';
+            document.body.style.width = '';
+            if (currentScroll > 0) {
+              window.scrollTo(0, currentScroll);
+            }
+          }
+          
+          // Smooth scroll to target with offset for fixed header
+          setTimeout(() => {
+            const headerOffset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }, 300); // Small delay to let menu close
+        } else {
+          console.warn(`❌ Target element not found: ${targetId}`);
+        }
+      });
+    });
+    
+    console.log('✅ Smooth scrolling initialized');
+  }
+
+  // Initialize smooth scrolling
+  initSmoothScrolling();
         
         // Page Transition System
         function initPageTransitions() {
