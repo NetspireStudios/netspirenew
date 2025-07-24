@@ -240,6 +240,11 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
       .burger-menu.active .burger-line:nth-child(3) {
         transform: rotate(-45deg) translate(3px, -3px);
       }
+
+      /* Ensure burger lines are always white when menu is active */
+      .burger-menu.active .burger-line {
+        background: var(--white) !important;
+      }
       
       /* Fullscreen Menu */
       .fullscreen-menu {

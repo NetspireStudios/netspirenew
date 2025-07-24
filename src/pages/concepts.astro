@@ -210,6 +210,37 @@ import ConceptsPreloader from '../components/ConceptsPreloader.astro';
       margin-bottom: 20px;
     }
 
+    /* Cinematic Title Words Styling */
+    .main-title-wrapper .title-word {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 8vw, 8rem);
+      font-weight: 900;
+      color: white;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    .highlight-word {
+      background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .highlight-word::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+      border-radius: 3px;
+    }
+
     .cinematic-subtitle {
       font-family: 'Inter', sans-serif;
       font-size: 18px;
