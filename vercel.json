@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "src/pages/api/contact.ts": {
-      "maxDuration": 10
-    }
-  },
   "env": {
     "SMTP_HOST": "smtp.gmail.com",
     "SMTP_PORT": "587"
