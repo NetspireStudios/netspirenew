@@ -2,15 +2,7 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
-// Load environment variables (only in development)
-if (process.env.NODE_ENV !== 'production') {
-  try {
-    const { config } = await import('dotenv');
-    config();
-  } catch (e) {
-    // dotenv not available in production, which is fine
-  }
-}
+// Load environment variables - will be handled in the function
 
 // Environment variables getter
 const getEnvVar = (key: string): string | undefined => {
@@ -72,6 +64,16 @@ function sanitizeInput(input: string): string {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    // Load environment variables in development
+    if (process.env.NODE_ENV !== 'production') {
+      try {
+        const { config } = await import('dotenv');
+        config();
+      } catch (e) {
+        // dotenv not available in production, which is fine
+      }
+    }
+
     // Get client IP (simplified for development)
     const clientIP = request.headers.get('x-forwarded-for') || 
                      request.headers.get('x-real-ip') || 
