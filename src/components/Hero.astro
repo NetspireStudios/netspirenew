@@ -3,30 +3,14 @@
 ---
 
 <section class="hero" id="hero">
-  <!-- Vimeo Video Background -->
-  <div class="hero-video">
-    <!-- Vimeo Embed (Primary) - Updated for continuous playback -->
-    <iframe 
-      class="hero-video-iframe"
-      src="https://player.vimeo.com/video/259411563?autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1&autopause=0&controls=0&sidedock=0"
-      frameborder="0" 
-      allow="autoplay; fullscreen; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-    
-    <!-- Fallback Video (if Vimeo fails) -->
-    <video 
-      class="hero-video-fallback"
-      autoplay 
-      muted 
-      loop 
-      playsinline
-      preload="auto"
-      style="display: none;"
-    >
-      <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4">
-      <source src="/images/hero-video.mp4" type="video/mp4">
-    </video>
+  <!-- Snow Mountain Background Image -->
+  <div class="hero-background">
+    <img 
+      class="hero-background-image"
+      src="https://images.unsplash.com/photo-1551524164-69c0030442a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+      alt="Snow mountain landscape"
+      loading="eager"
+    />
   </div>
   
   <!-- Content Overlay -->
@@ -129,8 +113,8 @@
     }
   }
 
-  /* Video Background Container */
-  .hero-video {
+  /* Background Image Container */
+  .hero-background {
     position: absolute;
     top: 0;
     left: 0;
@@ -141,33 +125,20 @@
     pointer-events: none;
   }
 
-  /* Vimeo iframe styling */
-  .hero-video-iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 56.25vw; /* 16:9 aspect ratio */
-    min-height: 100vh;
-    min-width: 177.78vh; /* 16:9 aspect ratio */
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 15;
-    border: none;
-    outline: none;
-  }
-
-  /* Fallback video styling */
-  .hero-video-fallback {
+  /* Background image styling */
+  .hero-background-image {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 100%;
     height: 100%;
+    min-width: 100vw;
+    min-height: 100vh;
     object-fit: cover;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 14;
+    z-index: 15;
+    user-select: none;
   }
 
   /* Content Overlay - Enhanced for video visibility */
@@ -650,7 +621,7 @@
       justify-content: center;
     }
 
-    .hero-video-fallback {
+    .hero-background-image {
       transform: translate(-50%, -50%) scale(1.1);
       filter: brightness(0.6) contrast(1.2);
     }
@@ -658,20 +629,53 @@
 </style>
 
 <script>
-  // Hero animations and video management
+  // Hero animations and background management
   function initHeroAnimations() {
-    console.log('🎬 Initializing hero animations with Vimeo video...');
+    console.log('🎬 Initializing hero animations with background image...');
     
-    // Enhanced video management with continuous playback
-    function setupVideoManagement() {
-      const vimeoIframe = document.querySelector('.hero-video-iframe') as HTMLIFrameElement;
-      const fallbackVideo = document.querySelector('.hero-video-fallback') as HTMLVideoElement;
-      let vimeoFailed = false;
+    // Background image optimization
+    function setupBackgroundImage() {
+      const backgroundImage = document.querySelector('.hero-background-image') as HTMLImageElement;
       
-      console.log('🎥 Setting up enhanced Vimeo video management...');
-      
-      // Enhanced Vimeo iframe handling
-      if (vimeoIframe) {
+      if (backgroundImage) {
+        // Ensure image loads properly
+        backgroundImage.addEventListener('load', () => {
+          console.log('✅ Hero background image loaded successfully');
+          backgroundImage.style.opacity = '1';
+        });
+        
+        // Handle image load errors
+        backgroundImage.addEventListener('error', () => {
+          console.log('❌ Hero background image failed to load');
+          // Could add a fallback background color here
+        });
+      }
+    }
+    
+    setupBackgroundImage();
+
+    // Hero content animations
+    const heroElements = {
+      subtitle: document.querySelector('.hero-subtitle'),
+      title: document.querySelector('.hero-title'),
+      description: document.querySelector('.hero-description'),
+      cta: document.querySelector('.cta-button'),
+      scrollIndicator: document.querySelector('.scroll-indicator')
+    };
+
+    // Simple fade-in animations for hero elements
+    Object.values(heroElements).forEach((element, index) => {
+      if (element) {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+          element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }, index * 200 + 500);
+      }
+    });
         // Listen for Vimeo player messages
         window.addEventListener('message', (event) => {
           if (event.origin !== 'https://player.vimeo.com') return;
