@@ -2,15 +2,8 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
-// Load environment variables
-if (typeof process !== 'undefined') {
-  try {
-    const dotenv = await import('dotenv');
-    dotenv.config();
-  } catch (e) {
-    // dotenv not available, environment variables should be set directly
-  }
-}
+// Environment variables are automatically available in Vercel
+// No need to load dotenv in production
 
 // Simple rate limiting store (in production, use Redis or database)
 const rateLimitStore = new Map<string, { count: number; lastReset: number }>();
@@ -67,9 +60,17 @@ function sanitizeInput(input: string): string {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    // Get client IP (simplified for development)
+    console.log('🚀 Contact API called on Vercel');
+    console.log('📍 Environment:', {
+      nodeEnv: process.env.NODE_ENV,
+      vercelEnv: process.env.VERCEL_ENV,
+      smtpConfigured: !!(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS)
+    });
+    
+    // Get client IP (Vercel-optimized)
     const clientIP = request.headers.get('x-forwarded-for') || 
                      request.headers.get('x-real-ip') || 
+                     request.headers.get('cf-connecting-ip') ||
                      'unknown';
 
     // Check rate limit
@@ -142,8 +143,9 @@ export const POST: APIRoute = async ({ request }) => {
     // Gmail/SMTP Email Integration
     if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
       try {
-        // Dynamic import for Nodemailer (install with: npm install nodemailer @types/nodemailer)
+        // Dynamic import for Nodemailer (Vercel serverless compatible)
         const nodemailer = await import('nodemailer');
+        console.log('📧 Nodemailer imported successfully');
         
         const transporter = nodemailer.createTransport({
           host: process.env.SMTP_HOST,
@@ -221,11 +223,22 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
   } catch (error) {
-    console.error('Contact form error:', error);
+    console.error('❌ Contact form error:', error);
+    console.error('🔍 Error details:', {
+      message: error?.message,
+      stack: error?.stack?.split('\n').slice(0, 3),
+      name: error?.name
+    });
     
     return new Response(JSON.stringify({
       success: false,
-      error: 'An error occurred while sending your message. Please try again.'
+      error: 'An error occurred while sending your message. Please try again.',
+      ...(process.env.NODE_ENV === 'development' && { 
+        debug: { 
+          message: error?.message,
+          type: error?.name 
+        }
+      })
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
