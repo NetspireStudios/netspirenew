@@ -4,10 +4,9 @@ import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  output: 'hybrid',
   adapter: vercel({
-    edgeMiddleware: true,
-    functionPerRoute: false
+    webAnalytics: { enabled: true }
   }),
   site: 'https://netspire.studio'
 });
