@@ -2,9 +2,15 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
-// Load environment variables
-import { config } from 'dotenv';
-config();
+// Load environment variables (only in development)
+if (process.env.NODE_ENV !== 'production') {
+  try {
+    const { config } = await import('dotenv');
+    config();
+  } catch (e) {
+    // dotenv not available in production, which is fine
+  }
+}
 
 // Environment variables getter
 const getEnvVar = (key: string): string | undefined => {
@@ -151,6 +157,15 @@ export const POST: APIRoute = async ({ request }) => {
       contactEmail: contactEmail ? 'SET' : 'NOT SET'
     });
 
+    // Additional debugging for production
+    console.log('🌍 Environment Check:', {
+      nodeEnv: process.env.NODE_ENV,
+      platform: process.platform,
+      vercelEnv: process.env.VERCEL_ENV,
+      smtpUserActual: smtpUser,
+      smtpHostActual: smtpHost
+    });
+
     if (smtpHost && smtpUser && smtpPass) {
       try {
         // Dynamic import for Nodemailer (install with: npm install nodemailer @types/nodemailer)
@@ -166,7 +181,7 @@ export const POST: APIRoute = async ({ request }) => {
           }
         });
 
-        await transporter.sendMail({
+        const info = await transporter.sendMail({
           from: `"NETSPIRE Contact Form" <${smtpUser}>`,
           to: contactEmail || smtpUser,
           replyTo: sanitizedData.email,
@@ -212,9 +227,14 @@ export const POST: APIRoute = async ({ request }) => {
           `
         });
 
-        console.log('✅ Email sent successfully via SMTP');
+        console.log('✅ Email sent successfully via SMTP! Message ID:', info.messageId);
       } catch (emailError) {
         console.error('❌ Failed to send email:', emailError);
+        console.error('❌ Email error details:', {
+          message: emailError.message,
+          code: emailError.code,
+          stack: emailError.stack?.split('\n')[0]
+        });
         // Don't throw error - still return success to user, but log the email failure
         console.log('📝 Contact form submission saved (email delivery failed)');
       }
