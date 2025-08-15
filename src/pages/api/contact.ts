@@ -2,7 +2,15 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
-// Direct environment variable access - no dotenv needed in production
+// Load environment variables
+if (typeof process !== 'undefined') {
+  try {
+    const dotenv = await import('dotenv');
+    dotenv.config();
+  } catch (e) {
+    // dotenv not available, environment variables should be set directly
+  }
+}
 
 // Simple rate limiting store (in production, use Redis or database)
 const rateLimitStore = new Map<string, { count: number; lastReset: number }>();
@@ -132,45 +140,24 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     // Gmail/SMTP Email Integration
-    const smtpHost = getEnvVar('SMTP_HOST');
-    const smtpUser = getEnvVar('SMTP_USER');
-    const smtpPass = getEnvVar('SMTP_PASS');
-    const contactEmail = getEnvVar('CONTACT_EMAIL');
-
-    console.log('🔧 SMTP Configuration Check:', {
-      smtpHost: smtpHost ? 'SET' : 'NOT SET',
-      smtpUser: smtpUser ? 'SET' : 'NOT SET',
-      smtpPass: smtpPass ? 'SET' : 'NOT SET',
-      contactEmail: contactEmail ? 'SET' : 'NOT SET'
-    });
-
-    // Additional debugging for production
-    console.log('🌍 Environment Check:', {
-      nodeEnv: process.env.NODE_ENV,
-      platform: process.platform,
-      vercelEnv: process.env.VERCEL_ENV,
-      smtpUserActual: smtpUser,
-      smtpHostActual: smtpHost
-    });
-
-    if (smtpHost && smtpUser && smtpPass) {
+    if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
       try {
         // Dynamic import for Nodemailer (install with: npm install nodemailer @types/nodemailer)
         const nodemailer = await import('nodemailer');
         
         const transporter = nodemailer.createTransport({
-          host: smtpHost,
+          host: process.env.SMTP_HOST,
           port: parseInt(process.env.SMTP_PORT || '587'),
           secure: false, // true for 465, false for other ports
           auth: {
-            user: smtpUser,
-            pass: smtpPass
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS
           }
         });
 
-        const info = await transporter.sendMail({
-          from: `"NETSPIRE Contact Form" <${smtpUser}>`,
-          to: contactEmail || smtpUser,
+        await transporter.sendMail({
+          from: `"NETSPIRE Contact Form" <${process.env.SMTP_USER}>`,
+          to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
           replyTo: sanitizedData.email,
           subject: `New Contact Form Submission from ${sanitizedData.name}`,
           html: `
@@ -214,14 +201,9 @@ export const POST: APIRoute = async ({ request }) => {
           `
         });
 
-        console.log('✅ Email sent successfully via SMTP! Message ID:', info.messageId);
+        console.log('✅ Email sent successfully via SMTP');
       } catch (emailError) {
         console.error('❌ Failed to send email:', emailError);
-        console.error('❌ Email error details:', {
-          message: emailError.message,
-          code: emailError.code,
-          stack: emailError.stack?.split('\n')[0]
-        });
         // Don't throw error - still return success to user, but log the email failure
         console.log('📝 Contact form submission saved (email delivery failed)');
       }
