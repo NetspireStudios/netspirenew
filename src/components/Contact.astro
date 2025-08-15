@@ -1405,14 +1405,14 @@
             setButtonState('normal');
           }, 3000);
         }
-      } catch (error) {
+        } catch (error) {
         console.error('❌ Unexpected error:', error);
         setButtonState('error');
         showFormMessage('error', 'An unexpected error occurred. Please try again.');
-        
-        setTimeout(() => {
+          
+          setTimeout(() => {
           setButtonState('normal');
-        }, 3000);
+          }, 3000);
       } finally {
         isSubmitting = false;
       }
