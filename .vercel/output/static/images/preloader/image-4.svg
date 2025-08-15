@@ -1,0 +1,26 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f9f9f9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#eeeeee;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="hexagons" patternUnits="userSpaceOnUse" width="50" height="50">
+      <polygon points="25,5 40,17.5 40,32.5 25,45 10,32.5 10,17.5" fill="none" stroke="#d0d7de" stroke-width="0.5" opacity="0.4"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#grad4)"/>
+  
+  <!-- Hexagon pattern overlay -->
+  <rect width="400" height="300" fill="url(#hexagons)" opacity="0.2"/>
+  
+  <!-- Central hexagon elements -->
+  <polygon points="200,90 230,107.5 230,142.5 200,160 170,142.5 170,107.5" fill="none" stroke="#000000" stroke-width="1" opacity="0.2"/>
+  <polygon points="200,115 215,123.75 215,141.25 200,150 185,141.25 185,123.75" fill="none" stroke="#000000" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Minimal typography element -->
+  <text x="200" y="240" text-anchor="middle" font-family="Outfit, sans-serif" font-size="14" font-weight="300" fill="#000000" opacity="0.6">
+    CREATE
+  </text>
+</svg> 
