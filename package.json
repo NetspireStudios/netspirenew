@@ -9,7 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^6.0.4",
     "@splinetool/runtime": "^1.10.32",
     "@studio-freight/lenis": "^1.0.42",
     "@types/nodemailer": "^6.4.17",
