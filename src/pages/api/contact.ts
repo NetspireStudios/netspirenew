@@ -2,12 +2,7 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
-// Load environment variables - will be handled in the function
-
-// Environment variables getter
-const getEnvVar = (key: string): string | undefined => {
-  return process.env[key];
-};
+// Direct environment variable access - no dotenv needed in production
 
 // Simple rate limiting store (in production, use Redis or database)
 const rateLimitStore = new Map<string, { count: number; lastReset: number }>();
@@ -64,16 +59,6 @@ function sanitizeInput(input: string): string {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    // Load environment variables in development
-    if (process.env.NODE_ENV !== 'production') {
-      try {
-        const { config } = await import('dotenv');
-        config();
-      } catch (e) {
-        // dotenv not available in production, which is fine
-      }
-    }
-
     // Get client IP (simplified for development)
     const clientIP = request.headers.get('x-forwarded-for') || 
                      request.headers.get('x-real-ip') || 
@@ -175,7 +160,7 @@ export const POST: APIRoute = async ({ request }) => {
         
         const transporter = nodemailer.createTransport({
           host: smtpHost,
-          port: parseInt(getEnvVar('SMTP_PORT') || '587'),
+          port: parseInt(process.env.SMTP_PORT || '587'),
           secure: false, // true for 465, false for other ports
           auth: {
             user: smtpUser,
