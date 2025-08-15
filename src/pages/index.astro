@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Contact from '../components/Contact.astro';
+import Quote from '../components/Quote.astro';
+---
+
+<Layout title="NETSPIRE - Cinematic Web Experience" description="Experience the future of web design with NETSPIRE's cinematic approach to digital creativity.">
+  <!-- Hero Section -->
+  <Hero />
+  
+  <!-- Services Section -->
+  <Services />
+  
+  <!-- Quote Section - Sphere before Portfolio -->
+  <Quote 
+    quote="The best way to predict the future is to design it."
+    author="Buckminster Fuller"
+    role="Architect & Inventor"
+    shapeType="sphere"
+  />
+  
+  <!-- Portfolio Section -->
+  <Portfolio />
+  
+  <!-- Contact Section -->
+  <Contact />
+</Layout>

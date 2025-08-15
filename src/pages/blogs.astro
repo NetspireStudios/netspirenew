@@ -1,0 +1,1134 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Blog - Netspire" description="Explore insights on AI development, SEO, web design, and AI agents from the Netspire team.">
+  <!-- Blogs Hero Section -->
+  <section class="blogs-hero">
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span>Expert Insights</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="title-word">Latest</span>
+        <span class="title-word">Insights</span>
+        <span class="title-word">&</span>
+        <span class="title-word">Expertise</span>
+      </h1>
+      <div class="hero-description">
+        <p>Stay ahead with our latest insights on AI development, SEO strategies, web design best practices, and cutting-edge AI agents.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Categories & Search -->
+  <section class="blog-controls">
+    <div class="controls-container">
+      <div class="blog-categories">
+        <button class="category-btn active" data-category="all">All Posts</button>
+        <button class="category-btn" data-category="ai-development">AI Development</button>
+        <button class="category-btn" data-category="seo">SEO</button>
+        <button class="category-btn" data-category="web-design">Web Design</button>
+        <button class="category-btn" data-category="ai-agents">AI Agents</button>
+      </div>
+      
+      <div class="blog-search">
+        <input type="text" placeholder="Search articles..." id="blogSearch">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+          <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Blog Post -->
+  <section class="featured-blog">
+    <div class="featured-container">
+      <div class="featured-content">
+        <div class="featured-image">
+          <img src="/images/concept-04.png" alt="Featured Blog Post" />
+          <div class="featured-overlay">
+            <span class="featured-badge">Featured</span>
+          </div>
+        </div>
+        <div class="featured-details">
+          <div class="featured-meta">
+            <span class="category-tag ai-development">AI Development</span>
+            <span class="read-time">8 min read</span>
+            <span class="publish-date">Dec 15, 2024</span>
+          </div>
+          <h2 class="featured-title">The Future of AI Agents: Building Intelligent Business Solutions</h2>
+          <p class="featured-excerpt">Discover how AI agents are revolutionizing business automation and customer service. Learn the key strategies for implementing intelligent agents that drive real results.</p>
+          <a href="/blog/ai-agents-future" class="read-more-btn">
+            <span>Read Full Article</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Posts Grid -->
+  <section class="blog-posts">
+    <div class="posts-container">
+      <div class="posts-grid" id="postsGrid">
+        
+        <!-- AI Development Posts -->
+        <article class="blog-card" data-category="ai-development">
+          <div class="card-image">
+            <img src="/images/concept-01.png" alt="AI Development" />
+            <div class="card-overlay">
+              <span class="category-tag ai-development">AI Development</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="author">By Netspire Team</span>
+              <span class="date">Dec 10, 2024</span>
+              <span class="read-time">6 min read</span>
+            </div>
+            <h3 class="card-title">Building Scalable AI Applications: A Developer's Guide</h3>
+            <p class="card-excerpt">Essential patterns and best practices for creating AI applications that scale from prototype to production.</p>
+            <a href="/blog/scalable-ai-applications" class="card-link">Read More</a>
+          </div>
+        </article>
+
+        <article class="blog-card" data-category="ai-development">
+          <div class="card-image">
+            <img src="/images/concept-02.png" alt="Machine Learning" />
+            <div class="card-overlay">
+              <span class="category-tag ai-development">AI Development</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="author">By Netspire Team</span>
+              <span class="date">Dec 5, 2024</span>
+              <span class="read-time">10 min read</span>
+            </div>
+            <h3 class="card-title">Machine Learning Model Deployment: Production Best Practices</h3>
+            <p class="card-excerpt">Learn how to deploy ML models efficiently with containerization, monitoring, and automated scaling strategies.</p>
+            <a href="/blog/ml-model-deployment" class="card-link">Read More</a>
+          </div>
+        </article>
+
+        <!-- SEO Posts -->
+        <article class="blog-card" data-category="seo">
+          <div class="card-image">
+            <img src="/images/concept-03.png" alt="SEO Strategy" />
+            <div class="card-overlay">
+              <span class="category-tag seo">SEO</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="author">By Netspire Team</span>
+              <span class="date">Dec 8, 2024</span>
+              <span class="read-time">7 min read</span>
+            </div>
+            <h3 class="card-title">SEO in 2024: Core Web Vitals and User Experience</h3>
+            <p class="card-excerpt">Master the latest SEO strategies focusing on Core Web Vitals, page experience, and technical optimization.</p>
+            <a href="/blog/seo-core-web-vitals" class="card-link">Read More</a>
+          </div>
+        </article>
+
+        <article class="blog-card" data-category="seo">
+          <div class="card-image">
+            <img src="/images/concept-05.png" alt="Local SEO" />
+            <div class="card-overlay">
+              <span class="category-tag seo">SEO</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="author">By Netspire Team</span>
+              <span class="date">Dec 3, 2024</span>
+              <span class="read-time">5 min read</span>
+            </div>
+            <h3 class="card-title">Local SEO Mastery: Dominate Your Local Market</h3>
+            <p class="card-excerpt">Complete guide to local SEO optimization, Google Business Profile, and local search ranking factors.</p>
+            <a href="/blog/local-seo-mastery" class="card-link">Read More</a>
+          </div>
+        </article>
+
+        <!-- Web Design Posts -->
+        <article class="blog-card" data-category="web-design">
+          <div class="card-image">
+            <img src="/images/concept-06.png" alt="Web Design" />
+            <div class="card-overlay">
+              <span class="category-tag web-design">Web Design</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="author">By Netspire Team</span>
+              <span class="date">Dec 7, 2024</span>
+              <span class="read-time">8 min read</span>
+            </div>
+            <h3 class="card-title">What Makes a Website Convert: Psychology-Driven Design</h3>
+            <p class="card-excerpt">Explore the psychological principles behind high-converting websites and how to apply them to your designs.</p>
+            <a href="/blog/psychology-driven-design" class="card-link">Read More</a>
+          </div>
+        </article>
+
+        <article class="blog-card" data-category="web-design">
+          <div class="card-image">
+            <img src="/images/concept-01.png" alt="UX Design" />
+            <div class="card-overlay">
+              <span class="category-tag web-design">Web Design</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="author">By Netspire Team</span>
+              <span class="date">Nov 30, 2024</span>
+              <span class="read-time">6 min read</span>
+            </div>
+            <h3 class="card-title">Modern Web Design Trends That Actually Work</h3>
+            <p class="card-excerpt">Discover which design trends improve user experience and conversion rates, backed by real data and case studies.</p>
+            <a href="/blog/modern-web-design-trends" class="card-link">Read More</a>
+          </div>
+        </article>
+
+        <!-- AI Agents Posts -->
+        <article class="blog-card" data-category="ai-agents">
+          <div class="card-image">
+            <img src="/images/concept-02.png" alt="AI Agents" />
+            <div class="card-overlay">
+              <span class="category-tag ai-agents">AI Agents</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="author">By Netspire Team</span>
+              <span class="date">Dec 6, 2024</span>
+              <span class="read-time">9 min read</span>
+            </div>
+            <h3 class="card-title">Customer Service AI Agents: Implementation Guide</h3>
+            <p class="card-excerpt">Step-by-step guide to implementing AI agents for customer service that reduce costs and improve satisfaction.</p>
+            <a href="/blog/customer-service-ai-agents" class="card-link">Read More</a>
+          </div>
+        </article>
+
+        <article class="blog-card" data-category="ai-agents">
+          <div class="card-image">
+            <img src="/images/concept-03.png" alt="Business AI" />
+            <div class="card-overlay">
+              <span class="category-tag ai-agents">AI Agents</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="author">By Netspire Team</span>
+              <span class="date">Dec 1, 2024</span>
+              <span class="read-time">7 min read</span>
+            </div>
+            <h3 class="card-title">ROI of AI Agents: Measuring Business Impact</h3>
+            <p class="card-excerpt">Learn how to measure and maximize the return on investment from AI agent implementations in your business.</p>
+            <a href="/blog/ai-agents-roi" class="card-link">Read More</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Load More Button -->
+      <div class="load-more-container">
+        <button class="load-more-btn" id="loadMoreBtn">
+          <span>Load More Articles</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Subscription -->
+  <section class="newsletter-section">
+    <div class="newsletter-container">
+      <div class="newsletter-content">
+        <h2>Stay Updated</h2>
+        <p>Get the latest insights delivered straight to your inbox. No spam, just valuable content.</p>
+        
+        <form class="newsletter-form" id="newsletterForm">
+          <div class="form-group">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">
+              <span>Subscribe</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <p class="newsletter-disclaimer">Join 1,000+ professionals who get our weekly insights.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Footer CTA -->
+  <section class="blog-cta">
+    <div class="cta-container">
+      <div class="cta-content">
+        <h2>Ready to Transform Your Digital Presence?</h2>
+        <p>Let's apply these insights to your business. Get a free consultation and see how we can help you succeed.</p>
+        
+        <div class="cta-buttons">
+          <a href="#contact" class="cta-button primary">
+            Start Your Project
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/concepts" class="cta-button secondary">
+            View Our Work
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</Layout>
+
+<style>
+  /* Reset and Base Styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Hero Section */
+  .blogs-hero {
+    min-height: 70vh;
+    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 60px;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-badge span {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .title-word {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-description {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .hero-description p {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Blog Controls */
+  .blog-controls {
+    background: #f8f9fa;
+    padding: 60px 0 40px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .controls-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .blog-categories {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .category-btn {
+    padding: 12px 24px;
+    background: white;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .category-btn:hover,
+  .category-btn.active {
+    background: #000;
+    color: white;
+    border-color: #000;
+    transform: translateY(-2px);
+  }
+
+  .blog-search {
+    position: relative;
+    max-width: 300px;
+    width: 100%;
+  }
+
+  .blog-search input {
+    width: 100%;
+    padding: 12px 45px 12px 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .blog-search input:focus {
+    border-color: #000;
+  }
+
+  .blog-search svg {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+  }
+
+  /* Featured Blog */
+  .featured-blog {
+    background: #f8f9fa;
+    padding: 0 0 80px 0;
+  }
+
+  .featured-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .featured-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  }
+
+  .featured-image {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .featured-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  .featured-badge {
+    background: #000;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .featured-details {
+    padding: 40px;
+  }
+
+  .featured-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .category-tag {
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .category-tag.ai-development { background: #e3f2fd; color: #1976d2; }
+  .category-tag.seo { background: #f3e5f5; color: #7b1fa2; }
+  .category-tag.web-design { background: #e8f5e8; color: #388e3c; }
+  .category-tag.ai-agents { background: #fff3e0; color: #f57c00; }
+
+  .read-time,
+  .publish-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .featured-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .featured-excerpt {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 30px;
+  }
+
+  .read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: #000;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .read-more-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+  }
+
+  /* Blog Posts Grid */
+  .blog-posts {
+    background: white;
+    padding: 80px 0;
+  }
+
+  .posts-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  .blog-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .card-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .blog-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+
+  .card-overlay {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+
+  .card-content {
+    padding: 30px;
+  }
+
+  .card-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #666;
+    flex-wrap: wrap;
+  }
+
+  .author,
+  .date,
+  .read-time {
+    font-weight: 500;
+  }
+
+  .card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #000;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .card-excerpt {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .card-link {
+    color: #000;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .card-link:hover {
+    color: #666;
+  }
+
+  /* Load More Button */
+  .load-more-container {
+    text-align: center;
+  }
+
+  .load-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: transparent;
+    border: 2px solid #000;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .load-more-btn:hover {
+    background: #000;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  /* Newsletter Section */
+  .newsletter-section {
+    background: #000;
+    color: white;
+    padding: 80px 0;
+  }
+
+  .newsletter-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 60px;
+    text-align: center;
+  }
+
+  .newsletter-content h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .newsletter-content p {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 40px;
+  }
+
+  .newsletter-form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .form-group {
+    display: flex;
+    gap: 0;
+    margin-bottom: 20px;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 16px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-right: none;
+    border-radius: 30px 0 0 30px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .newsletter-form input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .newsletter-form button {
+    padding: 16px 24px;
+    background: white;
+    color: #000;
+    border: 2px solid white;
+    border-radius: 0 30px 30px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .newsletter-form button:hover {
+    background: transparent;
+    color: white;
+  }
+
+  .newsletter-disclaimer {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* Blog CTA */
+  .blog-cta {
+    background: #f8f9fa;
+    padding: 80px 0;
+  }
+
+  .cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 60px;
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 16px;
+  }
+
+  .cta-content p {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button.primary {
+    background: #000;
+    color: white;
+    border: 2px solid #000;
+  }
+
+  .cta-button.primary:hover {
+    background: transparent;
+    color: #000;
+    transform: translateY(-2px);
+  }
+
+  .cta-button.secondary {
+    background: transparent;
+    color: #000;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .cta-button.secondary:hover {
+    border-color: #000;
+    background: #000;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-container,
+    .controls-container,
+    .featured-container,
+    .posts-container,
+    .newsletter-container,
+    .cta-container {
+      padding: 0 20px;
+    }
+
+    .controls-container {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .blog-categories {
+      justify-content: center;
+    }
+
+    .featured-content {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .featured-image {
+      height: 250px;
+    }
+
+    .featured-details {
+      padding: 30px 20px;
+    }
+
+    .featured-title {
+      font-size: 1.8rem;
+    }
+
+    .posts-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .form-group {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+      border-radius: 25px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-button {
+      width: 100%;
+      max-width: 300px;
+      justify-content: center;
+    }
+  }
+
+  /* Animation for blog cards */
+  .blog-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .blog-card:nth-child(1) { animation-delay: 0.1s; }
+  .blog-card:nth-child(2) { animation-delay: 0.2s; }
+  .blog-card:nth-child(3) { animation-delay: 0.3s; }
+  .blog-card:nth-child(4) { animation-delay: 0.4s; }
+  .blog-card:nth-child(5) { animation-delay: 0.5s; }
+  .blog-card:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hidden state for filtered posts */
+  .blog-card.hidden {
+    display: none;
+  }
+
+  /* Page Transition Animations */
+  .blog-card {
+    transition: all 0.3s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  .read-more-btn,
+  .card-link {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .read-more-btn::before,
+  .card-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .read-more-btn:hover::before,
+  .card-link:hover::before {
+    left: 100%;
+  }
+
+  /* Smooth page transitions */
+  @media (prefers-reduced-motion: no-preference) {
+    * {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Loading animation for page transitions */
+  .page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .page-transition.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .page-transition::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Initializing Blogs Page...');
+    
+    // Category filtering
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const blogCards = document.querySelectorAll('.blog-card');
+    const searchInput = document.getElementById('blogSearch');
+    
+    // Category filter functionality
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const category = btn.dataset.category;
+        console.log('📂 Filtering by category:', category);
+        
+        // Filter blog cards
+        blogCards.forEach(card => {
+          if (category === 'all' || card.dataset.category === category) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+    
+    // Search functionality
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        console.log('🔍 Searching for:', searchTerm);
+        
+        blogCards.forEach(card => {
+          const title = card.querySelector('.card-title').textContent.toLowerCase();
+          const excerpt = card.querySelector('.card-excerpt').textContent.toLowerCase();
+          const category = card.querySelector('.category-tag').textContent.toLowerCase();
+          
+          if (title.includes(searchTerm) || excerpt.includes(searchTerm) || category.includes(searchTerm)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    }
+    
+    // Load more functionality (placeholder)
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        console.log('📚 Loading more articles...');
+        // Placeholder for loading more articles
+        alert('More articles coming soon!');
+      });
+    }
+    
+    // Newsletter form
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = e.target.querySelector('input[type="email"]').value;
+        console.log('📧 Newsletter subscription:', email);
+        alert('Thank you for subscribing! We\'ll be in touch soon.');
+        e.target.reset();
+      });
+    }
+    
+    // Enhanced page transitions for blog links
+    const blogLinks = document.querySelectorAll('.read-more-btn, .card-link');
+    blogLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const targetUrl = link.getAttribute('href');
+        console.log('🔗 Navigating to blog post:', targetUrl);
+        
+        // Create page transition overlay
+        const transitionOverlay = document.createElement('div');
+        transitionOverlay.className = 'page-transition';
+        document.body.appendChild(transitionOverlay);
+        
+        // Add loading animation
+        transitionOverlay.innerHTML = '<div class="loading-spinner"></div>';
+        
+        // Trigger transition
+        setTimeout(() => {
+          transitionOverlay.classList.add('active');
+        }, 10);
+        
+        // Navigate after transition
+        setTimeout(() => {
+          window.location.href = targetUrl;
+        }, 300);
+      });
+    });
+    
+    console.log('✅ Blogs Page initialized with smooth transitions');
+  });
+</script> 

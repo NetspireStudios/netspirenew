@@ -1,0 +1,1583 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { 
+  title,
+  description = "NETSPIRE - Cinematic digital experiences that push boundaries.",
+  image = "/images/og-image.jpg"
+} = Astro.props;
+
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <!-- Essential Meta Tags -->
+		<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Title -->
+    <title>{title}</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={Astro.site ? new URL(image, Astro.site).href : image} />
+    
+    <!-- Favicon -->
+		<link rel="icon" type="image/x-icon" href="/owl.ico" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- GSAP CDN with fallback check -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onload="window.gsapLoaded = true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
+    
+    <!-- Lenis Smooth Scroll - Updated CDN -->
+    <script src="https://unpkg.com/lenis@1.2.1/dist/lenis.min.js"></script>
+    
+    <!-- Critical Styles -->
+    <style>
+      :root {
+        --white: #ffffff;
+        --off-white: #fafafa;
+        --light-gray: #f8f8f8;
+        --gray: #666666;
+        --dark-gray: #1a1a1a;
+        --black: #000000;
+        --accent: #000;
+        --nav-height: 100px;
+        --border-radius: 0px;
+        --transition: cubic-bezier(0.4, 0, 0.2, 1);
+        --fast-transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      html {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+        scroll-behavior: auto;
+      }
+      
+      body {
+        background-color: var(--white);
+        color: var(--black);
+        overflow-x: hidden;
+        line-height: 1.4;
+        font-weight: 400;
+      }
+      
+
+      
+      /* Lenis Smooth Scroll */
+      html.lenis {
+        height: auto;
+      }
+      
+      .lenis.lenis-smooth {
+        scroll-behavior: auto;
+      }
+      
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+      
+      /* Preloader */
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--black);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 60px;
+      }
+      
+      .preloader-logo {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        color: var(--white);
+        letter-spacing: -0.02em;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      
+      .preloader-counter {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--white);
+        letter-spacing: 2px;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      
+      .preloader-bar-container {
+        width: 400px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.2);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      
+      .preloader-bar {
+        height: 100%;
+        width: 0%;
+        background: var(--white);
+        transform-origin: left;
+      }
+      
+      /* Navigation */
+      .main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--nav-height);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 60px;
+        z-index: 1000;
+        background: transparent;
+        transition: all 0.2s var(--transition);
+      }
+      
+      .main-nav.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+      }
+      
+      .nav-logo {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--white);
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        transition: all 0.3s var(--transition);
+        transform: scale(1);
+      }
+
+      /* Logo dark mode (for light backgrounds) */
+      .nav-logo.dark {
+        color: var(--black);
+      }
+      
+      .nav-logo.small {
+        transform: scale(0.85);
+      }
+      
+      .burger-menu {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+      }
+      
+      .burger-line {
+        width: 100%;
+        height: 2px;
+        background: var(--white);
+        transition: all 0.3s var(--transition);
+        transform-origin: center;
+      }
+
+      /* Burger menu dark mode (for light backgrounds) */
+      .burger-menu.dark .burger-line {
+        background: var(--black);
+      }
+      
+      .burger-menu.active .burger-line:nth-child(1) {
+        transform: rotate(45deg) translate(3px, 3px);
+      }
+      
+      .burger-menu.active .burger-line:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      
+      .burger-menu.active .burger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(3px, -3px);
+      }
+
+      /* Ensure burger lines are always white when menu is active */
+      .burger-menu.active .burger-line {
+        background: var(--white) !important;
+      }
+      
+      /* Fullscreen Menu */
+      .fullscreen-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--black);
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      
+      .fullscreen-menu.active {
+        right: 0;
+      }
+      
+      .menu-content {
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        padding: 80px 60px 60px 60px;
+        width: 100%;
+        justify-content: flex-start;
+        position: relative;
+      }
+      
+      .menu-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+        justify-content: start;
+        width: 100%;
+        max-width: 700px;
+        margin-left: 60px;
+      }
+
+      .menu-column {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .menu-column.right {
+        align-items: flex-end;
+        text-align: right;
+      }
+      
+      .menu-nav li {
+        margin: 16px 0;
+        overflow: hidden;
+        width: 100%;
+      }
+      
+      .menu-nav a {
+        font-family: 'Inter', sans-serif;
+        font-size: 44px;
+        font-weight: 400;
+        color: var(--white);
+        text-decoration: none;
+        letter-spacing: -0.01em;
+        display: inline-block;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(60px);
+        opacity: 0;
+        padding: 12px 0;
+        line-height: 1.1;
+        white-space: nowrap;
+      }
+      
+      .fullscreen-menu.active .menu-nav a {
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      /* Left Column Animation Delays */
+      .fullscreen-menu.active .menu-column.left li:nth-child(1) a { transition-delay: 0.05s; }
+      .fullscreen-menu.active .menu-column.left li:nth-child(2) a { transition-delay: 0.08s; }
+      .fullscreen-menu.active .menu-column.left li:nth-child(3) a { transition-delay: 0.11s; }
+      .fullscreen-menu.active .menu-column.left li:nth-child(4) a { transition-delay: 0.14s; }
+      
+      /* Right Column Animation Delays */
+      .fullscreen-menu.active .menu-column.right li:nth-child(1) a { transition-delay: 0.17s; }
+      .fullscreen-menu.active .menu-column.right li:nth-child(2) a { transition-delay: 0.20s; }
+      .fullscreen-menu.active .menu-column.right li:nth-child(3) a { transition-delay: 0.23s; }
+      
+      /* Colorful hover underlines for each menu item */
+      .menu-nav a::after {
+        content: '';
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        width: 0;
+        height: 4px;
+        transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border-radius: 2px;
+        opacity: 0;
+      }
+
+      /* Right column underlines should start from the right */
+      .menu-column.right a::after {
+        left: auto;
+        right: 0;
+      }
+
+      /* Different colored underlines for each menu item - Left Column */
+      .menu-column.left li:nth-child(1) a::after { background: linear-gradient(90deg, #FF6B6B, #FF8E53); } /* Home - Coral Red to Orange */
+      .menu-column.left li:nth-child(2) a::after { background: linear-gradient(90deg, #4ECDC4, #44A08D); } /* About Us - Teal to Dark Teal */
+      .menu-column.left li:nth-child(3) a::after { background: linear-gradient(90deg, #45B7D1, #2196F3); } /* Services - Sky Blue to Blue */
+      .menu-column.left li:nth-child(4) a::after { background: linear-gradient(90deg, #96CEB4, #4CAF50); } /* Projects - Mint to Green */
+      
+      /* Different colored underlines for each menu item - Right Column */
+      .menu-column.right li:nth-child(1) a::after { background: linear-gradient(90deg, #FFEAA7, #FFD54F); } /* Concepts - Warm Yellow to Gold */
+      .menu-column.right li:nth-child(2) a::after { background: linear-gradient(90deg, #DDA0DD, #BA68C8); } /* Blog - Plum to Purple */
+      .menu-column.right li:nth-child(3) a::after { background: linear-gradient(90deg, #98D8C8, #26A69A); } /* Contact - Seafoam to Teal */
+      
+      .menu-nav a:hover::after {
+        width: 100%;
+        opacity: 1;
+      }
+
+      .menu-nav a:hover {
+        color: rgba(255, 255, 255, 0.9);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .menu-column.left a:hover {
+        transform: translateX(20px);
+      }
+
+      .menu-column.right a:hover {
+        transform: translateX(-20px);
+      }
+      
+      .menu-social {
+        position: absolute;
+        bottom: 60px;
+        left: 60px;
+        display: flex;
+        gap: 40px;
+      }
+      
+      .menu-social a {
+        display: flex !important;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px !important;
+        font-weight: 300 !important;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(30px) !important;
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        text-decoration: none;
+        color: var(--white);
+      }
+      
+      .menu-social a svg {
+        transition: transform 0.3s ease;
+      }
+      
+      .menu-social a:hover svg {
+        transform: scale(1.1);
+      }
+      
+      .fullscreen-menu.active .menu-social a {
+        opacity: 0.7;
+        transform: translateY(0) !important;
+        transition-delay: 0.25s;
+      }
+      
+      .menu-social a::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--white);
+        transition: width 0.4s ease;
+      }
+      
+      .menu-social a:hover::after {
+        width: 100%;
+      }
+      
+      .menu-social a:hover {
+        opacity: 1 !important;
+      }
+      
+      .menu-social a:hover {
+        opacity: 1;
+      }
+      
+
+      
+      /* Simplified styles */
+      .title-word, .hero-description, .hero-cta, .scroll-indicator {
+        transition: all 0.6s ease;
+      }
+      
+      /* Main Content */
+      .main-content {
+        opacity: 1 !important;
+        transition: opacity 1s ease;
+        min-height: 100vh;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .loaded .main-content {
+        opacity: 1 !important;
+      }
+      
+      .content-visible .main-content {
+        opacity: 1 !important;
+      }
+
+      /* Fallback animations for when GSAP doesn't load */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      /* Fallback styles - show content after 4 seconds if GSAP hasn't loaded */
+      .content-fallback .title-word {
+        animation: fadeInUp 1s ease-out 4s both;
+      }
+
+      .content-fallback .hero-description {
+        animation: fadeInUp 1s ease-out 4.5s both;
+      }
+
+      .content-fallback .hero-cta {
+        animation: fadeInUp 1s ease-out 5s both;
+      }
+
+      .content-fallback .scroll-indicator {
+        animation: fadeInUp 1s ease-out 5.5s both;
+      }
+      
+      .loaded .preloader {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 1s ease 0.5s;
+      }
+      
+      /* Responsive */
+      @media (max-width: 768px) {
+        .main-nav {
+          padding: 0 20px;
+          height: 80px;
+        }
+        
+        .nav-logo {
+          font-size: 20px;
+        }
+        
+        .burger-menu {
+          width: 25px;
+          height: 25px;
+        }
+        
+        .menu-nav a {
+          font-size: 40px;
+        }
+        
+        .preloader-logo {
+          font-size: 32px;
+        }
+        
+        .preloader-bar-container {
+          width: 280px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .main-nav {
+          padding: 0 20px;
+        }
+        
+        .menu-nav a {
+          font-size: 32px;
+        }
+        
+        .menu-social {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+
+      /* Page Transition Styles */
+      .page-transition {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #000;
+        z-index: 999999;
+        pointer-events: none;
+        transform: translateX(-100%);
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .page-transition.active {
+        transform: translateX(0);
+      }
+
+      .page-transition.exit {
+        transform: translateX(100%);
+      }
+
+      /* Mobile Optimization */
+      * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      input, textarea {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+      }
+
+      /* Smooth scrolling for all devices */
+      html {
+        scroll-behavior: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Performance optimizations */
+      .hero, .about-hero, .portfolio, .services, .contact, .about-philosophy {
+        will-change: transform;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      /* Touch device optimizations */
+      @media (hover: none) and (pointer: coarse) {
+        * {
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        .project-card:hover,
+        .cta-button:hover,
+        .modal-btn:hover {
+          transform: none;
+          box-shadow: none;
+        }
+      }
+
+      /* Mobile Navigation Improvements */
+      @media (max-width: 768px) {
+        .main-nav {
+          padding: 0 30px;
+          height: 80px;
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+        }
+        
+        .nav-logo {
+          font-size: 20px;
+        }
+        
+        .burger-menu {
+          width: 25px;
+          height: 25px;
+        }
+        
+        .burger-line {
+          height: 2px;
+        }
+        
+        .burger-menu.dark .burger-line {
+          background: var(--black);
+        }
+        
+        .menu-nav {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          max-width: 100%;
+        }
+
+        .menu-column.right {
+          align-items: flex-start;
+          text-align: left;
+        }
+
+        .menu-column.right a::after {
+          left: 0;
+          right: auto;
+        }
+
+        .menu-column.right a:hover {
+          transform: translateX(15px);
+        }
+
+        .menu-nav a {
+          font-size: 32px;
+          line-height: 1.3;
+          font-weight: 300;
+          padding: 8px 0;
+        }
+
+        .menu-nav li {
+          margin: 12px 0;
+        }
+        
+        .menu-content {
+          padding: 80px 30px 40px 30px;
+        }
+        
+        .menu-social {
+          bottom: 40px;
+          left: 30px;
+          gap: 30px;
+        }
+        
+        .menu-social a {
+          font-size: 12px !important;
+        }
+        
+        .preloader-logo {
+          font-size: 32px;
+        }
+        
+        .preloader-bar-container {
+          width: 280px;
+        }
+        
+        /* Mobile performance optimizations */
+        .hero-spline iframe,
+        .contact-spline iframe {
+          will-change: auto;
+          transform: translateZ(0);
+        }
+        
+        /* Disable hover effects on mobile */
+        .project-card,
+        .cta-button,
+        .modal-btn,
+        .tech-item {
+          transition: none;
+        }
+        
+        /* Optimize animations for mobile */
+        .title-word,
+        .hero-description,
+        .service-item,
+        .philosophy-item {
+          animation-duration: 0.5s;
+          will-change: auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .main-nav {
+          padding: 0 20px;
+          height: 70px;
+        }
+        
+        .nav-logo {
+          font-size: 18px;
+        }
+        
+        .burger-menu {
+          width: 22px;
+          height: 22px;
+        }
+        
+        .menu-nav {
+          gap: 30px;
+        }
+
+        .menu-nav a {
+          font-size: 26px;
+          font-weight: 300;
+          padding: 6px 0;
+          line-height: 1.3;
+        }
+
+        .menu-nav li {
+          margin: 8px 0;
+        }
+        
+        .menu-content {
+          padding: 70px 20px 30px 20px;
+        }
+        
+        .menu-social {
+          flex-direction: column;
+          gap: 20px;
+          bottom: 30px;
+          left: 20px;
+        }
+        
+        /* Further mobile optimizations */
+        .page-transition {
+          transition-duration: 0.4s;
+        }
+        
+        /* Reduce motion for better performance */
+        .philosophy-line,
+        .philosophy-connector {
+          transition-duration: 0.3s;
+        }
+      }
+
+      /* Reduce motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+        
+        .page-transition {
+          transition: none;
+        }
+        
+        .philosophy-line {
+          transform: translateY(-50%) scaleX(1);
+          opacity: 1;
+        }
+      }
+    </style>
+	</head>
+  
+	<body>
+      <!-- Global Preloader (disabled on concepts page) -->
+  <div class="preloader" id="preloader" style="display: none;">
+    <div class="preloader-logo" id="preloader-logo">NETSPIRE</div>
+    <div class="preloader-bar-container" id="preloader-bar-container">
+      <div class="preloader-bar" id="preloader-bar"></div>
+    </div>
+    <div class="preloader-counter" id="preloader-counter">000</div>
+  </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="main-nav">
+      <a href="/" class="nav-logo" id="nav-logo">NETSPIRE</a>
+      <button class="burger-menu" id="burger-menu">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+    </nav>
+
+    <!-- Fullscreen Menu -->
+    <div class="fullscreen-menu" id="fullscreen-menu">
+      <div class="menu-content">
+        <div class="menu-nav">
+          <!-- Left Column -->
+          <div class="menu-column left">
+            <li><a href="/" data-cursor="text">Home</a></li>
+            <li><a href="#services" data-cursor="text" class="scroll-link">About Us</a></li>
+            <li><a href="#services" data-cursor="text" class="scroll-link">Services</a></li>
+            <li><a href="#work" data-cursor="text" class="scroll-link">Projects</a></li>
+          </div>
+          
+          <!-- Right Column -->
+          <div class="menu-column right">
+            <li><a href="/concepts" data-cursor="text">Concepts</a></li>
+            <li><a href="/blogs" data-cursor="text">Blog</a></li>
+            <li><a href="#contact" data-cursor="text" class="scroll-link">Contact</a></li>
+          </div>
+        </div>
+        <div class="menu-social">
+          <a href="https://www.instagram.com/netspirestudio/?hl=en" target="_blank" rel="noopener noreferrer" data-cursor="hover">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span>Instagram</span>
+          </a>
+          <a href="#" data-cursor="hover">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span>Twitter</span>
+          </a>
+          <a href="https://www.linkedin.com/company/netspirestudio" target="_blank" rel="noopener noreferrer" data-cursor="hover">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    
+    <!-- Page Transition -->
+    <div class="page-transition" id="page-transition"></div>
+    
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+		<slot />
+    </div>
+    
+    <!-- Initialize -->
+    <script is:inline>
+      // Fallback timeout to ensure content always shows
+      const FALLBACK_TIMEOUT = 5000; // 5 seconds max
+      let fallbackTimer;
+      
+      function showMainContent() {
+        console.log('🎬 Showing main content');
+        document.body.classList.add('loaded', 'content-visible');
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+          mainContent.style.opacity = '1';
+        }
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+          setTimeout(() => {
+            preloader.style.display = 'none';
+          }, 1000);
+        }
+        if (fallbackTimer) {
+          clearTimeout(fallbackTimer);
+        }
+      }
+      
+      // Fallback timer
+      fallbackTimer = setTimeout(() => {
+        console.log('⚠️ Fallback timeout triggered - showing content');
+        showMainContent();
+      }, FALLBACK_TIMEOUT);
+      
+      // Additional fallback - check if content is visible after page load
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const mainContent = document.getElementById('main-content');
+          if (mainContent && window.getComputedStyle(mainContent).opacity === '0') {
+            console.log('⚠️ Content still hidden - forcing visibility');
+            showMainContent();
+          }
+        }, 3000);
+      });
+      
+          // Basic preloader without waiting for external libraries
+    function initBasicPreloader() {
+      // Skip global preloader on pages with custom preloaders
+      if (window.location.pathname.includes('/concepts') || window.location.pathname.includes('/about')) {
+        console.log('⏭️ Skipping global preloader on page with custom preloader');
+        return;
+      }
+      
+      console.log('🔄 Starting basic preloader');
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.style.display = 'flex';
+      }
+      
+      const preloaderCounter = document.getElementById('preloader-counter');
+      const preloaderBar = document.getElementById('preloader-bar');
+        
+        let progress = 0;
+        const duration = 2000; // 2 seconds
+        const startTime = Date.now();
+        
+        function updateProgress() {
+          const elapsed = Date.now() - startTime;
+          progress = Math.min(elapsed / duration, 1);
+          
+          if (preloaderCounter) {
+            const currentCounter = Math.floor(progress * 100);
+            preloaderCounter.textContent = currentCounter.toString().padStart(3, '0');
+          }
+          
+          if (preloaderBar) {
+            preloaderBar.style.width = (progress * 100) + '%';
+          }
+          
+          if (progress < 1) {
+            requestAnimationFrame(updateProgress);
+          } else {
+            // Preloader complete
+            setTimeout(() => {
+              const preloader = document.getElementById('preloader');
+              if (preloader) {
+                preloader.style.transform = 'translateY(-100%)';
+                preloader.style.transition = 'transform 1s ease-in-out';
+                setTimeout(showMainContent, 1000);
+              }
+            }, 300);
+          }
+        }
+        
+        // Start basic animation
+        setTimeout(() => {
+          const logo = document.getElementById('preloader-logo');
+          const counter = document.getElementById('preloader-counter');
+          const barContainer = document.getElementById('preloader-bar-container');
+          
+          if (logo) {
+            logo.style.opacity = '1';
+            logo.style.transform = 'translateY(0)';
+            logo.style.transition = 'all 1s ease-out';
+          }
+          
+          if (counter) {
+            counter.style.opacity = '1';
+            counter.style.transform = 'translateY(0)';
+            counter.style.transition = 'all 0.8s ease-out 0.3s';
+          }
+          
+          if (barContainer) {
+            barContainer.style.opacity = '1';
+            barContainer.style.transform = 'scaleX(1)';
+            barContainer.style.transition = 'all 0.8s ease-out 0.2s';
+          }
+          
+          setTimeout(updateProgress, 500);
+        }, 100);
+      }
+      
+      // Enhanced initialization with GSAP/Lenis
+      function initializeWebsite() {
+        console.log('🚀 Checking for GSAP and Lenis...');
+        
+        // Fallback timer for content visibility
+        setTimeout(() => {
+          if (!window.gsapLoaded || typeof gsap === 'undefined') {
+            console.log('⚠️ GSAP failed to load - using fallback animations');
+            document.body.classList.add('content-fallback');
+          }
+        }, 3000);
+        
+        // Simple Lenis initialization
+        if (typeof Lenis !== 'undefined') {
+          console.log('✅ Lenis loaded');
+          
+          const lenis = new Lenis({
+            duration: 1.2,
+            smooth: true
+          });
+          
+          function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          }
+          requestAnimationFrame(raf);
+          
+          window.lenis = lenis;
+        }
+        
+        // Enhanced GSAP setup with animations
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+          console.log('✅ GSAP loaded - initializing animations');
+          gsap.registerPlugin(ScrollTrigger);
+          
+          // Hero title animation
+          gsap.set('.title-word', { y: '100%', opacity: 0 });
+          gsap.set('.hero-description', { y: 30, opacity: 0 });
+          gsap.set('.hero-cta', { y: 30, opacity: 0 });
+          gsap.set('.scroll-indicator', { y: 30, opacity: 0 });
+          
+          // Animate hero elements
+          const tl = gsap.timeline({ delay: 0.5 });
+          tl.to('.title-word', {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power3.out'
+          })
+          .to('.hero-description', {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out'
+          }, '-=0.6')
+          .to('.hero-cta', {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out'
+          }, '-=0.4')
+          .to('.scroll-indicator', {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: 'power3.out'
+          }, '-=0.2');
+          
+          // About Us header animation
+          gsap.set('#services .overview-section h2', { y: '100%', opacity: 0 });
+          gsap.set('#services .lead-text', { y: 30, opacity: 0 });
+          ScrollTrigger.create({
+            trigger: '.overview-section',
+            start: 'top 80%',
+            onEnter: () => {
+              const tl = gsap.timeline();
+              tl.to('#services .overview-section h2', {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power3.out'
+              })
+              .to('#services .lead-text', {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                ease: 'power3.out'
+              }, '-=0.4');
+            }
+          });
+
+
+          
+
+
+          // Enhanced Contact section animations
+          gsap.set('.contact .big-text-line', { y: 100, opacity: 0 });
+          gsap.set('.contact .contact-subtitle', { y: 30, opacity: 0 });
+          ScrollTrigger.create({
+            trigger: '.contact-hero',
+            start: 'top 80%',
+            onEnter: () => {
+              const tl = gsap.timeline();
+              tl.to('.contact .big-text-line', {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: 'power3.out',
+                stagger: 0.15
+              })
+              .to('.contact .contact-subtitle', {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power3.out'
+              }, '-=0.4');
+            }
+          });
+
+          // Quote sections animations
+          document.querySelectorAll('.quote-section').forEach((section, index) => {
+            gsap.set(section.querySelector('.quote-content'), { y: 50, opacity: 0 });
+            ScrollTrigger.create({
+              trigger: section,
+              start: 'top 75%',
+              onEnter: () => {
+                gsap.to(section.querySelector('.quote-content'), {
+                  y: 0,
+                  opacity: 1,
+                  duration: 1.2,
+                  ease: 'power3.out'
+                });
+              }
+            });
+          });
+          
+        } else {
+          console.log('⚠️ GSAP/ScrollTrigger not available - using fallback animations');
+          // Force fallback animations immediately
+          setTimeout(() => {
+            document.body.classList.add('content-fallback');
+            console.log('🔧 Fallback animations activated');
+          }, 100);
+        }
+        
+
+        
+        // Enhanced Navigation functionality
+        function initNavigation() {
+          const burgerMenu = document.getElementById('burger-menu');
+          const fullscreenMenu = document.getElementById('fullscreen-menu');
+          const navLogo = document.getElementById('nav-logo');
+          let menuOpen = false;
+          
+          console.log('🔧 Initializing navigation...');
+          console.log('Burger menu found:', !!burgerMenu);
+          console.log('Fullscreen menu found:', !!fullscreenMenu);
+
+                    // Section-based navigation color detection
+          function updateNavigationColor() {
+            if (!burgerMenu || !navLogo) return;
+            
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            // Get all main sections
+            const heroSection = document.querySelector('.hero');
+            const servicesSection = document.querySelector('.about-us'); // Services/About section
+            const quoteSection = document.querySelector('.quote-section');
+            const portfolioSection = document.querySelector('.portfolio');
+            const contactSection = document.querySelector('.contact');
+            
+            let isOnDarkBackground = true; // Default: dark background (white nav)
+            
+                         // Calculate section positions
+             const sections = [
+               { element: heroSection, dark: true },      // Hero - dark (3D robot)
+               { element: servicesSection, dark: false }, // Services - white
+               { element: quoteSection, dark: true },     // Quote/Sphere - dark  
+               { element: portfolioSection, dark: false }, // Portfolio - white
+               { element: contactSection, dark: true }    // Contact - dark
+             ];
+            
+            // Find which section we're currently in
+            for (let i = 0; i < sections.length; i++) {
+              const section = sections[i];
+              if (!section.element) continue;
+              
+              const rect = section.element.getBoundingClientRect();
+              const sectionTop = scrollY + rect.top;
+              const sectionBottom = sectionTop + rect.height;
+              
+              // Check if we're in this section (with some overlap tolerance)
+              if (scrollY >= sectionTop - windowHeight * 0.2 && scrollY < sectionBottom - windowHeight * 0.2) {
+                isOnDarkBackground = section.dark;
+                break;
+              }
+            }
+            
+            // Update navigation elements
+            if (isOnDarkBackground) {
+              // Dark background sections - use white nav elements
+              burgerMenu.classList.remove('dark');
+              navLogo.classList.remove('dark');
+            } else {
+              // Light background sections (Portfolio) - use dark nav elements
+              burgerMenu.classList.add('dark');
+              navLogo.classList.add('dark');
+            }
+          }
+          
+          // Update on scroll
+          window.addEventListener('scroll', updateNavigationColor);
+          
+          // Update on resize
+          window.addEventListener('resize', updateNavigationColor);
+          
+          // Initial update
+          setTimeout(updateNavigationColor, 100);
+          
+          // Burger menu click
+          if (burgerMenu && fullscreenMenu) {
+            burgerMenu.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              
+              menuOpen = !menuOpen;
+              console.log('Menu toggled:', menuOpen);
+              
+              burgerMenu.classList.toggle('active', menuOpen);
+              fullscreenMenu.classList.toggle('active', menuOpen);
+              
+              // Prevent body scrolling when menu is open
+              if (menuOpen) {
+                // Store current scroll position
+                const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Prevent body scrolling
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
+                document.body.style.height = '100%';
+                document.body.style.top = `-${scrollY}px`;
+                
+                // Store scroll position for restoration
+                document.body.setAttribute('data-scroll-y', scrollY.toString());
+              } else {
+                // Restore body scrolling
+                const scrollY = parseInt(document.body.getAttribute('data-scroll-y') || '0');
+                
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+                document.body.style.height = '';
+                document.body.style.top = '';
+                
+                // Restore scroll position
+                window.scrollTo(0, scrollY);
+                document.body.removeAttribute('data-scroll-y');
+              }
+              
+              // Animate menu items (with or without GSAP)
+              if (typeof gsap !== 'undefined') {
+                                  if (menuOpen) {
+                    gsap.fromTo('.menu-nav a', {
+                      y: 60,
+                      opacity: 0
+                    }, {
+                      y: 0,
+                      opacity: 1,
+                      duration: 0.4,
+                      ease: 'power2.out',
+                      stagger: 0.05,
+                      delay: 0.05
+                    });
+                    
+                    gsap.fromTo('.menu-social a', {
+                      y: 20,
+                      opacity: 0
+                    }, {
+                      y: 0,
+                      opacity: 0.7,
+                      duration: 0.3,
+                      ease: 'power2.out',
+                      stagger: 0.03,
+                      delay: 0.2
+                    });
+                } else {
+                  gsap.to('.menu-nav a', {
+                    y: 100,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: 'power3.in',
+                    stagger: 0.02
+                  });
+                  
+                  gsap.to('.menu-social a', {
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: 'power3.in',
+                    stagger: 0.02
+                  });
+                }
+              } else {
+                console.log('📱 Using CSS-only menu animations');
+              }
+            });
+            
+            console.log('✅ Burger menu click handler attached');
+          } else {
+            console.log('❌ Navigation elements not found');
+          }
+          
+          return { burgerMenu, fullscreenMenu, menuOpen: () => menuOpen, updateNavigationColor };
+        }
+        
+          // Initialize navigation
+  const nav = initNavigation();
+
+  // Smooth scroll functionality for burger menu
+  function initSmoothScrolling() {
+    const scrollLinks = document.querySelectorAll('.scroll-link');
+    const burgerMenu = document.querySelector('.burger-menu');
+    const fullscreenMenu = document.querySelector('.fullscreen-menu');
+    
+    scrollLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const href = this.getAttribute('href');
+        const targetId = href.replace('#', '');
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          console.log(`🎯 Scrolling to: ${targetId}`);
+          
+          // Close burger menu first
+          if (burgerMenu && fullscreenMenu) {
+            burgerMenu.classList.remove('active');
+            fullscreenMenu.classList.remove('active');
+            
+            // Restore body scroll
+            const currentScroll = parseInt(document.body.style.top || '0') * -1;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.overflow = '';
+            document.body.style.width = '';
+            if (currentScroll > 0) {
+              window.scrollTo(0, currentScroll);
+            }
+          }
+          
+          // Smooth scroll to target with offset for fixed header
+          setTimeout(() => {
+            const headerOffset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }, 300); // Small delay to let menu close
+        } else {
+          console.warn(`❌ Target element not found: ${targetId}`);
+        }
+      });
+    });
+    
+    console.log('✅ Smooth scrolling initialized');
+  }
+
+  // Initialize smooth scrolling
+  initSmoothScrolling();
+        
+        // Page Transition System
+        function initPageTransitions() {
+          const pageTransition = document.getElementById('page-transition');
+          if (!pageTransition) return;
+
+          console.log('🎬 Initializing page transitions');
+
+          // Function to animate page transition
+          function animatePageTransition(url) {
+            return new Promise((resolve) => {
+              // Start transition (slide in from left)
+              pageTransition.classList.add('active');
+              
+              setTimeout(() => {
+                // Navigate to new page
+                window.location.href = url;
+                resolve(true);
+              }, 300); // Half the transition duration
+            });
+          }
+
+          // Function to exit transition on page load
+          function exitPageTransition() {
+            if (pageTransition.classList.contains('active')) {
+              setTimeout(() => {
+                pageTransition.classList.add('exit');
+                setTimeout(() => {
+                  pageTransition.classList.remove('active', 'exit');
+                }, 600);
+              }, 100);
+            }
+          }
+
+          // Exit transition on page load
+          exitPageTransition();
+
+          return { animatePageTransition };
+        }
+
+        // Initialize page transitions
+        const pageTransitions = initPageTransitions();
+
+        // Menu links handling
+        function initMenuLinks() {
+          document.querySelectorAll('.menu-nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+              const target = link.getAttribute('href');
+              
+              console.log('Menu link clicked:', target);
+              
+              // Restore body scrolling before closing menu
+              const scrollY = parseInt(document.body.getAttribute('data-scroll-y') || '0');
+              document.body.style.overflow = '';
+              document.body.style.position = '';
+              document.body.style.width = '';
+              document.body.style.height = '';
+              document.body.style.top = '';
+              window.scrollTo(0, scrollY);
+              document.body.removeAttribute('data-scroll-y');
+              
+              // Close menu using nav object
+              if (nav.burgerMenu) nav.burgerMenu.classList.remove('active');
+              if (nav.fullscreenMenu) nav.fullscreenMenu.classList.remove('active');
+              
+              // Update menuOpen state (if accessible)
+              if (typeof menuOpen !== 'undefined') {
+                menuOpen = false;
+              }
+              
+              // Handle different link types
+              if (target === '/') {
+                // Home link - special handling
+                e.preventDefault();
+                const currentPath = window.location.pathname;
+                
+                if (currentPath === '/' || currentPath === '/index.html') {
+                  // Already on home page - scroll to top
+                  const lenis = window.lenis;
+                  if (lenis) {
+                    lenis.scrollTo(0, { duration: 1.5 });
+                  } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                  console.log('Scrolling to top of home page');
+                } else {
+                  // On sub-page - navigate to home page
+                  console.log('Navigating to home page');
+                  if (pageTransitions && pageTransitions.animatePageTransition) {
+                    pageTransitions.animatePageTransition('/');
+                  } else {
+                    window.location.href = '/';
+                  }
+                }
+              } else if (target && target.startsWith('#')) {
+                // Anchor link - prevent default and scroll
+                e.preventDefault();
+                const currentPath = window.location.pathname;
+                
+                if (currentPath === '/' || currentPath === '/index.html') {
+                  // On home page - scroll to section
+                  const targetElement = document.querySelector(target);
+                  if (targetElement) {
+                    const lenis = window.lenis;
+                    if (lenis) {
+                      lenis.scrollTo(targetElement, { duration: 1.5 });
+                    } else {
+                      targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    console.log('Scrolling to:', target);
+                  } else {
+                    console.log('Target element not found:', target);
+                  }
+                } else {
+                  // On sub-page - navigate to home page with hash
+                  console.log('Navigating to home page with anchor:', target);
+                  if (pageTransitions && pageTransitions.animatePageTransition) {
+                    pageTransitions.animatePageTransition('/' + target);
+                  } else {
+                    window.location.href = '/' + target;
+                  }
+                }
+              } else if (target && target.startsWith('/')) {
+                // Page navigation - animate transition
+                e.preventDefault();
+                console.log('Animating page transition to:', target);
+                if (pageTransitions && pageTransitions.animatePageTransition) {
+                  pageTransitions.animatePageTransition(target);
+                } else {
+                  // Fallback to direct navigation
+                  window.location.href = target;
+                }
+              }
+            });
+          });
+          console.log('✅ Menu links initialized with page transitions');
+        }
+        
+        // Initialize menu links
+        initMenuLinks();
+        
+        // Navigation scroll effects
+        const mainNav = document.getElementById('main-nav');
+        const navLogo = document.getElementById('nav-logo');
+        if (mainNav && navLogo && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+          ScrollTrigger.create({
+            trigger: "body",
+            start: "top -100",
+            end: "bottom bottom",
+            onUpdate: (self) => {
+              if (self.direction === 1) {
+                mainNav.classList.add('scrolled');
+                navLogo.classList.add('small');
+              } else {
+                mainNav.classList.remove('scrolled');
+                navLogo.classList.remove('small');
+              }
+              
+              // Update navigation color when scrolling
+              const burgerMenu = document.getElementById('burger-menu');
+              if (burgerMenu && nav.updateNavigationColor) {
+                nav.updateNavigationColor();
+              }
+            }
+          });
+        }
+        
+        // Global GSAP defaults
+        if (typeof gsap !== 'undefined') {
+          gsap.defaults({
+            ease: 'power3.out',
+            duration: 1
+          });
+        }
+        
+        console.log('🚀 Netspire initialized');
+      }
+      
+      // Ultimate fallback - force content visibility after 6 seconds
+      setTimeout(() => {
+        console.log('🔧 Ultimate fallback - forcing content visibility');
+        const hiddenElements = document.querySelectorAll('[style*="opacity: 0"], .title-word, .hero-description, .hero-cta, .scroll-indicator, .service-item, .portfolio-item');
+        hiddenElements.forEach(el => {
+          if (el && el.style && window.getComputedStyle(el).opacity === '0') {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+            el.style.transition = 'all 0.5s ease';
+          }
+        });
+      }, 6000);
+      
+      // Start basic preloader immediately
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          initBasicPreloader();
+          initializeWebsite();
+        });
+      } else {
+        initBasicPreloader();
+        initializeWebsite();
+      }
+    </script>
+	</body>
+</html>
+
+

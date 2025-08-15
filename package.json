@@ -1,0 +1,23 @@
+{
+  "name": "netspire",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@splinetool/runtime": "^1.10.32",
+    "@studio-freight/lenis": "^1.0.42",
+    "@types/nodemailer": "^6.4.17",
+    "@types/three": "^0.178.1",
+    "astro": "^5.11.1",
+    "dotenv": "^17.2.1",
+    "gsap": "^3.13.0",
+    "lenis": "^1.3.5",
+    "nodemailer": "^7.0.5",
+    "three": "^0.178.0"
+  }
+}

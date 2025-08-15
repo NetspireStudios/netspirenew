@@ -1,0 +1,1838 @@
+---
+// Featured Work Section - Grid Layout with Advanced Parallax & Project Details
+---
+
+<section class="portfolio" id="work">
+  <div class="portfolio-container">
+    <!-- Portfolio Header -->
+    <div class="portfolio-header">
+      <div class="header-content">
+        <h2 class="portfolio-title">Featured Work</h2>
+        <div class="portfolio-description">
+          <p>A SELECTION OF OUR MOST PASSIONATELY CRAFTED WORKS WITH FORWARD-THINKING CLIENTS AND FRIENDS OVER THE YEARS.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      <!-- Row 1 -->
+      <div class="project-row" data-row="1">
+        <!-- Project 1 - AI Agents -->
+        <div class="project-card" data-project="ai-agents" data-project-title="AI Agents" data-project-category="AI • AUTOMATION • INTELLIGENCE • BOTS">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&auto=format" alt="AI Agents" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-content">
+                <span>View Project</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category">AI • AUTOMATION • INTELLIGENCE • BOTS</div>
+            <h3 class="project-name">AI Agents</h3>
+          </div>
+        </div>
+
+        <!-- Project 2 - Application Development -->
+        <div class="project-card" data-project="app-dev" data-project-title="Application Development" data-project-category="MOBILE • NATIVE • CROSS-PLATFORM • UX">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&auto=format" alt="Application Development" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-content">
+                <span>View Project</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category">MOBILE • NATIVE • CROSS-PLATFORM • UX</div>
+            <h3 class="project-name">Application Development</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="project-row" data-row="2">
+        <!-- Project 3 - Web Development -->
+        <div class="project-card" data-project="web-dev" data-project-title="Web Development" data-project-category="FRONTEND • BACKEND • FULLSTACK • RESPONSIVE">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&auto=format" alt="Web Development" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-content">
+                <span>View Project</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category">FRONTEND • BACKEND • FULLSTACK • RESPONSIVE</div>
+            <h3 class="project-name">Web Development</h3>
+          </div>
+        </div>
+
+        <!-- Project 4 - Performance Optimization -->
+        <div class="project-card" data-project="performance" data-project-title="Performance Optimization" data-project-category="SPEED • EFFICIENCY • CACHING • ANALYTICS">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop&auto=format" alt="Performance Optimization" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-content">
+                <span>View Project</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category">SPEED • EFFICIENCY • CACHING • ANALYTICS</div>
+            <h3 class="project-name">Performance Optimization</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="project-row" data-row="3">
+        <!-- Project 5 - SEO Indexing -->
+        <div class="project-card" data-project="seo" data-project-title="SEO Indexing" data-project-category="SEARCH • OPTIMIZATION • RANKING • TRAFFIC">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop&auto=format" alt="SEO Indexing" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-content">
+                <span>View Project</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category">SEARCH • OPTIMIZATION • RANKING • TRAFFIC</div>
+            <h3 class="project-name">SEO Indexing</h3>
+          </div>
+        </div>
+
+        <!-- Project 6 - API Integrations -->
+        <div class="project-card" data-project="api" data-project-title="API Integrations" data-project-category="INTEGRATIONS • ENDPOINTS • MICROSERVICES • DATA">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&auto=format" alt="API Integrations" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-content">
+                <span>View Project</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category">INTEGRATIONS • ENDPOINTS • MICROSERVICES • DATA</div>
+            <h3 class="project-name">API Integrations</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Detail Modal - Mobile Optimized -->
+  <div class="project-modal" id="project-modal">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-content" id="modal-content">
+      <button class="modal-close" id="modal-close">
+        <span class="close-line"></span>
+        <span class="close-line"></span>
+      </button>
+      
+      <div class="modal-image-container">
+        <img id="modal-image" src="" alt="" />
+      </div>
+      
+      <div class="modal-details">
+        <div class="modal-header">
+          <div class="modal-category" id="modal-category"></div>
+          <h2 class="modal-title" id="modal-title"></h2>
+        </div>
+        
+        <div class="modal-description" id="modal-description">
+          <!-- Content will be populated by JavaScript -->
+        </div>
+        
+        <div class="modal-tech-stack" id="modal-tech-stack">
+          <!-- Tech stack will be populated by JavaScript -->
+        </div>
+        
+        <div class="modal-actions">
+          <a href="#" class="modal-btn primary" id="modal-live-btn">
+            <span>View Live</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#" class="modal-btn secondary" id="modal-case-btn">
+            <span>Case Study</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio {
+    background: #fff;
+    position: relative;
+    padding: 120px 0;
+    overflow: hidden;
+  }
+
+  .portfolio-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* Portfolio Header */
+  .portfolio-header {
+    margin-bottom: 100px;
+  }
+
+  .header-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .portfolio-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 400;
+    line-height: 0.9;
+    color: #000;
+    margin: 0;
+    letter-spacing: -0.02em;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .portfolio-description {
+    display: flex;
+    align-items: center;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .portfolio-description p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 0;
+    max-width: 400px;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .project-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Project Cards */
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    cursor: none;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+    opacity: 1;
+    perspective: 1000px;
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .project-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #f5f5f5;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+
+  .project-card:hover .project-image {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+
+  /* Project Overlay */
+  .project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .project-card:hover .project-overlay {
+    opacity: 1;
+  }
+
+  .project-overlay-content {
+    text-align: center;
+    color: white;
+  }
+
+  .project-overlay-content span {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .project-category {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: #999;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .project-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+  }
+
+  .project-card:hover .project-name {
+    color: #666;
+  }
+
+  /* Project Modal - Mobile Optimized */
+  .project-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .project-modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+  }
+
+  .modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    max-height: 90vh;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+  }
+
+  .project-modal.active .modal-content {
+    transform: scale(1);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10001;
+    outline: none;
+    pointer-events: auto;
+  }
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.1);
+  }
+
+  .close-line {
+    position: absolute;
+    width: 24px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+  }
+
+  .close-line:first-child {
+    transform: rotate(45deg);
+  }
+
+  .close-line:last-child {
+    transform: rotate(-45deg);
+  }
+
+  .modal-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: #111;
+  }
+
+  .modal-image-container img {
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    color: white;
+    background: #000;
+  }
+
+  .modal-header {
+    margin-bottom: 30px;
+  }
+
+  .modal-category {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #999;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .modal-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 500;
+    color: white;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    display: block;
+    position: relative;
+    z-index: 100;
+  }
+
+  .modal-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+  }
+
+  .modal-tech-stack {
+    margin-bottom: 40px;
+  }
+
+  .modal-tech-stack h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .tech-item {
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .tech-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 20px;
+  }
+
+  .modal-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: none;
+  }
+
+  .modal-btn.primary {
+    background: white;
+    color: black;
+  }
+
+  .modal-btn.primary:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+  }
+
+  .modal-btn.secondary {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .modal-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Optimized Mobile Modal */
+  @media (max-width: 1024px) {
+    .modal-content {
+      grid-template-columns: 1fr;
+      max-height: 90vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      transform: none !important;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-details {
+      padding: 25px;
+      order: 2;
+    }
+
+    .modal-image-container {
+      padding: 25px;
+      order: 1;
+    }
+
+    .modal-image-container img {
+      max-height: 35vh;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .project-modal {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: rgba(0, 0, 0, 0.98) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .modal-backdrop {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background: rgba(0, 0, 0, 0.95) !important;
+      z-index: 99998 !important;
+    }
+
+    .modal-content {
+      position: relative !important;
+      width: 95vw !important;
+      max-width: 95vw !important;
+      height: 90vh !important;
+      max-height: 90vh !important;
+      margin: auto !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      border-radius: 20px !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      z-index: 99999 !important;
+      transform: none !important;
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    /* MOVED DOWN CLOSE BUTTON - BELOW NAVBAR */
+    .modal-close {
+      position: fixed !important;
+      top: 120px !important;
+      right: 20px !important;
+      width: 60px !important;
+      height: 60px !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      border: 3px solid #ffffff !important;
+      border-radius: 50% !important;
+      z-index: 100000 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+      backdrop-filter: blur(20px) !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 1) !important;
+      transform: scale(1.1) !important;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6) !important;
+    }
+
+    .modal-close:active {
+      transform: scale(0.95) !important;
+    }
+
+    /* CLEAR CLOSE ICON LINES */
+    .close-line {
+      position: absolute !important;
+      width: 24px !important;
+      height: 3px !important;
+      background: #000000 !important;
+      border-radius: 2px !important;
+    }
+
+    .close-line:first-child {
+      transform: rotate(45deg) !important;
+    }
+
+    .close-line:last-child {
+      transform: rotate(-45deg) !important;
+    }
+
+    /* MODAL CONTENT SECTIONS */
+    .modal-image-container {
+      padding: 30px 20px 20px 20px !important;
+      background: #111111 !important;
+      order: 1 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .modal-image-container img {
+      max-height: 35vh !important;
+      width: 100% !important;
+      object-fit: cover !important;
+      border-radius: 12px !important;
+    }
+
+    .modal-details {
+      padding: 20px 25px 40px 25px !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      order: 2 !important;
+      text-align: center !important;
+    }
+
+    .modal-header {
+      margin-bottom: 20px !important;
+      text-align: center !important;
+    }
+
+    .modal-category {
+      color: #cccccc !important;
+      font-size: 12px !important;
+      text-align: center !important;
+      margin-bottom: 10px !important;
+    }
+
+    .modal-title {
+      font-size: 1.8rem !important;
+      color: #ffffff !important;
+      line-height: 1.2 !important;
+      text-align: center !important;
+      margin-bottom: 20px !important;
+    }
+
+    .modal-description {
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+      color: #cccccc !important;
+      margin-bottom: 20px !important;
+      text-align: center !important;
+    }
+
+    /* CENTERED TECH STACK */
+    .modal-tech-stack {
+      margin-bottom: 25px !important;
+    }
+
+    .tech-list {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      justify-content: center !important;
+    }
+
+    .tech-item {
+      padding: 8px 14px !important;
+      font-size: 11px !important;
+      background: #333333 !important;
+      color: #ffffff !important;
+      border: 1px solid #555555 !important;
+      border-radius: 6px !important;
+    }
+
+    .modal-actions {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 12px !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .modal-btn {
+      width: 100% !important;
+      max-width: 280px !important;
+      padding: 14px 24px !important;
+      font-size: 14px !important;
+      border-radius: 8px !important;
+      text-align: center !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+    }
+
+    .modal-btn.primary {
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 2px solid #ffffff !important;
+    }
+
+    .modal-btn.secondary {
+      background: transparent !important;
+      color: #ffffff !important;
+      border: 2px solid #ffffff !important;
+    }
+
+    /* PREVENT BODY SCROLL BUT KEEP NAVBAR VISIBLE */
+    body.modal-open {
+      overflow: hidden !important;
+      position: fixed !important;
+      width: 100% !important;
+      height: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+    }
+
+    /* UNBLUR NAVBAR WHEN MODAL IS OPEN */
+    body.modal-open .main-nav {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+      z-index: 10000 !important;
+    }
+
+    /* Hide video/complex backgrounds on mobile */
+    .contact-video,
+    .hero-spline,
+    .services-canvas,
+    .quote-canvas {
+      display: none !important;
+    }
+
+    /* Replace with solid background on mobile */
+    .contact {
+      background: #000000 !important;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%) !important;
+    }
+
+    .services {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+    }
+
+    /* Portfolio Mobile Optimization */
+    .portfolio-container {
+      padding: 80px 20px;
+    }
+
+    .portfolio-header {
+      margin-bottom: 60px;
+    }
+
+    .header-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      text-align: center;
+    }
+
+    .portfolio-title {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      margin-bottom: 20px;
+    }
+
+    .portfolio-description {
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    .portfolio-description p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #555;
+      letter-spacing: 0.3px;
+      margin: 0;
+    }
+
+    .projects-grid {
+      gap: 40px;
+    }
+
+    .project-row {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .project-card {
+      margin: 0;
+    }
+
+    .project-image {
+      height: 300px;
+    }
+
+    .project-name {
+      font-size: 1.5rem;
+    }
+
+    .project-category {
+      font-size: 9px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* Extra small mobile devices */
+    .modal-close {
+      top: 110px !important;
+      right: 15px !important;
+      width: 55px !important;
+      height: 55px !important;
+    }
+
+    .close-line {
+      width: 20px !important;
+      height: 2px !important;
+    }
+
+    .modal-content {
+      width: 98vw !important;
+      height: 95vh !important;
+    }
+
+    .modal-title {
+      font-size: 1.5rem !important;
+    }
+
+    .modal-description {
+      font-size: 13px !important;
+    }
+
+    /* Portfolio Mobile Optimization - Small Screens */
+    .portfolio-container {
+      padding: 60px 15px;
+    }
+
+    .portfolio-header {
+      margin-bottom: 40px;
+    }
+
+    .header-content {
+      gap: 20px;
+    }
+
+    .portfolio-title {
+      font-size: clamp(2rem, 8vw, 3rem);
+      margin-bottom: 15px;
+    }
+
+    .portfolio-description p {
+      font-size: 13px;
+      line-height: 1.4;
+      letter-spacing: 0.2px;
+    }
+
+    .projects-grid {
+      gap: 30px;
+    }
+
+    .project-row {
+      gap: 25px;
+    }
+
+    .project-image {
+      height: 250px;
+    }
+
+    .project-name {
+      font-size: 1.3rem;
+    }
+
+    .project-category {
+      font-size: 8px;
+    }
+  }
+
+  /* Desktop Compatibility - All Screen Sizes */
+  
+  /* Large Tablets and Small Laptops */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .portfolio-container {
+      padding: 100px 40px;
+      max-width: 100%;
+    }
+
+    .header-content {
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .portfolio-title {
+      font-size: clamp(3rem, 6vw, 5rem);
+    }
+
+    .projects-grid {
+      gap: 50px;
+    }
+
+    .project-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .modal-content {
+      grid-template-columns: 1fr 1fr;
+      max-width: 900px;
+    }
+  }
+
+  /* Standard Laptops */
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    .portfolio-container {
+      padding: 120px 60px;
+      max-width: 1200px;
+    }
+
+    .header-content {
+      gap: 80px;
+    }
+
+    .portfolio-title {
+      font-size: clamp(4rem, 6vw, 6rem);
+    }
+
+    .projects-grid {
+      gap: 60px;
+    }
+
+    .modal-content {
+      max-width: 1000px;
+    }
+  }
+
+  /* Large Laptops and Small Desktops */
+  @media (min-width: 1441px) and (max-width: 1920px) {
+    .portfolio-container {
+      padding: 140px 80px;
+      max-width: 1400px;
+    }
+
+    .header-content {
+      gap: 100px;
+    }
+
+    .portfolio-title {
+      font-size: clamp(5rem, 6vw, 7rem);
+    }
+
+    .projects-grid {
+      gap: 80px;
+    }
+
+    .modal-content {
+      max-width: 1200px;
+    }
+  }
+
+  /* Ultra-wide and 4K Displays */
+  @media (min-width: 1921px) {
+    .portfolio-container {
+      padding: 160px 100px;
+      max-width: 1600px;
+    }
+
+    .header-content {
+      gap: 120px;
+    }
+
+    .portfolio-title {
+      font-size: clamp(6rem, 6vw, 8rem);
+    }
+
+    .projects-grid {
+      gap: 100px;
+    }
+
+    .project-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .modal-content {
+      max-width: 1400px;
+    }
+
+    .modal-details {
+      padding: 60px;
+    }
+
+    .modal-image-container {
+      padding: 60px;
+    }
+  }
+
+  /* Ensure video/complex elements only on desktop */
+  @media (min-width: 769px) {
+    .contact-video,
+    .hero-spline,
+    .services-canvas,
+    .quote-canvas {
+      display: block !important;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced Portfolio with Advanced Parallax & Project Details
+  function initPortfolioGrid() {
+    console.log('🎨 Initializing enhanced portfolio grid...');
+
+         // Service icon mapping
+     const serviceIcons: Record<string, string> = {
+       // AI Agents
+       "24/7 Customer Support": "🤖",
+       "Workflow Automation": "⚡",
+       "Natural Language Processing": "💬",
+       "Task Scheduling": "📅",
+       "Data Analysis": "📊",
+       "Multi-Platform Integration": "🔗",
+       "Custom AI Training": "🧠",
+       
+       // App Development
+       "iOS Native Apps": "📱",
+       "Android Native Apps": "🤖",
+       "Cross-Platform Solutions": "🔄",
+       "Progressive Web Apps": "🌐",
+       "App Store Optimization": "⭐",
+       "Cloud Integration": "☁️",
+       "Real-Time Features": "⚡",
+       
+       // Web Development
+       "Frontend Development": "🎨",
+       "Backend Architecture": "⚙️",
+       "Database Design": "🗄️",
+       "E-commerce Solutions": "🛒",
+       "Content Management": "📝",
+       "Responsive Design": "📱",
+       "Security Implementation": "🔒",
+       
+       // Performance Optimization
+       "Page Load Speed": "⚡",
+       "Database Optimization": "🗃️",
+       "Caching Strategies": "💾",
+       "CDN Implementation": "🌐",
+       "Code Optimization": "⚙️",
+       "Image Compression": "🖼️",
+       "Performance Monitoring": "📈",
+       
+       // SEO Services
+       "Keyword Research": "🔍",
+       "On-Page Optimization": "📄",
+       "Technical SEO": "⚙️",
+       "Content Strategy": "📝",
+       "Link Building": "🔗",
+       "Local SEO": "📍",
+       "Analytics & Reporting": "📊",
+       
+       // API Integrations
+       "REST API Development": "🔗",
+       "GraphQL Integration": "📊",
+       "Third-Party APIs": "🔌",
+       "Microservices Architecture": "🏗️",
+       "Webhook Implementation": "📡",
+       "Data Synchronization": "🔄",
+       "API Documentation": "📚"
+     };
+
+     function getServiceIcon(service: string): string {
+       return serviceIcons[service] || "✅";
+     }
+
+     // Project data
+     const projectData: Record<string, any> = {
+             "ai-agents": {
+         title: "AI Agents",
+         category: "AI • AUTOMATION • INTELLIGENCE • BOTS",
+         description: `
+           <p>Our AI Agents project revolutionizes the way businesses interact with technology. We developed intelligent bots that can perform complex tasks, automate workflows, and provide 24/7 support, all while maintaining accuracy and efficiency.</p>
+           <p>The project combines advanced machine learning, natural language processing, and automation frameworks to create a scalable and adaptable AI solution.</p>
+           <p>We focused on creating a robust, secure, and user-friendly interface that allows businesses to easily integrate and manage their AI agents.</p>
+         `,
+         capabilities: ["24/7 Customer Support", "Workflow Automation", "Natural Language Processing", "Task Scheduling", "Data Analysis", "Multi-Platform Integration", "Custom AI Training"],
+         liveUrl: "https://ai-agents-demo.com",
+         caseStudyUrl: "#"
+       },
+             "app-dev": {
+         title: "Application Development",
+         category: "MOBILE • NATIVE • CROSS-PLATFORM • UX",
+         description: `
+           <p>Our Application Development project delivers cutting-edge mobile and web applications that meet the highest standards of quality and performance. We specialize in creating intuitive, responsive, and scalable solutions.</p>
+           <p>The project leverages modern frameworks and technologies to ensure fast, reliable, and secure applications that can handle high traffic and complex data.</p>
+           <p>We focus on delivering a seamless user experience across all devices and platforms, from initial design to final deployment.</p>
+         `,
+         platformSupport: ["iOS Native Apps", "Android Native Apps", "Cross-Platform Solutions", "Progressive Web Apps", "App Store Optimization", "Cloud Integration", "Real-Time Features"],
+         liveUrl: "https://app-dev-demo.com",
+         caseStudyUrl: "#"
+       },
+             "web-dev": {
+         title: "Web Development",
+         category: "FRONTEND • BACKEND • FULLSTACK • RESPONSIVE",
+         description: `
+           <p>Our Web Development project delivers robust, scalable, and secure web applications. We specialize in creating modern, responsive, and user-friendly websites and web applications.</p>
+           <p>The project utilizes cutting-edge technologies and frameworks to ensure fast, reliable, and secure performance, while maintaining a clean and intuitive user interface.</p>
+           <p>We focus on delivering a seamless user experience across all devices and platforms, from initial design to final deployment.</p>
+         `,
+         servicesIncluded: ["Frontend Development", "Backend Architecture", "Database Design", "E-commerce Solutions", "Content Management", "Responsive Design", "Security Implementation"],
+         liveUrl: "https://web-dev-demo.com",
+         caseStudyUrl: "#"
+       },
+       "performance": {
+         title: "Performance Optimization",
+         category: "SPEED • EFFICIENCY • CACHING • ANALYTICS",
+         description: `
+           <p>Our Performance Optimization project focuses on improving the speed, efficiency, and scalability of web applications. We employ advanced caching strategies, efficient algorithms, and robust analytics to ensure optimal performance.</p>
+           <p>The project utilizes modern caching solutions, efficient database queries, and sophisticated analytics tools to identify and address performance bottlenecks.</p>
+           <p>We focus on delivering a fast, reliable, and scalable application that can handle high traffic and complex data.</p>
+         `,
+         optimizationAreas: ["Page Load Speed", "Database Optimization", "Caching Strategies", "CDN Implementation", "Code Optimization", "Image Compression", "Performance Monitoring"],
+         liveUrl: "https://performance-demo.com",
+         caseStudyUrl: "#"
+       },
+       "seo": {
+         title: "SEO Indexing",
+         category: "SEARCH • OPTIMIZATION • RANKING • TRAFFIC",
+         description: `
+           <p>Our SEO Indexing project helps businesses improve their online visibility and drive organic traffic. We specialize in search engine optimization, keyword research, and content strategy.</p>
+           <p>The project utilizes advanced SEO tools, analytics, and content management systems to ensure optimal search engine rankings and traffic.</p>
+           <p>We focus on delivering a comprehensive, scalable, and sustainable SEO strategy that drives long-term results.</p>
+         `,
+         seoServices: ["Keyword Research", "On-Page Optimization", "Technical SEO", "Content Strategy", "Link Building", "Local SEO", "Analytics & Reporting"],
+         liveUrl: "https://seo-demo.com",
+         caseStudyUrl: "#"
+       },
+       "api": {
+         title: "API Integrations",
+         category: "INTEGRATIONS • ENDPOINTS • MICROSERVICES • DATA",
+         description: `
+           <p>Our API Integrations project enables seamless communication between different software systems and applications. We specialize in creating robust, scalable, and secure API endpoints.</p>
+           <p>The project utilizes modern API frameworks, authentication mechanisms, and data validation to ensure secure and reliable API communication.</p>
+           <p>We focus on delivering a scalable, maintainable, and secure API infrastructure that can handle high traffic and complex data.</p>
+         `,
+         integrationTypes: ["REST API Development", "GraphQL Integration", "Third-Party APIs", "Microservices Architecture", "Webhook Implementation", "Data Synchronization", "API Documentation"],
+         liveUrl: "https://api-demo.com",
+         caseStudyUrl: "#"
+       }
+    };
+
+    // Wait for GSAP to be ready (if available)
+    function waitForGSAP() {
+      return new Promise((resolve) => {
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+          resolve(true);
+        } else {
+          // Give GSAP up to 3 seconds to load
+          let attempts = 0;
+          const maxAttempts = 30;
+          const interval = setInterval(() => {
+            attempts++;
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+              clearInterval(interval);
+              resolve(true);
+            } else if (attempts >= maxAttempts) {
+              clearInterval(interval);
+              resolve(false);
+            }
+          }, 100);
+        }
+      });
+    }
+
+    // Enhanced GSAP Animations with Advanced Parallax
+    function initGSAPAnimations() {
+      console.log('✅ Initializing GSAP portfolio animations with advanced parallax');
+      
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Set initial states for animation
+      gsap.set('.portfolio-title', { y: 60, opacity: 0 });
+      gsap.set('.portfolio-description', { y: 40, opacity: 0 });
+      gsap.set('.project-row', { y: 80, opacity: 0 });
+
+      // Header animation
+      const headerTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.portfolio-header',
+          start: 'top 85%',
+          end: 'bottom 60%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+
+      headerTl
+        .to('.portfolio-title', {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power3.out'
+        })
+        .to('.portfolio-description', {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: 'power3.out'
+        }, '-=0.6');
+
+      // Advanced Parallax Project Animations
+      const projectRows = document.querySelectorAll('.project-row');
+      
+      projectRows.forEach((row, rowIndex) => {
+        // Row reveal animation
+        gsap.to(row, {
+          y: 0,
+          opacity: 1,
+          duration: 1.4,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          }
+        });
+
+        // Individual card animations with advanced parallax
+        const cards = row.querySelectorAll('.project-card');
+        cards.forEach((card, cardIndex) => {
+          const isEven = cardIndex % 2 === 0;
+          
+          // Card entrance animation
+          gsap.fromTo(card, {
+            y: 60,
+            opacity: 0,
+            scale: 0.95,
+            rotationY: isEven ? -15 : 15
+          }, {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            rotationY: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            delay: cardIndex * 0.15,
+            scrollTrigger: {
+              trigger: row,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            }
+          });
+
+          // Advanced Parallax Effects
+          const image = card.querySelector('.project-image');
+          const imageElement = card.querySelector('.project-image img');
+          
+          // Card 3D tilt effect based on scroll position
+          gsap.to(card, {
+            rotationY: isEven ? -8 : 8,
+            rotationX: -5,
+            y: -40,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: row,
+              start: 'top bottom',
+              end: 'center center',
+              scrub: 1.5,
+              onUpdate: (self) => {
+                // Normalize rotation as it approaches center
+                const progress = self.progress;
+                const centerFactor = Math.sin(progress * Math.PI); // Creates a bell curve
+                const rotationY = (isEven ? -8 : 8) * (1 - centerFactor);
+                const rotationX = -5 * (1 - centerFactor);
+                
+                gsap.set(card, {
+                  rotationY: rotationY,
+                  rotationX: rotationX
+                });
+              }
+            }
+          });
+
+          // Image parallax and scale effect
+          if (imageElement) {
+            gsap.to(imageElement, {
+              y: -30,
+              scale: 1.1,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 2
+              }
+            });
+          }
+
+          // Image container depth effect
+          if (image) {
+            gsap.to(image, {
+              rotationX: isEven ? 3 : -3,
+              transformOrigin: 'center bottom',
+              ease: 'none',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top bottom',
+                end: 'center center',
+                scrub: 1
+              }
+            });
+          }
+        });
+      });
+
+      // Enhanced hover effects
+      initHoverEffects(true);
+      
+      console.log('✅ Advanced parallax animations ready');
+    }
+
+    // Fallback animations without GSAP
+    function initFallbackAnimations() {
+      console.log('📱 Using fallback portfolio animations');
+      
+      // Ensure all content is visible
+      const elements = document.querySelectorAll('.portfolio-title, .portfolio-description, .project-row, .project-card');
+      elements.forEach((el, index) => {
+        const element = el as HTMLElement;
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+        element.style.transition = `all 0.8s ease ${index * 0.1}s`;
+      });
+
+      // Initialize basic hover effects
+      initHoverEffects(false);
+      
+      console.log('✅ Fallback animations complete');
+    }
+
+    // COMPLETELY REBUILT PROJECT MODAL SYSTEM
+    function initProjectModal() {
+      console.log('🎬 Initializing REBUILT project modal system');
+      
+      // Get all modal elements
+      const modal = document.getElementById('project-modal');
+      const modalBackdrop = document.getElementById('modal-backdrop');
+      const modalClose = document.getElementById('modal-close');
+      const modalImage = document.getElementById('modal-image');
+      const modalCategory = document.getElementById('modal-category');
+      const modalTitle = document.getElementById('modal-title');
+      const modalDescription = document.getElementById('modal-description');
+      const modalTechStack = document.getElementById('modal-tech-stack');
+      const modalLiveBtn = document.getElementById('modal-live-btn');
+      const modalCaseBtn = document.getElementById('modal-case-btn');
+
+      if (!modal || !modalBackdrop || !modalClose) {
+        console.error('❌ Modal elements not found');
+        return;
+      }
+
+      // Modal state management
+      let modalState = {
+        isOpen: false,
+        currentProject: null as string | null,
+        isAnimating: false,
+        scrollPosition: 0
+      };
+
+      // BULLETPROOF content population function
+      function populateModalContent(projectId: string) {
+        const project = projectData[projectId];
+        if (!project) {
+          console.error(`❌ Project data not found for: ${projectId}`);
+          return false;
+        }
+
+        console.log(`📝 POPULATING MODAL FOR: ${project.title}`);
+
+        try {
+          // 1. POPULATE IMAGE
+          if (modalImage) {
+            const projectCard = document.querySelector(`[data-project="${projectId}"]`);
+            const sourceImage = projectCard?.querySelector('img') as HTMLImageElement;
+            if (sourceImage) {
+              (modalImage as HTMLImageElement).src = sourceImage.src;
+              (modalImage as HTMLImageElement).alt = project.title;
+              console.log('✅ Image populated');
+            }
+          }
+
+          // 2. POPULATE CATEGORY
+          if (modalCategory) {
+            modalCategory.textContent = project.category;
+            console.log('✅ Category populated');
+          }
+
+          // 3. POPULATE TITLE - BULLETPROOF METHOD
+          if (modalTitle) {
+            // Clear any existing content
+            modalTitle.innerHTML = '';
+            modalTitle.textContent = '';
+            
+            // Set the title text
+            modalTitle.textContent = project.title;
+            
+            // Force all styles to ensure visibility
+            modalTitle.style.cssText = `
+              font-family: 'Space Grotesk', sans-serif !important;
+              font-size: clamp(2rem, 4vw, 3.5rem) !important;
+              font-weight: 500 !important;
+              color: white !important;
+              margin: 0 !important;
+              line-height: 1.1 !important;
+              letter-spacing: -0.02em !important;
+              display: block !important;
+              opacity: 1 !important;
+              visibility: visible !important;
+              position: relative !important;
+              z-index: 100 !important;
+            `;
+            
+            console.log(`✅ TITLE BULLETPROOF SET: "${project.title}"`);
+          }
+
+          // 4. POPULATE DESCRIPTION
+          if (modalDescription) {
+            modalDescription.innerHTML = project.description;
+            console.log('✅ Description populated');
+          }
+
+          // 5. POPULATE SERVICE DETAILS
+          if (modalTechStack) {
+            let sectionTitle = "Services";
+            let items: string[] = [];
+            
+            if (project.capabilities) {
+              sectionTitle = "Key Capabilities";
+              items = project.capabilities;
+            } else if (project.platformSupport) {
+              sectionTitle = "Platform Support";
+              items = project.platformSupport;
+            } else if (project.servicesIncluded) {
+              sectionTitle = "Services Included";
+              items = project.servicesIncluded;
+            } else if (project.optimizationAreas) {
+              sectionTitle = "Optimization Areas";
+              items = project.optimizationAreas;
+            } else if (project.seoServices) {
+              sectionTitle = "SEO Services";
+              items = project.seoServices;
+            } else if (project.integrationTypes) {
+              sectionTitle = "Integration Types";
+              items = project.integrationTypes;
+            }
+            
+            modalTechStack.innerHTML = `
+              <h4>${sectionTitle}</h4>
+              <div class="tech-list">
+                ${items.map((item: string) => `<span class="tech-item">${getServiceIcon(item)} ${item}</span>`).join('')}
+              </div>
+            `;
+            console.log('✅ Service details populated');
+          }
+
+          // 6. POPULATE ACTION BUTTONS
+          if (modalLiveBtn) {
+            (modalLiveBtn as HTMLAnchorElement).href = project.liveUrl;
+          }
+          if (modalCaseBtn) {
+            (modalCaseBtn as HTMLAnchorElement).href = project.caseStudyUrl;
+          }
+
+          console.log('🎯 ALL CONTENT SUCCESSFULLY POPULATED');
+          return true;
+        } catch (error) {
+          console.error('❌ Error populating modal content:', error);
+          return false;
+        }
+      }
+
+      // BULLETPROOF MOBILE-OPTIMIZED modal open function
+      function openModal(projectId: string, clickedCard: HTMLElement) {
+        if (modalState.isAnimating || modalState.isOpen) {
+          console.log('⚠️ Modal is already open or animating');
+          return;
+        }
+
+        console.log(`🚀 OPENING MODAL FOR: ${projectId}`);
+        
+        modalState.isAnimating = true;
+        modalState.currentProject = projectId;
+
+        // Store current scroll position BEFORE any body modifications
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        console.log(`📍 Storing scroll position: ${scrollY}`);
+        
+        // Store scroll position in modal state for reliable restoration
+        modalState.scrollPosition = scrollY;
+
+        // Populate content FIRST
+        const contentPopulated = populateModalContent(projectId);
+        if (!contentPopulated) {
+          modalState.isAnimating = false;
+          return;
+        }
+
+        // Show modal with bulletproof mobile optimizations
+        if (modal) {
+          modal.classList.add('active');
+          
+          // Bulletproof mobile body scroll prevention
+          document.body.classList.add('modal-open');
+          document.body.style.overflow = 'hidden';
+          document.body.style.position = 'fixed';
+          document.body.style.width = '100%';
+          document.body.style.height = '100%';
+          document.body.style.top = `-${scrollY}px`;
+          
+          // Ensure modal is focusable and accessible
+          modal.setAttribute('aria-modal', 'true');
+          modal.setAttribute('role', 'dialog');
+          modal.focus();
+          
+          // Update state
+          modalState.isOpen = true;
+          modalState.isAnimating = false;
+
+          console.log('✅ MODAL OPENED SUCCESSFULLY (Bulletproof Mobile)');
+        }
+      }
+
+      // BULLETPROOF MOBILE-OPTIMIZED modal close function
+      function closeModal() {
+        if (modalState.isAnimating || !modalState.isOpen) {
+          return;
+        }
+
+        console.log('🔒 CLOSING MODAL (Bulletproof Mobile)');
+        
+        modalState.isAnimating = true;
+
+        // Get stored scroll position
+        const scrollY = modalState.scrollPosition || 0;
+        console.log(`📍 Restoring scroll position: ${scrollY}`);
+
+        // Hide modal with bulletproof mobile cleanup
+        if (modal) {
+          modal.classList.remove('active');
+          
+          // Restore body state CAREFULLY
+          document.body.classList.remove('modal-open');
+          document.body.style.overflow = '';
+          document.body.style.position = '';
+          document.body.style.width = '';
+          document.body.style.height = '';
+          document.body.style.top = '';
+          
+          // Restore scroll position IMMEDIATELY to prevent jump
+          window.scrollTo(0, scrollY);
+          
+          // Force scroll position (some browsers need this)
+          requestAnimationFrame(() => {
+            window.scrollTo(0, scrollY);
+            document.documentElement.scrollTop = scrollY;
+            document.body.scrollTop = scrollY;
+          });
+
+          // Remove modal attributes
+          modal.removeAttribute('aria-modal');
+          modal.removeAttribute('role');
+
+          // Reset state after animation
+          setTimeout(() => {
+            modalState.isOpen = false;
+            modalState.isAnimating = false;
+            modalState.currentProject = null;
+            modalState.scrollPosition = 0;
+            console.log('✅ MODAL CLOSED SUCCESSFULLY (Bulletproof Mobile)');
+          }, 200);
+        }
+      }
+
+      // BULLETPROOF event listeners
+      function setupEventListeners() {
+        // Close button - MULTIPLE EVENT TYPES
+        if (modalClose) {
+          const handleClose = (e: Event) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('🔒 Close button clicked');
+            closeModal();
+          };
+
+          modalClose.addEventListener('click', handleClose, { passive: false });
+          modalClose.addEventListener('touchstart', handleClose, { passive: false });
+          modalClose.addEventListener('mousedown', handleClose, { passive: false });
+          
+          // Debug hover
+          modalClose.addEventListener('mouseenter', () => {
+            console.log('🎯 Close button hovered');
+          });
+
+          console.log('✅ Close button events attached');
+        }
+
+        // Backdrop click
+        if (modalBackdrop) {
+          modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) {
+              console.log('🔒 Backdrop clicked');
+              closeModal();
+            }
+          });
+          console.log('✅ Backdrop event attached');
+        }
+
+        // Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && modalState.isOpen) {
+            console.log('🔒 Escape key pressed');
+            closeModal();
+          }
+        });
+
+        console.log('✅ All event listeners attached');
+      }
+
+      // Initialize event listeners
+      setupEventListeners();
+
+      // Return interface
+      return {
+        open: openModal,
+        close: closeModal,
+        getState: () => modalState
+      };
+    }
+
+    // Hover effects (with or without GSAP)
+    function initHoverEffects(hasGSAP: boolean) {
+      const projectCards = document.querySelectorAll('.project-card');
+      const modalSystem = initProjectModal();
+      
+      projectCards.forEach((card) => {
+        const image = card.querySelector('.project-image');
+        const imageElement = card.querySelector('.project-image img');
+        const overlay = card.querySelector('.project-overlay');
+        
+        if (hasGSAP) {
+          // GSAP hover timeline
+          const hoverTl = gsap.timeline({ paused: true });
+          
+          hoverTl
+            .to(card, {
+              y: -12,
+              scale: 1.02,
+              rotationY: 0,
+              rotationX: 0,
+              duration: 0.6,
+              ease: 'power2.out'
+            }, 0)
+            .to(image, {
+              boxShadow: '0 25px 70px rgba(0, 0, 0, 0.2)',
+              duration: 0.6,
+              ease: 'power2.out'
+            }, 0)
+            .to(imageElement, {
+              scale: 1.08,
+              duration: 0.8,
+              ease: 'power2.out'
+            }, 0);
+
+          card.addEventListener('mouseenter', () => hoverTl.play());
+          card.addEventListener('mouseleave', () => hoverTl.reverse());
+        } else {
+          // CSS-only hover effects
+          card.addEventListener('mouseenter', () => {
+            (card as HTMLElement).style.transform = 'translateY(-8px) scale(1.02)';
+            if (image) (image as HTMLElement).style.boxShadow = '0 25px 70px rgba(0, 0, 0, 0.2)';
+            if (imageElement) (imageElement as HTMLElement).style.transform = 'scale(1.05)';
+          });
+
+          card.addEventListener('mouseleave', () => {
+            (card as HTMLElement).style.transform = 'translateY(0) scale(1)';
+            if (image) (image as HTMLElement).style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.08)';
+            if (imageElement) (imageElement as HTMLElement).style.transform = 'scale(1)';
+          });
+        }
+
+        // Click handling for modal
+        card.addEventListener('click', () => {
+          const projectId = card.getAttribute('data-project');
+          console.log(`🎯 Project clicked: ${projectId}`);
+          
+                     if (modalSystem && projectId) {
+             modalSystem.open(projectId, card as HTMLElement);
+           }
+        });
+      });
+    }
+
+    // Initialize portfolio
+    async function initialize() {
+      const hasGSAP = await waitForGSAP();
+      
+      if (hasGSAP) {
+        initGSAPAnimations();
+      } else {
+        initFallbackAnimations();
+      }
+      
+      console.log('✅ Enhanced portfolio grid initialization complete');
+    }
+
+    // Start initialization
+    initialize();
+
+    // Refresh on resize
+    window.addEventListener('resize', () => {
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortfolioGrid);
+  } else {
+    initPortfolioGrid();
+  }
+</script> 
