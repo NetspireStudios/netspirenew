@@ -1,20 +1,40 @@
 ---
-// Simple Hero Test
+// Cinematic Hero Section - Vimeo Video Background
 ---
 
 <section class="hero" id="hero">
-  <!-- Snow Mountain Background Image -->
-  <div class="hero-background">
-    <img 
-      class="hero-background-image"
-      src="https://images.unsplash.com/photo-1551524164-69c0030442a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-      alt="Snow mountain landscape"
-      loading="eager"
-    />
+  <!-- Vimeo Video Background -->
+  <div class="hero-video">
+    <!-- Vimeo Embed (Primary) - Updated for continuous playback -->
+    <iframe 
+      class="hero-video-iframe"
+      src="https://player.vimeo.com/video/259411563?autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1&autopause=0&controls=0&sidedock=0"
+      frameborder="0" 
+      allow="autoplay; fullscreen; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+    
+    <!-- Fallback Video (if Vimeo fails) -->
+    <video 
+      class="hero-video-fallback"
+      autoplay 
+      muted 
+      loop 
+      playsinline
+      preload="auto"
+      style="display: none;"
+    >
+      <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4">
+      <source src="/images/hero-video.mp4" type="video/mp4">
+    </video>
   </div>
   
   <!-- Content Overlay -->
   <div class="hero-overlay"></div>
+  
+  <!-- Glow Effects -->
+  <div class="hero-glow glow-1"></div>
+  <div class="hero-glow glow-2"></div>
   
   <!-- Hero Content -->
   <div class="hero-content">
@@ -31,8 +51,30 @@
     <div class="hero-cta">
       <button class="cta-button" data-cursor="hover">
         <span>Explore Our Work</span>
+        <div class="cta-arrow">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
       </button>
     </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator" data-cursor="hover">
+    <div class="scroll-text">
+      <span>Scroll to discover</span>
+    </div>
+    <div class="scroll-line">
+      <div class="scroll-dot"></div>
+    </div>
+  </div>
+  
+  <!-- Floating Elements -->
+  <div class="floating-elements">
+    <div class="floating-dot floating-dot-1"></div>
+    <div class="floating-dot floating-dot-2"></div>
+    <div class="floating-dot floating-dot-3"></div>
   </div>
 </section>
 
@@ -46,10 +88,49 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: #000;
+    background: 
+      /* Silver grid overlay */
+      linear-gradient(rgba(192, 192, 192, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192, 192, 192, 0.1) 1px, transparent 1px),
+      /* Glow grid overlay */
+      linear-gradient(rgba(192, 192, 192, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192, 192, 192, 0.05) 1px, transparent 1px),
+      /* Black base */
+      linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #000000 50%, #080808 75%, #000000 100%);
+    background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px, 100% 100%;
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
   }
 
-  .hero-background {
+  /* Grid glow animation */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(rgba(192, 192, 192, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192, 192, 192, 0.03) 1px, transparent 1px);
+    background-size: 100px 100px;
+    animation: gridGlow 4s ease-in-out infinite alternate;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @keyframes gridGlow {
+    0% { 
+      opacity: 0.3;
+      transform: translateX(0) translateY(0);
+    }
+    100% { 
+      opacity: 0.6;
+      transform: translateX(25px) translateY(25px);
+    }
+  }
+
+  /* Video Background Container */
+  .hero-video {
     position: absolute;
     top: 0;
     left: 0;
@@ -60,61 +141,764 @@
     pointer-events: none;
   }
 
-  .hero-background-image {
+  /* Vimeo iframe styling */
+  .hero-video-iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 aspect ratio */
+    min-height: 100vh;
+    min-width: 177.78vh; /* 16:9 aspect ratio */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 15;
+    border: none;
+    outline: none;
+  }
+
+  /* Fallback video styling */
+  .hero-video-fallback {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 100%;
     height: 100%;
-    min-width: 100vw;
-    min-height: 100vh;
     object-fit: cover;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 15;
-    user-select: none;
+    z-index: 14;
   }
 
+  /* Content Overlay - Enhanced for video visibility */
   .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: 
+      radial-gradient(circle at 30% 30%, rgba(0,0,0,0.3) 0%, transparent 60%),
+      radial-gradient(circle at 70% 70%, rgba(0,0,0,0.4) 0%, transparent 60%),
+      linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 100%);
     z-index: 18;
     pointer-events: none;
   }
 
+  /* Glow Effects */
+  .hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 19;
+    animation: float 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .glow-1 {
+    top: 20%;
+    left: 20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(192, 192, 192, 0.08) 0%, transparent 70%);
+    animation-delay: 0s;
+  }
+
+  .glow-2 {
+    bottom: 20%;
+    right: 20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(192, 192, 192, 0.06) 0%, transparent 70%);
+    animation-delay: 4s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -20px) scale(1.1); }
+    50% { transform: translate(-20px, 30px) scale(0.9); }
+    75% { transform: translate(20px, -30px) scale(1.05); }
+  }
+
+  /* Hero Content */
   .hero-content {
     position: relative;
     z-index: 20;
     text-align: center;
-    color: white;
+    max-width: 1200px;
+    padding: 0 60px;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  /* Enable pointer events only for specific interactive elements */
+  .hero-content .cta-button {
+    pointer-events: auto;
+    position: relative;
+    z-index: 21;
+  }
+
+  .scroll-indicator {
+    pointer-events: auto;
+    position: relative;
+    z-index: 21;
+  }
+
+  /* Text elements should be non-interactive */
+  .hero-title,
+  .hero-description,
+  .hero-subtitle {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .hero-title {
-    font-size: 4rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(6rem, 15vw, 18rem);
+    font-weight: 300;
+    line-height: 0.85;
+    color: #fff;
+    margin-top: -60px;
+    margin-bottom: 40px;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    /* Enhanced text shadow for better visibility over video */
+    text-shadow: 
+      0 0 30px rgba(0, 0, 0, 0.9),
+      0 0 60px rgba(0, 0, 0, 0.7),
+      0 0 90px rgba(0, 0, 0, 0.5),
+      2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .title-line {
+    overflow: hidden;
+    display: block;
+  }
+
+  .title-word {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
   }
 
   .hero-description {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    max-width: 600px;
+    margin: 0 auto 80px;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .hero-description p {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin: 0;
+    /* Enhanced text shadow for better visibility */
+    text-shadow: 
+      0 0 20px rgba(0, 0, 0, 0.9),
+      0 0 40px rgba(0, 0, 0, 0.7),
+      2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  /* CTA Button */
+  .hero-cta {
+    opacity: 0;
+    transform: translateY(30px);
   }
 
   .cta-button {
-    padding: 1rem 2rem;
-    background: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 36px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
     cursor: pointer;
-    font-size: 1rem;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    pointer-events: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cta-button:hover::before {
+    left: 0;
+  }
+
+  .cta-button:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .cta-arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .cta-button:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Scroll Indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 20;
+    opacity: 0;
+    pointer-events: auto;
+    cursor: pointer;
+    width: auto;
+    margin: 0;
+    text-align: center;
+  }
+
+  .scroll-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .scroll-dot {
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    animation: scrollDot 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollDot {
+    0% { 
+      top: 0; 
+      opacity: 0; 
+    }
+    50% { 
+      opacity: 1; 
+    }
+    100% { 
+      top: 100%; 
+      opacity: 0; 
+    }
+  }
+
+  /* Floating Elements */
+  .floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 19;
+    pointer-events: none;
+  }
+
+  .floating-dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(192, 192, 192, 0.5);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(192, 192, 192, 0.4);
+  }
+
+  .floating-dot-1 {
+    top: 20%;
+    left: 10%;
+    animation: float1 8s ease-in-out infinite;
+  }
+
+  .floating-dot-2 {
+    top: 60%;
+    right: 15%;
+    animation: float2 6s ease-in-out infinite reverse;
+  }
+
+  .floating-dot-3 {
+    bottom: 30%;
+    left: 20%;
+    animation: float3 10s ease-in-out infinite;
+  }
+
+  @keyframes float1 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+    50% { transform: translate(30px, -20px) scale(1.5); opacity: 0.8; }
+  }
+
+  @keyframes float2 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+    50% { transform: translate(-25px, 15px) scale(1.2); opacity: 0.9; }
+  }
+
+  @keyframes float3 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+    50% { transform: translate(20px, -30px) scale(1.8); opacity: 0.7; }
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero-content {
+      padding: 0 40px;
+    }
+    
+    .hero-title {
+      font-size: clamp(3rem, 10vw, 8rem);
+    }
+    
+    .hero-description p {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-content {
+      padding: 80px 20px 40px 20px;
+      text-align: center;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hero-subtitle {
+      font-size: 11px;
+      margin-bottom: 25px;
+      letter-spacing: 2px;
+    }
+    
+    .hero-title {
+      font-size: clamp(2.8rem, 9vw, 5rem);
+      margin-top: 0;
+      margin-bottom: 30px;
+      line-height: 1.1;
+      text-align: center;
+    }
+    
+    .hero-description {
+      margin-bottom: 50px;
+      max-width: 100%;
+      text-align: center;
+    }
+    
+    .hero-description p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .cta-button {
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      min-width: 200px;
+    }
+    
+    .scroll-indicator {
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      margin: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile video optimizations */
+    .hero-video-iframe {
+      width: 100vw;
+      height: 56.25vw;
+      min-height: 100vh;
+      min-width: 177.78vh;
+    }
+
+    .hero-video-fallback {
+      transform: translate(-50%, -50%) scale(1.05);
+      filter: brightness(0.7) contrast(1.1);
+    }
+
+    .hero-overlay {
+      background: 
+        radial-gradient(circle at 50% 50%, rgba(0,0,0,0.5) 0%, transparent 70%),
+        linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.8) 100%);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-content {
+      padding: 60px 10px 30px 10px;
+      max-width: 100%;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .hero-subtitle {
+      font-size: 10px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    
+    .hero-title {
+      font-size: clamp(2.2rem, 8vw, 3.5rem);
+      margin-top: 0;
+      margin-bottom: 25px;
+      line-height: 1.2;
+    }
+
+    .hero-description {
+      margin-bottom: 40px;
+      padding: 0 10px;
+    }
+
+    .hero-description p {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    
+    .cta-button {
+      padding: 16px 32px;
+      font-size: 13px;
+      min-width: 180px;
+      width: 100%;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .scroll-indicator {
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      margin: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-video-fallback {
+      transform: translate(-50%, -50%) scale(1.1);
+      filter: brightness(0.6) contrast(1.2);
+    }
   }
 </style>
 
 <script>
-  console.log('Hero component loaded successfully');
-</script>
+  // Hero animations and video management
+  function initHeroAnimations() {
+    console.log('🎬 Initializing hero animations with Vimeo video...');
+    
+    // Enhanced video management with continuous playback
+    function setupVideoManagement() {
+      const vimeoIframe = document.querySelector('.hero-video-iframe') as HTMLIFrameElement;
+      const fallbackVideo = document.querySelector('.hero-video-fallback') as HTMLVideoElement;
+      let vimeoFailed = false;
+      
+      console.log('🎥 Setting up enhanced Vimeo video management...');
+      
+      // Enhanced Vimeo iframe handling
+      if (vimeoIframe) {
+        // Listen for Vimeo player messages
+        window.addEventListener('message', (event) => {
+          if (event.origin !== 'https://player.vimeo.com') return;
+          
+          const data = event.data;
+          
+          // Handle different Vimeo events
+          if (typeof data === 'string') {
+            try {
+              const parsed = JSON.parse(data);
+              
+              // Video ended - restart it
+              if (parsed.event === 'ended') {
+                console.log('🔄 Vimeo video ended, restarting...');
+                vimeoIframe.contentWindow?.postMessage('{"method":"play"}', '*');
+              }
+              
+              // Video paused - resume it
+              if (parsed.event === 'pause') {
+                console.log('▶️ Vimeo video paused, resuming...');
+                setTimeout(() => {
+                  vimeoIframe.contentWindow?.postMessage('{"method":"play"}', '*');
+                }, 100);
+              }
+              
+              // Video loaded successfully
+              if (parsed.event === 'loaded') {
+                console.log('✅ Vimeo video loaded successfully');
+                // Ensure it starts playing
+                setTimeout(() => {
+                  vimeoIframe.contentWindow?.postMessage('{"method":"play"}', '*');
+                }, 500);
+              }
+              
+            } catch (e) {
+              // Ignore parsing errors
+            }
+          }
+        });
+        
+        // Iframe load handler
+        vimeoIframe.addEventListener('load', () => {
+          console.log('📺 Vimeo iframe loaded');
+          
+          // Set up periodic play command to ensure continuous playback
+          setTimeout(() => {
+            if (!vimeoFailed) {
+              vimeoIframe.contentWindow?.postMessage('{"method":"play"}', '*');
+              
+              // Set up periodic checks to ensure video keeps playing
+              setInterval(() => {
+                if (!vimeoFailed && vimeoIframe.style.display !== 'none') {
+                  vimeoIframe.contentWindow?.postMessage('{"method":"play"}', '*');
+                }
+              }, 10000); // Check every 10 seconds
+            }
+          }, 1000);
+        });
+        
+        // Error handler
+        vimeoIframe.addEventListener('error', () => {
+          console.log('⚠️ Vimeo iframe error, switching to fallback');
+          activateFallback();
+        });
+        
+        // Timeout fallback
+        setTimeout(() => {
+          // Check if iframe is working by trying to access it
+          try {
+            if (!vimeoIframe.contentWindow || vimeoFailed) {
+              console.log('🔄 Vimeo timeout or access denied, using fallback');
+              activateFallback();
+            }
+          } catch (e) {
+            console.log('🔄 Vimeo iframe access blocked, using fallback');
+            activateFallback();
+          }
+        }, 8000);
+      }
+      
+      // Fallback activation function
+      function activateFallback() {
+        if (vimeoFailed) return; // Already activated
+        
+        vimeoFailed = true;
+        console.log('📹 Activating fallback video...');
+        
+        if (vimeoIframe) {
+          vimeoIframe.style.display = 'none';
+        }
+        
+        if (fallbackVideo) {
+          fallbackVideo.style.display = 'block';
+          
+          // Ensure fallback video plays continuously
+          fallbackVideo.addEventListener('loadeddata', () => {
+            console.log('📹 Fallback video ready, starting playback');
+            fallbackVideo.play().catch(e => {
+              console.log('Fallback video play failed:', e);
+            });
+          });
+          
+          // Handle fallback video events
+          fallbackVideo.addEventListener('ended', () => {
+            console.log('🔄 Fallback video ended, restarting...');
+            fallbackVideo.currentTime = 0;
+            fallbackVideo.play();
+           });
+           
+          fallbackVideo.addEventListener('pause', () => {
+            console.log('▶️ Fallback video paused, resuming...');
+            setTimeout(() => {
+              fallbackVideo.play().catch(e => {
+                console.log('Resume failed:', e);
+              });
+            }, 100);
+          });
+          
+          // Start playing immediately
+          fallbackVideo.play().catch(e => {
+            console.log('Initial fallback play failed:', e);
+           });
+         }
+      }
+      
+      // Enhanced fallback video setup
+      if (fallbackVideo) {
+        fallbackVideo.addEventListener('loadeddata', () => {
+          console.log('📹 Fallback video loaded and ready');
+        });
+        
+        // Ensure fallback loops properly
+        fallbackVideo.addEventListener('ended', () => {
+          fallbackVideo.currentTime = 0;
+          fallbackVideo.play();
+        });
+      }
+      
+      console.log('✅ Enhanced video management configured');
+     }
+    
+    // Initialize enhanced video management
+    setupVideoManagement();
+    
+    // If GSAP is not available, show content immediately
+    if (typeof gsap === 'undefined') {
+      console.log('⚠️ GSAP not available, showing hero content immediately');
+      setTimeout(() => {
+        const elements = ['.title-word', '.hero-description', '.hero-cta', '.scroll-indicator'];
+        elements.forEach(selector => {
+          const element = document.querySelector(selector) as HTMLElement;
+          if (element) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      }, 3000);
+      return;
+    }
+
+    // Simple, fast animations
+    setTimeout(() => {
+      gsap.to('.title-word', {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power2.out'
+      });
+      
+      gsap.to('.hero-description', {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+        delay: 0.2
+      });
+      
+      gsap.to('.hero-cta', {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+        delay: 0.4
+      });
+      
+      gsap.to('.scroll-indicator', {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+        delay: 0.6
+      });
+    }, 2500);
+
+    // CTA button click
+    document.querySelector('.cta-button')?.addEventListener('click', () => {
+      const workSection = document.querySelector('#work');
+      if (workSection) {
+        const lenis = (window as any).lenis;
+        if (lenis) {
+          lenis.scrollTo(workSection, { duration: 1.5 });
+        } else {
+          workSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+
+    // Scroll indicator click
+    document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
+      const nextSection = document.querySelector('.hero')?.nextElementSibling;
+      if (nextSection) {
+        const lenis = (window as any).lenis;
+        if (lenis) {
+          lenis.scrollTo(nextSection, { duration: 1.2 });
+        } else {
+          nextSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+    
+    console.log('✅ Hero animations and enhanced video system initialized');
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroAnimations);
+  } else {
+    initHeroAnimations();
+  }
+</script> 

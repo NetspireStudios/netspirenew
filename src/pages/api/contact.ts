@@ -2,6 +2,13 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
+// Load environment variables - will be handled in the function
+
+// Environment variables getter
+const getEnvVar = (key: string): string | undefined => {
+  return process.env[key];
+};
+
 // Simple rate limiting store (in production, use Redis or database)
 const rateLimitStore = new Map<string, { count: number; lastReset: number }>();
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
@@ -57,6 +64,15 @@ function sanitizeInput(input: string): string {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    // Load environment variables in development
+    if (process.env.NODE_ENV !== 'production') {
+      try {
+        const { config } = await import('dotenv');
+        config();
+      } catch (e) {
+        // dotenv not available in production, which is fine
+      }
+    }
 
     // Get client IP (simplified for development)
     const clientIP = request.headers.get('x-forwarded-for') || 
@@ -131,10 +147,10 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     // Gmail/SMTP Email Integration
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const contactEmail = process.env.CONTACT_EMAIL;
+    const smtpHost = getEnvVar('SMTP_HOST');
+    const smtpUser = getEnvVar('SMTP_USER');
+    const smtpPass = getEnvVar('SMTP_PASS');
+    const contactEmail = getEnvVar('CONTACT_EMAIL');
 
     console.log('🔧 SMTP Configuration Check:', {
       smtpHost: smtpHost ? 'SET' : 'NOT SET',
@@ -159,7 +175,7 @@ export const POST: APIRoute = async ({ request }) => {
         
         const transporter = nodemailer.createTransport({
           host: smtpHost,
-          port: parseInt(process.env.SMTP_PORT || '587'),
+          port: parseInt(getEnvVar('SMTP_PORT') || '587'),
           secure: false, // true for 465, false for other ports
           auth: {
             user: smtpUser,
@@ -237,13 +253,8 @@ export const POST: APIRoute = async ({ request }) => {
       headers: { 'Content-Type': 'application/json' }
     });
 
-  } catch (error: any) {
-    console.error('❌ Contact form error:', error);
-    console.error('❌ Error details:', {
-      message: error?.message,
-      stack: error?.stack?.split('\n')[0],
-      name: error?.name
-    });
+  } catch (error) {
+    console.error('Contact form error:', error);
     
     return new Response(JSON.stringify({
       success: false,
