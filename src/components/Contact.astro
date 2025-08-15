@@ -219,7 +219,7 @@
               </div>
               <div class="method-content">
                 <div class="method-label">Phone</div>
-                <div class="method-value">+1 (416) 464-1647</div>
+                <div class="method-value">+1 416 464 1647</div>
               </div>
             </a>
 
@@ -232,7 +232,7 @@
               </div>
               <div class="method-content">
                 <div class="method-label">Location</div>
-                <div class="method-value">Toronto, ON<br>Canada</div>
+                <div class="method-value">Toronto, Canada</div>
               </div>
             </div>
           </div>
@@ -465,8 +465,12 @@
   .form-select option {
     background: #1a1a1a;
     color: #fff;
-    padding: 10px;
-    font-family: 'Inter', sans-serif;
+    padding: 12px;
+  }
+
+  .form-select option:checked {
+    background: #4a90e2;
+    color: #fff;
   }
 
   .form-textarea {
@@ -1405,14 +1409,14 @@
             setButtonState('normal');
           }, 3000);
         }
-        } catch (error) {
+      } catch (error) {
         console.error('❌ Unexpected error:', error);
         setButtonState('error');
         showFormMessage('error', 'An unexpected error occurred. Please try again.');
-          
-          setTimeout(() => {
+        
+        setTimeout(() => {
           setButtonState('normal');
-          }, 3000);
+        }, 3000);
       } finally {
         isSubmitting = false;
       }
