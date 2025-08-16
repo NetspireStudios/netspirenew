@@ -1,11 +1,36 @@
-# Ignore source files - only deploy built static site
-src/
+# Dependencies
 node_modules/
-.git/
-.env
-*.log
-package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Only keep built static files and API functions
-!dist/
-!api/
+# Source files (only deploy built output)
+src/
+tsconfig.json
+astro.config.mjs
+
+# Build cache
+.astro/
+
+# Environment files (use Vercel Environment Variables instead)
+.env
+.env.local
+.env.production
+.env.test
+
+# IDE and OS files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Documentation and guides
+*.md
+!README.md
+
+# Other
+test-email.cjs
+setup-gmail.js
