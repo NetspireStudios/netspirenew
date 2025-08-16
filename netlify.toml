@@ -1,0 +1,17 @@
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = "dist"
+
+[functions]
+  external_node_modules = ["nodemailer"]
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Remember to set these environment variables in your Netlify dashboard:
+# SMTP_HOST=smtp.gmail.com
+# SMTP_PORT=587
+# SMTP_USER=netspirestudios@gmail.com
+# SMTP_PASS=tjix fsoz iqgp xbsv
+# CONTACT_EMAIL=netspirestudios@gmail.com
