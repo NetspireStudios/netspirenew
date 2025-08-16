@@ -104,11 +104,11 @@
                   data-cursor="hover"
                 >
                   <option value="">Select budget range</option>
-                  <option value="under-10k">Under $10,000</option>
-                  <option value="10k-25k">$10,000 - $25,000</option>
-                  <option value="25k-50k">$25,000 - $50,000</option>
-                  <option value="50k-100k">$50,000 - $100,000</option>
-                  <option value="100k-plus">$100,000+</option>
+                  <option value="250-500">$250 - $500</option>
+                  <option value="500-1000">$500 - $1,000</option>
+                  <option value="1000-2000">$1,000 - $2,000</option>
+                  <option value="2000-5000">$2,000 - $5,000</option>
+                  <option value="5000-plus">$5,000+</option>
                 </select>
               </div>
             </div>
@@ -198,7 +198,7 @@
           </p>
 
           <div class="contact-methods">
-            <a href="mailto:hello@netspire.studio" class="contact-method" data-cursor="hover">
+            <a href="mailto:netspirestudios@gmail.com" class="contact-method" data-cursor="hover">
               <div class="method-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="1.5"/>
@@ -207,11 +207,11 @@
               </div>
               <div class="method-content">
                 <div class="method-label">Email</div>
-                <div class="method-value">hello@netspire.studio</div>
+                <div class="method-value">netspirestudios@gmail.com</div>
               </div>
             </a>
 
-            <a href="tel:+1234567890" class="contact-method" data-cursor="hover">
+            <a href="tel:+14164641647" class="contact-method" data-cursor="hover">
               <div class="method-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M22 16.92V19.92C22 20.42 21.96 20.93 21.88 21.42C21.49 24.28 19.4 26 16.73 26C7.59 26 1 19.41 1 10.27C1 7.6 2.72 5.51 5.58 5.12C6.07 5.04 6.58 5 7.08 5H10.08C10.58 5 11.03 5.3 11.21 5.76L12.74 9.29C12.89 9.65 12.81 10.06 12.54 10.35L10.76 12.13C10.39 12.5 10.35 13.09 10.66 13.51C11.43 14.64 12.36 15.57 13.49 16.34C13.91 16.65 14.5 16.61 14.87 16.24L16.65 14.46C16.94 14.19 17.35 14.11 17.71 14.26L21.24 15.79C21.7 15.97 22 16.42 22 16.92Z" stroke="currentColor" stroke-width="1.5"/>
@@ -219,7 +219,7 @@
               </div>
               <div class="method-content">
                 <div class="method-label">Phone</div>
-                <div class="method-value">+1 (234) 567-890</div>
+                <div class="method-value">+1 (416) 464-1647</div>
               </div>
             </a>
 
@@ -232,7 +232,7 @@
               </div>
               <div class="method-content">
                 <div class="method-label">Location</div>
-                <div class="method-value">New York, NY<br>United States</div>
+                <div class="method-value">Toronto, Canada</div>
               </div>
             </div>
           </div>
@@ -256,13 +256,7 @@
                 </svg>
                 <span>LinkedIn</span>
               </a>
-              <a href="#" class="social-link" data-cursor="hover">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
-                  <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" stroke="currentColor" stroke-width="1.5"/>
-                </svg>
-                <span>Dribbble</span>
-              </a>
+
             </div>
           </div>
         </div>
@@ -460,6 +454,12 @@
     background-repeat: no-repeat;
     background-size: 16px;
     padding-right: 45px;
+  }
+
+  .form-select option {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
   }
 
   .form-textarea {
